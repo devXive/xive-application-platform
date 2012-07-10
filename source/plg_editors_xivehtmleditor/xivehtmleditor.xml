@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="2.5" group="editors">
+  <name>Editors - XiveHTMLEditor</name>
+  <creationDate>10-Jul-2012</creationDate>
+  <author>devXive - research and develop</author>
+  <authorEmail>support@devxive.com</authorEmail>
+  <authorUrl>http://www.devxive.com</authorUrl>
+  <copyright>Copyright (C) 1997 - 2012 by devxive.com</copyright>
+  <license>GNU GPL2</license>
+  <version>1.0</version>
+  <description>This is a simple HTML5 Editor Plugin build on the WYSIHTML5 Editor by Xing AG</description>
+  <files folder="site">
+    <filename>index.html</filename>
+    <filename plugin="xivehtmleditor">xivehtmleditor.php</filename>
+    <filename>xivehtmleditor_CHANGELOG.php</filename>
+  </files>
+  <params/>
+  <config/>
+</extension>
