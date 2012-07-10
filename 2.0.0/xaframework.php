@@ -58,26 +58,38 @@ class plgSystemXaframework extends JPlugin
         $loadCSS = $this->params->get("loadCSS", TRUE);
         if ($loadCSS) {
             $doc->addStyleSheet(JURI::root(true) . '/media/xaframework/bootstrap/css/bootstrap.css');
+        }
+    }
+	
+    public function onAfterRender()
+    {
+		$app = JFactory::getApplication();
+		
+		$onlyFrontside = $this->params->get("onlyFrontside", TRUE);
+		
+		//ignore admin
+		if ($onlyFrontside && $app->isAdmin()) {
+			return true;
+		}
+		$doc = JFactory::getDocument();
+		
+		$onlyHTML = $this->params->get("onlyHTML", TRUE);
+		// ignore non html
+		if ($onlyHTML && $doc->getType() != 'html') {
+			return true;
+		}
+        // ignore modal pages or other incomplete pages
+        $notModal = $this->params->get("notModal", TRUE);
+        $nogo = array('component', 'raw');
+        if ($notModal && in_array(JRequest::getString('tmpl'), $nogo)) {
+            return true;
+        }
+        $loadCSS = $this->params->get("loadCSS", TRUE);
+        if ($loadCSS) {
             $doc->addStyleSheet(JURI::root(true) . '/media/xaframework/bootstrap/css/bootstrap-responsive.css');
-        }
-        $loadFontAwesome = $this->params->get("loadFontAwesome", TRUE);
-        if ($loadFontAwesome) {
-            $doc->addStyleSheet(JURI::root(true) . '/media/xaframework/bootstrap/css/font-awesome.css');
-            $doc->addStyleSheet(JURI::root(true) . '/media/xaframework/bootstrap/css/bootstrap-responsive.css');
-        }
-        $loadExtendedCSS = $this->params->get("loadExtendedCSS", TRUE);
-        if ($loadExtendedCSS) {
-            $doc->addStyleSheet(JURI::root(true) . '/media/xaframework/bootstrap/css/override.css');
-            $doc->addStyleSheet(JURI::root(true) . '/media/xaframework/bootstrap/css/custom.css');
-        }
-        $loadGoogleCodePrettify = $this->params->get("loadGoogleCodePrettify", TRUE);
-        if ($loadGoogleCodePrettify) {
-			$doc->addScript(JURI::root(true) . '/media/xaframework/google/prettify.js');
-			$doc->addStyleSheet(JURI::root(true) . '/media/xaframework/google/prettify.css');
         }
         $loadJS = $this->params->get("loadJS", TRUE);
         if ($loadJS) {
-
             $loadJQuery = $this->params->get("loadJQuery", TRUE);
             if ($loadJQuery) {
                 $jQueryFromLocal = $this->params->get("jQueryFromLocal", TRUE);
@@ -87,9 +99,24 @@ class plgSystemXaframework extends JPlugin
                     $doc->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
                 }
             }
-            $doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap.min.js');
+//            $doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap.min.js'); // causes errors and i dont have found anything where this is included?!
+            $doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap-transition.js');
+			$doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap-alert.js');
+			$doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap-modal.js');
+			$doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap-dropdown.js');
+			$doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap-scrollspy.js');
+			$doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap-tab.js');
+			$doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap-tooltip.js');
+			$doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap-popover.js');
+			$doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap-button.js');
+			$doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap-collapse.js');
+			$doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap-carousel.js');
+			$doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap-typehead.js');
         }
-
-    }
-
+        $loadGoogleCodePrettify = $this->params->get("loadGoogleCodePrettify", TRUE);
+        if ($loadGoogleCodePrettify) {
+			$doc->addStyleSheet(JURI::root(true) . '/media/xaframework/google/prettify.css');
+			$doc->addScript(JURI::root(true) . '/media/xaframework/google/prettify.js');
+        }
+	}
 }
