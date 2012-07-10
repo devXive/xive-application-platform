@@ -72,8 +72,8 @@ class plgSystemXaframework extends JPlugin
         }
         $loadGoogleCodePrettify = $this->params->get("loadGoogleCodePrettify", TRUE);
         if ($loadGoogleCodePrettify) {
-			$doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/google-code-prettify/prettify.js');
-			$doc->addStyleSheet(JURI::root(true) . '/media/xaframework/bootstrap/js/google-code-prettify/prettify.css');
+			$doc->addScript(JURI::root(true) . '/media/xaframework/google/prettify.js');
+			$doc->addStyleSheet(JURI::root(true) . '/media/xaframework/google/prettify.css');
         }
         $loadJS = $this->params->get("loadJS", TRUE);
         if ($loadJS) {
@@ -82,9 +82,9 @@ class plgSystemXaframework extends JPlugin
             if ($loadJQuery) {
                 $jQueryFromLocal = $this->params->get("jQueryFromLocal", TRUE);
                 if ($jQueryFromLocal) {
-                    $doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/jquery-1.7.1.min.js');
+                    $doc->addScript(JURI::root(true) . '/media/xaframework/jquery/jquery-1.7.2.min.js');
                 }else{
-                    $doc->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js');
+                    $doc->addScript('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js');
                 }
             }
             $doc->addScript(JURI::root(true) . '/media/xaframework/bootstrap/js/bootstrap.min.js');
