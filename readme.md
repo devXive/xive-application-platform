@@ -1,4 +1,4 @@
-# [Xive-Application-Platform v1](http://devxive.com) [![Build Status](https://travis-ci.org/devXive/xive-application-platform.png?branch=master)](https://travis-ci.org/devXive/xive-application-platform)
+# [Xive-Application-Platform v1](http://devxive.com) 
 
 With XAP we build easy2use-Apps, intuitive, useful & beautiful in form and function.
 
