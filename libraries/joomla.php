@@ -30,7 +30,7 @@ if (!defined('IS_UNIX'))
 // Import the platform version library if necessary.
 if (!class_exists('JPlatform'))
 {
-	require_once JPATH_PLATFORM . '/jplatform.php';
+	require_once JPATH_PLATFORM . '/joomla/platform.php';
 }
 
 // Import the library loader if necessary.
