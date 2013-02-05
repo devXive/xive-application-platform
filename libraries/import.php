@@ -27,12 +27,6 @@ if(!defined('DS')) {
 }
 
 // Import the platform version library if necessary.
-if (!class_exists('XAPlatform'))
-{
-	require_once XPATH_PLATFORM . '/xplatform.php';
-}
-
-// Import the platform version library if necessary.
 if (!class_exists('JPlatform'))
 {
 	// File for the Joomla Platform
