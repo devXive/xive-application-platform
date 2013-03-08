@@ -98,3 +98,6 @@ if (JDEBUG)
 {
 	$_PROFILER = JProfiler::getInstance('Application');
 }
+
+// XAP include
+require_once JPATH_LIBRARIES.'/xap.php';
