@@ -20,7 +20,7 @@ Get the source code from GIT:
 
 _Please ensure you add the following path to your local .gitignore file: tests/test_application/cache_
 
-
+<!--
 Contributing
 ------------
 
@@ -46,3 +46,4 @@ All contributions are welcome to be submitted for review for inclusion in the Xi
 Please be patient as not all items will be tested or reviewed immediately by a maintainer.
 
 Lastly, please be receptive to feedback about your change.  The maintainers and other community members may make suggestions or ask questions about your change. This is part of the review process, and helps everyone to understand what is happening, why it is happening, and potentially optimize your code.
+-->
