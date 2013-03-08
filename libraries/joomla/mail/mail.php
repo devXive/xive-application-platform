@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Mail
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -106,9 +106,8 @@ class JMail extends PHPMailer
 	/**
 	 * Set the email sender
 	 *
-	 * @param   mixed  $from  email address and Name of sender
-	 *                        <code>array([0] => email Address, [1] => Name)</code>
-	 *                        or as a string
+	 * @param   array  $from  email address and Name of sender
+	 *                        <code>array([0] => email Address [1] => Name)</code>
 	 *
 	 * @return  JMail  Returns this object for chaining.
 	 *
@@ -136,8 +135,8 @@ class JMail extends PHPMailer
 		}
 		else
 		{
-			// If it's neither we throw an exception
-			throw new UnexpectedValueException(sprintf('Invalid email Sender: %s, JMail::setSender(%s)', $from));
+			// If it is neither, we throw a warning
+			JLog::add(JText::sprintf('JLIB_MAIL_INVALID_EMAIL_SENDER', $from), JLog::WARNING, 'jerror');
 		}
 
 		return $this;
@@ -214,7 +213,6 @@ class JMail extends PHPMailer
 			else
 			{
 				$name = JMailHelper::cleanLine($name);
-
 				foreach ($recipient as $to)
 				{
 					$to = JMailHelper::cleanLine($to);
@@ -244,7 +242,6 @@ class JMail extends PHPMailer
 	public function addRecipient($recipient, $name = '')
 	{
 		$this->add($recipient, $name, 'AddAddress');
-
 		return $this;
 	}
 
@@ -349,23 +346,6 @@ class JMail extends PHPMailer
 	public function addReplyTo($replyto, $name = '')
 	{
 		$this->add($replyto, $name, 'AddReplyTo');
-
-		return $this;
-	}
-
-	/**
-	 * Sets message type to HTML
-	 *
-	 * @param   bool  $ishtml  Boolean true or false.
-	 *
-	 * @return  JMail  Returns this object for chaining.
-	 *
-	 * @since   12.3
-	 */
-	public function isHtml($ishtml = true)
-	{
-		parent::IsHTML($ishtml);
-
 		return $this;
 	}
 

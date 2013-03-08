@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Document
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -74,7 +74,6 @@ class JDocumentRendererAtom extends JDocumentRenderer
 		$feed_title = htmlspecialchars($title, ENT_COMPAT, 'UTF-8');
 
 		$feed = "<feed xmlns=\"http://www.w3.org/2005/Atom\" ";
-
 		if ($data->language != "")
 		{
 			$feed .= " xml:lang=\"" . $data->language . "\"";
@@ -82,7 +81,6 @@ class JDocumentRendererAtom extends JDocumentRenderer
 		$feed .= ">\n";
 		$feed .= "	<title type=\"text\">" . $feed_title . "</title>\n";
 		$feed .= "	<subtitle type=\"text\">" . htmlspecialchars($data->description, ENT_COMPAT, 'UTF-8') . "</subtitle>\n";
-
 		if (empty($data->category) === false)
 		{
 			if (is_array($data->category))
@@ -100,12 +98,10 @@ class JDocumentRendererAtom extends JDocumentRenderer
 		$feed .= "	<link rel=\"alternate\" type=\"text/html\" href=\"" . $url . "\"/>\n";
 		$feed .= "	<id>" . str_replace(' ', '%20', $data->getBase()) . "</id>\n";
 		$feed .= "	<updated>" . htmlspecialchars($now->toISO8601(true), ENT_COMPAT, 'UTF-8') . "</updated>\n";
-
 		if ($data->editor != "")
 		{
 			$feed .= "	<author>\n";
 			$feed .= "		<name>" . $data->editor . "</name>\n";
-
 			if ($data->editorEmail != "")
 			{
 				$feed .= "		<email>" . htmlspecialchars($data->editorEmail, ENT_COMPAT, 'UTF-8') . "</email>\n";
@@ -129,7 +125,6 @@ class JDocumentRendererAtom extends JDocumentRenderer
 			$itemDate->setTimeZone($tz);
 			$feed .= "		<published>" . htmlspecialchars($itemDate->toISO8601(true), ENT_COMPAT, 'UTF-8') . "</published>\n";
 			$feed .= "		<updated>" . htmlspecialchars($itemDate->toISO8601(true), ENT_COMPAT, 'UTF-8') . "</updated>\n";
-
 			if (empty($data->items[$i]->guid) === true)
 			{
 				$feed .= "		<id>" . str_replace(' ', '%20', $url . $data->items[$i]->link) . "</id>\n";
@@ -143,7 +138,6 @@ class JDocumentRendererAtom extends JDocumentRenderer
 			{
 				$feed .= "		<author>\n";
 				$feed .= "			<name>" . htmlspecialchars($data->items[$i]->author, ENT_COMPAT, 'UTF-8') . "</name>\n";
-
 				if ($data->items[$i]->authorEmail != "")
 				{
 					$feed .= "			<email>" . htmlspecialchars($data->items[$i]->authorEmail, ENT_COMPAT, 'UTF-8') . "</email>\n";
@@ -177,7 +171,6 @@ class JDocumentRendererAtom extends JDocumentRenderer
 			$feed .= "	</entry>\n";
 		}
 		$feed .= "</feed>\n";
-
 		return $feed;
 	}
 }

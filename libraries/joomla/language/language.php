@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Language
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -118,35 +118,35 @@ class JLanguage
 
 	/**
 	 * Name of the pluralSuffixesCallback function for this language.
-	 * @var    callable
+	 * @var    string
 	 * @since  11.1
 	 */
 	protected $pluralSuffixesCallback = null;
 
 	/**
 	 * Name of the ignoredSearchWordsCallback function for this language.
-	 * @var    callable
+	 * @var    string
 	 * @since  11.1
 	 */
 	protected $ignoredSearchWordsCallback = null;
 
 	/**
 	 * Name of the lowerLimitSearchWordCallback function for this language.
-	 * @var    callable
+	 * @var    string
 	 * @since  11.1
 	 */
 	protected $lowerLimitSearchWordCallback = null;
 
 	/**
 	 * Name of the uppperLimitSearchWordCallback function for this language
-	 * @var    callable
+	 * @var    string
 	 * @since  11.1
 	 */
 	protected $upperLimitSearchWordCallback = null;
 
 	/**
 	 * Name of the searchDisplayedCharactersNumberCallback function for this language.
-	 * @var    callable
+	 * @var    string
 	 * @since  11.1
 	 */
 	protected $searchDisplayedCharactersNumberCallback = null;
@@ -177,6 +177,8 @@ class JLanguage
 		{
 			if (is_array($contents))
 			{
+				// Sort the underlying heap by key values to optimize merging
+				ksort($contents, SORT_STRING);
 				$this->override = $contents;
 			}
 			unset($contents);
@@ -185,7 +187,6 @@ class JLanguage
 		// Look for a language specific localise class
 		$class = str_replace('-', '_', $lang . 'Localise');
 		$paths = array();
-
 		if (defined('JPATH_SITE'))
 		{
 			// Note: Manual indexing to enforce load order.
@@ -769,11 +770,14 @@ class JLanguage
 		{
 			if (is_array($strings))
 			{
+				// Sort the underlying heap by key values to optimize merging
+				ksort($strings, SORT_STRING);
 				$this->strings = array_merge($this->strings, $strings);
 			}
 
 			if (is_array($strings) && count($strings))
 			{
+				// Do not bother with ksort here.  Since the originals were sorted, PHP will already have chosen the best heap.
 				$this->strings = array_merge($this->strings, $this->override);
 				$result = true;
 			}
@@ -916,7 +920,6 @@ class JLanguage
 
 		// Search through the backtrace to our caller
 		$continue = true;
-
 		while ($continue && next($backtrace))
 		{
 			$step = current($backtrace);
@@ -1268,7 +1271,6 @@ class JLanguage
 			try
 			{
 				$metadata = self::parseXMLLanguageFile($file->getRealPath());
-
 				if ($metadata)
 				{
 					$lang = str_replace('.xml', '', $fileName);
@@ -1303,7 +1305,6 @@ class JLanguage
 
 		// Try to load the file
 		$xml = simplexml_load_file($path);
-
 		if (!$xml)
 		{
 			return null;

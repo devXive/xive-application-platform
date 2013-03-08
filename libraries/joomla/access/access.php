@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Access
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -311,7 +311,6 @@ class JAccess
 				// Build the database query to get the rules for the asset.
 				$query = $db->getQuery(true);
 				$query->select($recursive ? 'b.id' : 'a.id');
-
 				if (empty($userId))
 				{
 					$query->from('#__usergroups AS a');
@@ -450,6 +449,38 @@ class JAccess
 	}
 
 	/**
+	 * Method to return a list of actions for which permissions can be set given a component and section.
+	 *
+	 * @param   string  $component  The component from which to retrieve the actions.
+	 * @param   string  $section    The name of the section within the component from which to retrieve the actions.
+	 *
+	 * @return  array  List of actions available for the given component and section.
+	 *
+	 * @since   11.1
+	 *
+	 * @deprecated  12.3  Use JAccess::getActionsFromFile or JAccess::getActionsFromData instead.
+	 *
+	 * @codeCoverageIgnore
+	 * 
+	 */
+	public static function getActions($component, $section = 'component')
+	{
+		JLog::add(__METHOD__ . ' is deprecated. Use JAccess::getActionsFromFile or JAcces::getActionsFromData instead.', JLog::WARNING, 'deprecated');
+		$actions = self::getActionsFromFile(
+			JPATH_ADMINISTRATOR . '/components/' . $component . '/access.xml',
+			"/access/section[@name='" . $section . "']/"
+		);
+		if (empty($actions))
+		{
+			return array();
+		}
+		else
+		{
+			return $actions;
+		}
+	}
+
+	/**
 	 * Method to return a list of actions from a file for which permissions can be set.
 	 *
 	 * @param   string  $file   The path to the XML file.
@@ -470,7 +501,6 @@ class JAccess
 		{
 			// Else return the actions from the xml.
 			$xml = simplexml_load_file($file);
-
 			return self::getActionsFromData($xml, $xpath);
 		}
 	}

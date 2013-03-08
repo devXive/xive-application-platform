@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Document
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -198,7 +198,6 @@ class JDocumentFeed extends JDocument
 
 		// Instantiate feed renderer and set the mime encoding
 		$renderer = $this->loadRenderer(($type) ? $type : 'rss');
-
 		if (!is_a($renderer, 'JDocumentRenderer'))
 		{
 			throw new Exception(JText::_('JGLOBAL_RESOURCE_NOT_FOUND'), 404);
@@ -220,7 +219,6 @@ class JDocumentFeed extends JDocument
 		$data .= $renderer->render();
 
 		parent::render();
-
 		return $data;
 	}
 

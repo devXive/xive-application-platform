@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Archive
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -91,6 +91,7 @@ class JArchiveZip implements JArchiveExtractable
 	 *
 	 * @param   string  $archive  Path to save archive.
 	 * @param   array   $files    Array of files to add to archive.
+	 * @param   array   $options  Compression options (unused).
 	 *
 	 * @return  boolean  True if successful.
 	 *
@@ -98,7 +99,7 @@ class JArchiveZip implements JArchiveExtractable
 	 *
 	 * @todo    Finish Implementation
 	 */
-	public function create($archive, $files)
+	public function create($archive, $files, array $options = array())
 	{
 		$contents = array();
 		$ctrldir = array();
@@ -139,11 +140,11 @@ class JArchiveZip implements JArchiveExtractable
 
 		if ($this->hasNativeSupport())
 		{
-			return $this->extractNative($archive, $destination);
+			return $this->extractNative($archive, $destination, $options);
 		}
 		else
 		{
-			return $this->extractCustom($archive, $destination);
+			return $this->extractCustom($archive, $destination, $options);
 		}
 	}
 
@@ -197,13 +198,14 @@ class JArchiveZip implements JArchiveExtractable
 	 *
 	 * @param   string  $archive      Path to ZIP archive to extract.
 	 * @param   string  $destination  Path to extract archive into.
+	 * @param   array   $options      Extraction options [unused].
 	 *
 	 * @return  mixed   True if successful
 	 *
 	 * @since   11.1
 	 * @throws  RuntimeException
 	 */
-	protected function extractCustom($archive, $destination)
+	protected function extractCustom($archive, $destination, array $options)
 	{
 		$this->_data = null;
 		$this->_metadata = null;
@@ -221,8 +223,7 @@ class JArchiveZip implements JArchiveExtractable
 		}
 
 		$this->_data = file_get_contents($archive);
-
-		if (!$this->_data)
+		if (!$this->_data = JFile::read($archive))
 		{
 			if (class_exists('JError'))
 			{
@@ -290,16 +291,16 @@ class JArchiveZip implements JArchiveExtractable
 	 *
 	 * @param   string  $archive      Path to ZIP archive to extract
 	 * @param   string  $destination  Path to extract archive into
+	 * @param   array   $options      Extraction options [unused]
 	 *
 	 * @return  boolean  True on success
 	 *
 	 * @since   11.1
 	 * @throws  RuntimeException
 	 */
-	protected function extractNative($archive, $destination)
+	protected function extractNative($archive, $destination, array $options)
 	{
 		$zip = zip_open($archive);
-
 		if (is_resource($zip))
 		{
 			// Make sure the destination folder exists
@@ -565,8 +566,7 @@ class JArchiveZip implements JArchiveExtractable
 			$timearray['seconds'] = 0;
 		}
 
-		return (($timearray['year'] - 1980) << 25) | ($timearray['mon'] << 21) | ($timearray['mday'] << 16) | ($timearray['hours'] << 11) |
-			($timearray['minutes'] << 5) | ($timearray['seconds'] >> 1);
+		return (($timearray['year'] - 1980) << 25) | ($timearray['mon'] << 21) | ($timearray['mday'] << 16) | ($timearray['hours'] << 11) | ($timearray['minutes'] << 5) | ($timearray['seconds'] >> 1);
 	}
 
 	/**
@@ -589,7 +589,6 @@ class JArchiveZip implements JArchiveExtractable
 
 		/* See if time/date information has been provided. */
 		$ftime = null;
-
 		if (isset($file['time']))
 		{
 			$ftime = $file['time'];

@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Uri
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -218,7 +218,6 @@ class JUri
 		{
 			$config = JFactory::getConfig();
 			$live_site = $config->get('live_site');
-
 			if (trim($live_site) != '')
 			{
 				$uri = self::getInstance($live_site);
@@ -761,7 +760,6 @@ class JUri
 		$uri = self::getInstance($url);
 		$base = $uri->toString(array('scheme', 'host', 'port', 'path'));
 		$host = $uri->toString(array('scheme', 'host', 'port'));
-
 		if (stripos($base, self::base()) !== 0 && !empty($host))
 		{
 			return false;

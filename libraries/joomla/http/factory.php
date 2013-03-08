@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  HTTP
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -19,7 +19,7 @@ defined('JPATH_PLATFORM') or die;
 class JHttpFactory
 {
 	/**
-	 * Method to recieve Http instance.
+	 * method to recieve Http instance.
 	 *
 	 * @param   JRegistry  $options   Client options object.
 	 * @param   mixed      $adapters  Adapter (string) or queue of adapters (array) to use for communication.
@@ -58,7 +58,7 @@ class JHttpFactory
 			settype($default, 'array');
 			$availableAdapters = $default;
 		}
-		// Check if there is at least one available http transport adapter
+		// Check if there is available http transport adapters
 		if (!count($availableAdapters))
 		{
 			return false;
@@ -86,7 +86,6 @@ class JHttpFactory
 	{
 		$names = array();
 		$iterator = new DirectoryIterator(__DIR__ . '/transport');
-
 		foreach ($iterator as $file)
 		{
 			$fileName = $file->getFilename();

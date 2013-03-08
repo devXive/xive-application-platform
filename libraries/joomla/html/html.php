@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  HTML
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -93,7 +93,6 @@ abstract class JHtml
 	public static function _($key)
 	{
 		list($key, $prefix, $file, $func) = self::extract($key);
-
 		if (array_key_exists($key, self::$registry))
 		{
 			$function = self::$registry[$key];
@@ -101,7 +100,6 @@ abstract class JHtml
 
 			// Remove function name from arguments
 			array_shift($args);
-
 			return self::call($function, $args);
 		}
 
@@ -110,7 +108,6 @@ abstract class JHtml
 		if (!class_exists($className))
 		{
 			$path = JPath::find(self::$includePaths, strtolower($file) . '.php');
-
 			if ($path)
 			{
 				require_once $path;
@@ -127,7 +124,6 @@ abstract class JHtml
 		}
 
 		$toCall = array($className, $func);
-
 		if (is_callable($toCall))
 		{
 			self::register($key, $toCall);
@@ -135,7 +131,6 @@ abstract class JHtml
 
 			// Remove function name from arguments
 			array_shift($args);
-
 			return self::call($toCall, $args);
 		}
 		else
@@ -157,11 +152,9 @@ abstract class JHtml
 	public static function register($key, $function)
 	{
 		list($key) = self::extract($key);
-
 		if (is_callable($function))
 		{
 			self::$registry[$key] = $function;
-
 			return true;
 		}
 		return false;
@@ -179,11 +172,9 @@ abstract class JHtml
 	public static function unregister($key)
 	{
 		list($key) = self::extract($key);
-
 		if (isset(self::$registry[$key]))
 		{
 			unset(self::$registry[$key]);
-
 			return true;
 		}
 
@@ -202,15 +193,14 @@ abstract class JHtml
 	public static function isRegistered($key)
 	{
 		list($key) = self::extract($key);
-
 		return isset(self::$registry[$key]);
 	}
 
 	/**
 	 * Function caller method
 	 *
-	 * @param   callable  $function  Function or method to call
-	 * @param   array     $args      Arguments to be passed to function
+	 * @param   string  $function  Function or method to call
+	 * @param   array   $args      Arguments to be passed to function
 	 *
 	 * @return  mixed   Function result or false on error.
 	 *
@@ -220,19 +210,20 @@ abstract class JHtml
 	 */
 	protected static function call($function, $args)
 	{
-		if (!is_callable($function))
+		if (is_callable($function))
+		{
+			// PHP 5.3 workaround
+			$temp = array();
+			foreach ($args as &$arg)
+			{
+				$temp[] = &$arg;
+			}
+			return call_user_func_array($function, $temp);
+		}
+		else
 		{
 			throw new InvalidArgumentException('Function not supported', 500);
 		}
-
-		// PHP 5.3 workaround
-		$temp = array();
-
-		foreach ($args as &$arg)
-		{
-			$temp[] = &$arg;
-		}
-		return call_user_func_array($function, $temp);
 	}
 
 	/**
@@ -367,7 +358,6 @@ abstract class JHtml
 					{
 						// If the file is in the template folder
 						$path = JPATH_THEMES . "/$template/$folder/$file";
-
 						if (file_exists($path))
 						{
 							$md5 = dirname($path) . '/MD5SUM';
@@ -391,7 +381,6 @@ abstract class JHtml
 
 									// Try to deal with plugins group in the media folder
 									$path = JPATH_ROOT . "/media/$extension/$element/$folder/$file";
-
 									if (file_exists($path))
 									{
 										$md5 = dirname($path) . '/MD5SUM';
@@ -402,7 +391,6 @@ abstract class JHtml
 
 									// Try to deal with classical file in a a media subfolder called element
 									$path = JPATH_ROOT . "/media/$extension/$folder/$element/$file";
-
 									if (file_exists($path))
 									{
 										$md5 = dirname($path) . '/MD5SUM';
@@ -413,7 +401,6 @@ abstract class JHtml
 
 									// Try to deal with system files in the template folder
 									$path = JPATH_THEMES . "/$template/$folder/system/$element/$file";
-
 									if (file_exists($path))
 									{
 										$md5 = dirname($path) . '/MD5SUM';
@@ -424,7 +411,6 @@ abstract class JHtml
 
 									// Try to deal with system files in the media folder
 									$path = JPATH_ROOT . "/media/system/$folder/$element/$file";
-
 									if (file_exists($path))
 									{
 										$md5 = dirname($path) . '/MD5SUM';
@@ -437,7 +423,6 @@ abstract class JHtml
 								{
 									// Try to deals in the extension media folder
 									$path = JPATH_ROOT . "/media/$extension/$folder/$file";
-
 									if (file_exists($path))
 									{
 										$md5 = dirname($path) . '/MD5SUM';
@@ -448,7 +433,6 @@ abstract class JHtml
 
 									// Try to deal with system files in the template folder
 									$path = JPATH_THEMES . "/$template/$folder/system/$file";
-
 									if (file_exists($path))
 									{
 										$md5 = dirname($path) . '/MD5SUM';
@@ -459,7 +443,6 @@ abstract class JHtml
 
 									// Try to deal with system files in the media folder
 									$path = JPATH_ROOT . "/media/system/$folder/$file";
-
 									if (file_exists($path))
 									{
 										$md5 = dirname($path) . '/MD5SUM';
@@ -473,7 +456,6 @@ abstract class JHtml
 							else
 							{
 								$path = JPATH_ROOT . "/media/system/$folder/$file";
-
 								if (file_exists($path))
 								{
 									$md5 = dirname($path) . '/MD5SUM';
@@ -496,7 +478,20 @@ abstract class JHtml
 					// Detect debug mode
 					if ($detect_debug && JFactory::getConfig()->get('debug'))
 					{
-						$files[] = $strip . '-uncompressed.' . $ext;
+						/*
+						 * Detect if we received a file in the format name.min.ext
+						 * If so, strip the .min part out, otherwise append -uncompressed
+						 */
+						if (strrpos($strip, '.min', '-4'))
+						{
+							$position = strrpos($strip, '.min', '-4');
+							$filename = str_replace('.min', '.', $strip, $position);
+							$files[]  = $filename . $ext;
+						}
+						else
+						{
+							$files[] = $strip . '-uncompressed.' . $ext;
+						}
 					}
 					$files[] = $strip . '.' . $ext;
 
@@ -508,7 +503,6 @@ abstract class JHtml
 					foreach ($files as $file)
 					{
 						$path = JPATH_ROOT . "/$file";
-
 						if (file_exists($path))
 						{
 							$md5 = dirname($path) . '/MD5SUM';
@@ -626,7 +620,6 @@ abstract class JHtml
 		else
 		{
 			$document = JFactory::getDocument();
-
 			foreach ($includes as $include)
 			{
 				$document->addStylesheet($include, 'text/css', null, $attribs);
@@ -679,7 +672,6 @@ abstract class JHtml
 		else
 		{
 			$document = JFactory::getDocument();
-
 			foreach ($includes as $include)
 			{
 				$document->addScript($include);
@@ -871,7 +863,6 @@ abstract class JHtml
 
 		$readonly = isset($attribs['readonly']) && $attribs['readonly'] == 'readonly';
 		$disabled = isset($attribs['disabled']) && $attribs['disabled'] == 'disabled';
-
 		if (is_array($attribs))
 		{
 			$attribs = JArrayHelper::toString($attribs);
@@ -904,9 +895,9 @@ abstract class JHtml
 				);
 				$done[] = $id;
 			}
-			return '<input type="text" title="' . (0 !== (int) $value ? self::_('date', $value, null, null) : '') . '" name="' . $name . '" id="' . $id
-				. '" value="' . htmlspecialchars($value, ENT_COMPAT, 'UTF-8') . '" ' . $attribs . ' />'
-				. self::_('image', 'system/calendar.png', JText::_('JLIB_HTML_CALENDAR'), array('class' => 'calendar', 'id' => $id . '_img'), true);
+			return '<div class="input-append"><input type="text" title="' . (0 !== (int) $value ? self::_('date', $value) : '') . '" name="' . $name . '" id="' . $id
+				. '" value="' . htmlspecialchars($value, ENT_COMPAT, 'UTF-8') . '" ' . $attribs . ' /><button class="btn" id="' . $id . '_img"><i class="icon-calendar"></i></button></div>';
+
 		}
 		else
 		{
@@ -954,47 +945,41 @@ abstract class JHtml
 	 */
 	public static function getJSObject(array $array = array())
 	{
-		$elements = array();
+		$object = '{';
 
-		foreach ($array as $k => $v)
+		// Iterate over array to build objects
+		foreach ((array) $array as $k => $v)
 		{
-			// Don't encode either of these types
-			if (is_null($v) || is_resource($v))
+			if (is_null($v))
 			{
 				continue;
 			}
 
-			// Safely encode as a Javascript string
-			$key = json_encode((string) $k);
-
 			if (is_bool($v))
 			{
-				$elements[] = $key . ': ' . ($v ? 'true' : 'false');
+				$object .= ' ' . $k . ': ';
+				$object .= ($v) ? 'true' : 'false';
+				$object .= ',';
 			}
-			elseif (is_numeric($v))
+			elseif (!is_array($v) && !is_object($v))
 			{
-				$elements[] = $key . ': ' . ($v + 0);
-			}
-			elseif (is_string($v))
-			{
-				if (strpos($v, '\\') === 0)
-				{
-					// Items such as functions and JSON objects are prefixed with \, strip the prefix and don't encode them
-					$elements[] = $key . ': ' . substr($v, 1);
-				}
-				else
-				{
-					// The safest way to insert a string
-					$elements[] = $key . ': ' . json_encode((string) $v);
-				}
+				$object .= ' ' . $k . ': ';
+				$object .= (is_numeric($v) || strpos($v, '\\') === 0) ? (is_numeric($v)) ? $v : substr($v, 1) : "'" . str_replace("'", "\\'", trim($v, "'")) . "'";
+				$object .= ',';
 			}
 			else
 			{
-				$elements[] = $key . ': ' . self::getJSObject(is_object($v) ? get_object_vars($v) : $v);
+				$object .= ' ' . $k . ': ' . self::getJSObject($v) . ',';
 			}
 		}
 
-		return '{' . implode(',', $elements) . '}';
+		if (substr($object, -1) == ',')
+		{
+			$object = substr($object, 0, -1);
+		}
 
+		$object .= '}';
+
+		return $object;
 	}
 }

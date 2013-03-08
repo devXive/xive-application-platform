@@ -265,7 +265,6 @@ class JCryptCipherSimple implements JCryptCipher
 
 		// Get the first character of the hexadecimal string if there is one.
 		$j = (int) ($i / 16);
-
 		if ($j === 0)
 		{
 			$s = ' ';

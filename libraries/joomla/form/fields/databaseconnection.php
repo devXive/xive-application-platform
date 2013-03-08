@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Form
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -54,11 +54,9 @@ class JFormFieldDatabaseConnection extends JFormFieldList
 		 * are supported.
 		 */
 		$supported = $this->element['supported'];
-
 		if (!empty($supported))
 		{
 			$supported = explode(',', $supported);
-
 			foreach ($supported as $support)
 			{
 				if (in_array($support, $available))

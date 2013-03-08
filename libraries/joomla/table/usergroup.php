@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Table
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -25,7 +25,7 @@ class JTableUsergroup extends JTable
 	 *
 	 * @since   11.1
 	 */
-	public function __construct(JDatabaseDriver $db)
+	public function __construct($db)
 	{
 		parent::__construct('#__usergroups', 'id', $db);
 	}
@@ -43,7 +43,6 @@ class JTableUsergroup extends JTable
 		if ((trim($this->title)) == '')
 		{
 			$this->setError(JText::_('JLIB_DATABASE_ERROR_USERGROUP_TITLE'));
-
 			return false;
 		}
 
@@ -61,7 +60,6 @@ class JTableUsergroup extends JTable
 		if ($db->loadResult() > 0)
 		{
 			$this->setError(JText::_('JLIB_DATABASE_ERROR_USERGROUP_TITLE_EXISTS'));
-
 			return false;
 		}
 
@@ -177,7 +175,6 @@ class JTableUsergroup extends JTable
 		$query->where($db->quoteName('c.rgt') . ' <= ' . (int) $this->rgt);
 		$db->setQuery($query);
 		$ids = $db->loadColumn();
-
 		if (empty($ids))
 		{
 			throw new UnexpectedValueException('Left-Right data inconsistency. Cannot delete usergroup.');
@@ -196,7 +193,6 @@ class JTableUsergroup extends JTable
 
 		// Delete the usergroup in view levels
 		$replace = array();
-
 		foreach ($ids as $id)
 		{
 			$replace[] = ',' . $db->quote("[$id,") . ',' . $db->quote("[") . ')';
@@ -214,7 +210,6 @@ class JTableUsergroup extends JTable
 		$rules = $db->loadObjectList();
 
 		$match_ids = array();
-
 		foreach ($rules as $rule)
 		{
 			foreach ($ids as $id)

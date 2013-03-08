@@ -4,7 +4,7 @@
  * @package     Joomla.Platform
  * @subpackage  FileSystem
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -116,7 +116,6 @@ class JFilesystemPatcher
 		$this->destinations = array();
 		$this->removals = array();
 		$this->patches = array();
-
 		return $this;
 	}
 
@@ -204,7 +203,6 @@ class JFilesystemPatcher
 
 		// Clear the patches
 		$this->patches = array();
-
 		return $done;
 	}
 
@@ -242,7 +240,6 @@ class JFilesystemPatcher
 			'root' => isset($root) ? rtrim($root, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR : '',
 			'strip' => $strip
 		);
-
 		return $this;
 	}
 
@@ -295,7 +292,6 @@ class JFilesystemPatcher
 
 			// Advance to the next line
 			$line = next($lines);
-
 			if ($line === false)
 			{
 				throw new RuntimeException('Unexpected EOF');
@@ -337,11 +333,9 @@ class JFilesystemPatcher
 	protected static function findHunk(&$lines, &$src_line, &$src_size, &$dst_line, &$dst_size)
 	{
 		$line = current($lines);
-
 		if (preg_match(self::HUNK, $line, $m))
 		{
 			$src_line = (int) $m[1];
-
 			if ($m[3] === '')
 			{
 				$src_size = 1;
@@ -352,7 +346,6 @@ class JFilesystemPatcher
 			}
 
 			$dst_line = (int) $m[4];
-
 			if ($m[6] === '')
 			{
 				$dst_size = 1;
@@ -403,7 +396,6 @@ class JFilesystemPatcher
 		$destin = array();
 		$src_left = $src_size;
 		$dst_left = $dst_size;
-
 		do
 		{
 			if (!isset($line[0]))
@@ -446,7 +438,6 @@ class JFilesystemPatcher
 				if ($src_size > 0)
 				{
 					$src_lines = & $this->getSource($src);
-
 					if (!isset($src_lines))
 					{
 						throw new RuntimeException(JText::sprintf('JLIB_FILESYSTEM_PATCHER_UNEXISING_SOURCE', $src));
@@ -458,7 +449,6 @@ class JFilesystemPatcher
 					{
 						$dst_lines = & $this->getDestination($dst, $src);
 						$src_bottom = $src_line + count($source);
-
 						for ($l = $src_line;$l < $src_bottom;$l++)
 						{
 							if ($src_lines[$l] != $source[$l - $src_line])
@@ -478,7 +468,6 @@ class JFilesystemPatcher
 					$this->removals[] = $src;
 				}
 				next($lines);
-
 				return;
 			}
 			$line = next($lines);

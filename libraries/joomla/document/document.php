@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Document
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -278,11 +278,9 @@ class JDocument
 
 			// Determine the path and class
 			$class = 'JDocument' . $type;
-
 			if (!class_exists($class))
 			{
 				$path = __DIR__ . '/' . $type . '/' . $type . '.php';
-
 				if (file_exists($path))
 				{
 					require_once $path;
@@ -377,7 +375,6 @@ class JDocument
 	{
 		$result = '';
 		$name = strtolower($name);
-
 		if ($name == 'generator')
 		{
 			$result = $this->getGenerator();

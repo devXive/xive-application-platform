@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Document
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -21,7 +21,7 @@ class JDocumentRendererModule extends JDocumentRenderer
 	/**
 	 * Renders a module script and returns the results as a string
 	 *
-	 * @param   mixed   $module   The name of the module to render
+	 * @param   string  $module   The name of the module to render
 	 * @param   array   $attribs  Associative array of values
 	 * @param   string  $content  If present, module information from the buffer will be used
 	 *

@@ -3,7 +3,7 @@
  * @package     Joomla.Legacy
  * @subpackage  Pathway
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -17,7 +17,6 @@ defined('JPATH_PLATFORM') or die;
  * @package     Joomla.Legacy
  * @subpackage  Pathway
  * @since       11.1
- * @deprecated  13.3
  */
 class JPathway
 {
@@ -78,7 +77,6 @@ class JPathway
 				if (is_object($info))
 				{
 					$path = $info->path . '/includes/pathway.php';
-
 					if (file_exists($path))
 					{
 						include_once $path;

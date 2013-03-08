@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Registry
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -99,17 +99,16 @@ class JRegistry implements JsonSerializable
 	 * Sets a default value if not already assigned.
 	 *
 	 * @param   string  $key      The name of the parameter.
-	 * @param   mixed   $default  An optional value for the parameter.
+	 * @param   string  $default  An optional value for the parameter.
 	 *
-	 * @return  mixed  The value set, or the default if the value was not previously set (or null).
+	 * @return  string  The value set, or the default if the value was not previously set (or null).
 	 *
 	 * @since   11.1
 	 */
 	public function def($key, $default = '')
 	{
-		$value = $this->get($key, $default);
+		$value = $this->get($key, (string) $default);
 		$this->set($key, $value);
-
 		return $value;
 	}
 

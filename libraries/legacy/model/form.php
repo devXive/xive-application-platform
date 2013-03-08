@@ -3,7 +3,7 @@
  * @package     Joomla.Legacy
  * @subpackage  Model
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -18,7 +18,6 @@ defined('JPATH_PLATFORM') or die;
  * @see         JFormField
  * @see         JFormRule
  * @since       12.2
- * @deprecated  13.3
  */
 abstract class JModelForm extends JModelLegacy
 {
@@ -48,11 +47,9 @@ abstract class JModelForm extends JModelLegacy
 
 			// Get an instance of the row to checkin.
 			$table = $this->getTable();
-
 			if (!$table->load($pk))
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 
@@ -60,7 +57,6 @@ abstract class JModelForm extends JModelLegacy
 			if ($table->checked_out > 0 && $table->checked_out != $user->get('id') && !$user->authorise('core.admin', 'com_checkin'))
 			{
 				$this->setError(JText::_('JLIB_APPLICATION_ERROR_CHECKIN_USER_MISMATCH'));
-
 				return false;
 			}
 
@@ -68,7 +64,6 @@ abstract class JModelForm extends JModelLegacy
 			if (!$table->checkin($pk))
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 		}
@@ -94,11 +89,9 @@ abstract class JModelForm extends JModelLegacy
 
 			// Get an instance of the row to checkout.
 			$table = $this->getTable();
-
 			if (!$table->load($pk))
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 
@@ -106,7 +99,6 @@ abstract class JModelForm extends JModelLegacy
 			if ($table->checked_out > 0 && $table->checked_out != $user->get('id'))
 			{
 				$this->setError(JText::_('JLIB_APPLICATION_ERROR_CHECKOUT_USER_MISMATCH'));
-
 				return false;
 			}
 
@@ -114,7 +106,6 @@ abstract class JModelForm extends JModelLegacy
 			if (!$table->checkout($user->get('id'), $pk))
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 		}
@@ -191,7 +182,6 @@ abstract class JModelForm extends JModelLegacy
 		catch (Exception $e)
 		{
 			$this->setError($e->getMessage());
-
 			return false;
 		}
 
@@ -263,7 +253,7 @@ abstract class JModelForm extends JModelLegacy
 	 * @see     JFilterInput
 	 * @since   12.2
 	 */
-	public function validate(JForm $form, $data, $group = null)
+	public function validate($form, $data, $group = null)
 	{
 		// Filter and validate the form data.
 		$data = $form->filter($data);
@@ -273,7 +263,6 @@ abstract class JModelForm extends JModelLegacy
 		if ($return instanceof Exception)
 		{
 			$this->setError($return->getMessage());
-
 			return false;
 		}
 

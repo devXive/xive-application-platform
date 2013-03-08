@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  String
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -62,6 +62,31 @@ abstract class JString
 			array(' (%d)', '(%d)'),
 		),
 	);
+
+	/**
+	 * Split a string in camel case format
+	 *
+	 * "FooBarABCDef"            becomes  array("Foo", "Bar", "ABC", "Def");
+	 * "JFooBar"                 becomes  array("J", "Foo", "Bar");
+	 * "J001FooBar002"           becomes  array("J001", "Foo", "Bar002");
+	 * "abcDef"                  becomes  array("abc", "Def");
+	 * "abc_defGhi_Jkl"          becomes  array("abc_def", "Ghi_Jkl");
+	 * "ThisIsA_NASAAstronaut"   becomes  array("This", "Is", "A_NASA", "Astronaut")),
+	 * "JohnFitzgerald_Kennedy"  becomes  array("John", "Fitzgerald_Kennedy")),
+	 *
+	 * @param   string  $string  The source string.
+	 *
+	 * @return  array   The splitted string.
+	 *
+	 * @deprecated  12.3 Use JStringNormalise::fromCamelCase()
+	 * @since   11.3
+	 */
+	public static function splitCamelCase($string)
+	{
+		JLog::add('JString::splitCamelCase has been deprecated. Use JStringNormalise::fromCamelCase.', JLog::WARNING, 'deprecated');
+
+		return JStringNormalise::fromCamelCase($string, true);
+	}
 
 	/**
 	 * Increments a trailing number in a string.

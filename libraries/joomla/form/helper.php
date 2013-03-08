@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Form
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -112,12 +112,10 @@ class JFormHelper
 		}
 
 		$class = self::loadClass($entity, $type);
-
 		if ($class !== false)
 		{
 			// Instantiate a new type object.
 			$types[$key] = new $class;
-
 			return $types[$key];
 		}
 		else
@@ -211,13 +209,11 @@ class JFormHelper
 
 		// Try to find the class file.
 		$type = strtolower($type) . '.php';
-
 		foreach ($paths as $path)
 		{
 			if ($file = JPath::find($path, $type))
 			{
 				require_once $file;
-
 				if (class_exists($class))
 				{
 					break;

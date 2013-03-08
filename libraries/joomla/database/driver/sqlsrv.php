@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Database
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -434,7 +434,6 @@ class JDatabaseDriverSqlsrv extends JDatabaseDriver
 		$this->connect();
 
 		$version = sqlsrv_server_info($this->connection);
-
 		return $version['SQLServerVersion'];
 	}
 
@@ -455,11 +454,9 @@ class JDatabaseDriverSqlsrv extends JDatabaseDriver
 		$fields = array();
 		$values = array();
 		$statement = 'INSERT INTO ' . $this->quoteName($table) . ' (%s) VALUES (%s)';
-
 		foreach (get_object_vars($object) as $k => $v)
 		{
-			// Only process non-null scalars.
-			if (is_array($v) or is_object($v) or $v === null)
+			if (is_array($v) or is_object($v))
 			{
 				continue;
 			}
@@ -481,13 +478,11 @@ class JDatabaseDriverSqlsrv extends JDatabaseDriver
 		}
 		// Set the query and execute the insert.
 		$this->setQuery(sprintf($statement, implode(',', $fields), implode(',', $values)));
-
 		if (!$this->execute())
 		{
 			return false;
 		}
 		$id = $this->insertid();
-
 		if ($key && $id)
 		{
 			$object->$key = $id;
@@ -508,7 +503,6 @@ class JDatabaseDriverSqlsrv extends JDatabaseDriver
 
 		// TODO: SELECT IDENTITY
 		$this->setQuery('SELECT @@IDENTITY');
-
 		return (int) $this->loadResult();
 	}
 
@@ -565,7 +559,6 @@ class JDatabaseDriverSqlsrv extends JDatabaseDriver
 
 		// Take a local copy so that we don't modify the original query and cause issues later
 		$sql = $this->replacePrefix((string) $this->sql);
-
 		if ($this->limit > 0 || $this->offset > 0)
 		{
 			$sql = $this->limit($sql, $this->limit, $this->offset);
@@ -669,7 +662,6 @@ class JDatabaseDriverSqlsrv extends JDatabaseDriver
 		while ($startPos < $n)
 		{
 			$ip = strpos($sql, $prefix, $startPos);
-
 			if ($ip === false)
 			{
 				break;
@@ -677,7 +669,6 @@ class JDatabaseDriverSqlsrv extends JDatabaseDriver
 
 			$j = strpos($sql, "N'", $startPos);
 			$k = strpos($sql, '"', $startPos);
-
 			if (($k !== false) && (($k < $j) || ($j === false)))
 			{
 				$quoteChar = '"';
@@ -708,13 +699,11 @@ class JDatabaseDriverSqlsrv extends JDatabaseDriver
 			{
 				$k = strpos($sql, $quoteChar, $j);
 				$escaped = false;
-
 				if ($k === false)
 				{
 					break;
 				}
 				$l = $k - 1;
-
 				while ($l >= 0 && $sql{$l} == '\\')
 				{
 					$l--;
@@ -785,94 +774,49 @@ class JDatabaseDriverSqlsrv extends JDatabaseDriver
 	/**
 	 * Method to commit a transaction.
 	 *
-	 * @param   boolean  $toSavepoint  If true, commit to the last savepoint.
-	 *
 	 * @return  void
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
 	 */
-	public function transactionCommit($toSavepoint = false)
+	public function transactionCommit()
 	{
 		$this->connect();
 
-		if (!$toSavepoint || $this->transactionDepth <= 1)
-		{
-			if ($this->setQuery('COMMIT TRANSACTION')->execute())
-			{
-				$this->transactionDepth = 0;
-			}
-
-			return;
-		}
-
-		$this->transactionDepth--;
+		$this->setQuery('COMMIT TRANSACTION');
+		$this->execute();
 	}
 
 	/**
 	 * Method to roll back a transaction.
 	 *
-	 * @param   boolean  $toSavepoint  If true, rollback to the last savepoint.
-	 *
 	 * @return  void
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
 	 */
-	public function transactionRollback($toSavepoint = false)
+	public function transactionRollback()
 	{
 		$this->connect();
 
-		if (!$toSavepoint || $this->transactionDepth <= 1)
-		{
-			if ($this->setQuery('ROLLBACK TRANSACTION')->execute())
-			{
-				$this->transactionDepth = 0;
-			}
-
-			return;
-		}
-
-		$savepoint = 'SP_' . ($this->transactionDepth - 1);
-		$this->setQuery('ROLLBACK TRANSACTION ' . $this->quoteName($savepoint));
-
-		if ($this->execute())
-		{
-			$this->transactionDepth--;
-		}
+		$this->setQuery('ROLLBACK TRANSACTION');
+		$this->execute();
 	}
 
 	/**
 	 * Method to initialize a transaction.
 	 *
-	 * @param   boolean  $asSavepoint  If true and a transaction is already active, a savepoint will be created.
-	 *
 	 * @return  void
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
 	 */
-	public function transactionStart($asSavepoint = false)
+	public function transactionStart()
 	{
 		$this->connect();
 
-		if (!$asSavepoint || !$this->transactionDepth)
-		{
-			if ($this->setQuery('BEGIN TRANSACTION')->execute())
-			{
-				$this->transactionDepth = 1;
-			}
-
-			return;
-		}
-
-		$savepoint = 'SP_' . $this->transactionDepth;
-		$this->setQuery('BEGIN TRANSACTION ' . $this->quoteName($savepoint));
-
-		if ($this->execute())
-		{
-			$this->transactionDepth++;
-		}
+		$this->setQuery('START TRANSACTION');
+		$this->execute();
 	}
 
 	/**
@@ -975,7 +919,6 @@ class JDatabaseDriverSqlsrv extends JDatabaseDriver
 	protected function limit($sql, $limit, $offset)
 	{
 		$orderBy = stristr($sql, 'ORDER BY');
-
 		if (is_null($orderBy) || empty($orderBy))
 		{
 			$orderBy = 'ORDER BY (select 0)';

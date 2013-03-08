@@ -3,7 +3,7 @@
  * @package     Joomla.Legacy
  * @subpackage  Module
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -15,7 +15,6 @@ defined('JPATH_PLATFORM') or die;
  * @package     Joomla.Legacy
  * @subpackage  Module
  * @since       11.1
- * @deprecated  13.3
  */
 abstract class JModuleHelper
 {
@@ -85,7 +84,6 @@ abstract class JModuleHelper
 		$modules =& self::_load();
 
 		$total = count($modules);
-
 		for ($i = 0; $i < $total; $i++)
 		{
 			if ($modules[$i]->position == $position)
@@ -155,6 +153,9 @@ abstract class JModuleHelper
 		$params = new JRegistry;
 		$params->loadString($module->params);
 
+		// Get the template
+		$template = $app->getTemplate();
+
 		// Get module path
 		$module->module = preg_replace('/[^A-Z0-9_\.-]/i', '', $module->module);
 		$path = JPATH_BASE . '/modules/' . $module->module . '/' . $module->module . '.php';
@@ -184,7 +185,7 @@ abstract class JModuleHelper
 		}
 
 		include_once JPATH_THEMES . '/system/html/modules.php';
-		$chromePath = JPATH_THEMES . '/' . $app->getTemplate() . '/html/modules.php';
+		$chromePath = JPATH_THEMES . '/' . $template . '/html/modules.php';
 
 		if (!isset($chrome[$chromePath]))
 		{
@@ -194,6 +195,13 @@ abstract class JModuleHelper
 			}
 
 			$chrome[$chromePath] = true;
+		}
+
+		// Check if the current module has a style param to override template module style
+		$paramsChromeStyle = $params->get('style');
+		if ($paramsChromeStyle)
+		{
+			$attribs['style'] = preg_replace('/^(system|' . $template . ')\-/i', '', $paramsChromeStyle);
 		}
 
 		// Make sure a style is set
@@ -342,14 +350,12 @@ abstract class JModuleHelper
 		catch (RuntimeException $e)
 		{
 			JLog::add(JText::sprintf('JLIB_APPLICATION_ERROR_MODULE_LOAD', $e->getMessage()), JLog::WARNING, 'jerror');
-
 			return $clean;
 		}
 
 		// Apply negative selections and eliminate duplicates
 		$negId = $Itemid ? -(int) $Itemid : false;
 		$dupes = array();
-
 		for ($i = 0, $n = count($modules); $i < $n; $i++)
 		{
 			$module = &$modules[$i];
@@ -454,12 +460,10 @@ abstract class JModuleHelper
 
 			case 'safeuri':
 				$secureid = null;
-
 				if (is_array($cacheparams->modeparams))
 				{
 					$uri = JRequest::get();
 					$safeuri = new stdClass;
-
 					foreach ($cacheparams->modeparams as $key => $value)
 					{
 						// Use int filter for id/catid to clean out spamy slugs

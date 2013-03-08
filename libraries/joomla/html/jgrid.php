@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  HTML
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -61,21 +61,25 @@ abstract class JHtmlJGrid
 		}
 		if ($enabled)
 		{
-			$html[] = '<a class="jgrid' . ($tip ? ' hasTip' : '') . '"';
+			$html[] = '<a class="btn btn-micro ' . ($active_class == "publish" ? 'active' : '') . '" ' . ($tip ? 'rel="tooltip"' : '') . '';
 			$html[] = ' href="javascript:void(0);" onclick="return listItemTask(\'' . $checkbox . $i . '\',\'' . $prefix . $task . '\')"';
 			$html[] = ' title="' . addslashes(htmlspecialchars($translate ? JText::_($active_title) : $active_title, ENT_COMPAT, 'UTF-8')) . '">';
-			$html[] = '<span class="state ' . $active_class . '">';
-			$html[] = $text ? ('<span class="text">' . ($translate ? JText::_($text):$text) . '</span>') : '';
-			$html[] = '</span>';
+			$html[] = '<i class="icon-' . $active_class . '">';
+			$html[] = '</i>';
 			$html[] = '</a>';
 		}
 		else
 		{
-			$html[] = '<a class="jgrid' . ($tip ? ' hasTip' : '') . '"';
+			$html[] = '<a class="btn btn-micro disabled jgrid" ' . ($tip ? 'rel="tooltip"' : '') . '';
 			$html[] = ' title="' . addslashes(htmlspecialchars($translate ? JText::_($inactive_title) : $inactive_title, ENT_COMPAT, 'UTF-8')) . '">';
-			$html[] = '<span class="state ' . $inactive_class . '">';
-			$html[] = $text ? ('<span class="text">' . ($translate ? JText::_($text) : $text) . '</span>') :'';
-			$html[] = '</span>';
+			if ($active_class == "protected")
+			{
+				$html[] = '<i class="icon-lock"></i>';
+			}
+			else
+			{
+				$html[] = '<i class="icon-' . $inactive_class . '"></i>';
+			}
 			$html[] = '</a>';
 		}
 		return implode($html);
@@ -168,7 +172,6 @@ abstract class JHtmlJGrid
 
 			// Create tip text, only we have publish up or down settings
 			$tips = array();
-
 			if ($publish_up)
 			{
 				$tips[] = JText::sprintf('JLIB_HTML_PUBLISHED_START', $publish_up->format(JDate::$format, true));
@@ -186,7 +189,6 @@ abstract class JHtmlJGrid
 				if ($key == 1)
 				{
 					$states[$key][2] = $states[$key][3] = 'JLIB_HTML_PUBLISHED_ITEM';
-
 					if ($publish_up > $nullDate && $nowDate < $publish_up->toUnix())
 					{
 						$states[$key][2] = $states[$key][3] = 'JLIB_HTML_PUBLISHED_PENDING_ITEM';
@@ -239,8 +241,8 @@ abstract class JHtmlJGrid
 		}
 
 		$states = array(
-			1 => array('unsetDefault', 'JDEFAULT', 'JLIB_HTML_UNSETDEFAULT_ITEM', 'JDEFAULT', false, 'default', 'default'),
-			0 => array('setDefault', '', 'JLIB_HTML_SETDEFAULT_ITEM', '', false, 'notdefault', 'notdefault'),
+			1 => array('unsetDefault', 'JDEFAULT', 'JLIB_HTML_UNSETDEFAULT_ITEM', 'JDEFAULT', false, 'star', 'star'),
+			0 => array('setDefault', '', 'JLIB_HTML_SETDEFAULT_ITEM', '', false, 'star-empty', 'star-empty'),
 		);
 
 		return self::state($states, $value, $i, $prefix, $enabled, true, $checkbox);
@@ -262,7 +264,6 @@ abstract class JHtmlJGrid
 	{
 		// Build the active state filter options.
 		$options = array();
-
 		if (!array_key_exists('published', $config) || $config['published'])
 		{
 			$options[] = JHtml::_('select.option', '1', 'JPUBLISHED');

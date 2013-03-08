@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Environment
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -290,7 +290,6 @@ class JBrowser
 			{
 				$this->setBrowser('amaya');
 				$this->majorVersion = $version[1];
-
 				if (isset($version[2]))
 				{
 					$this->minorVersion = $version[2];
@@ -311,7 +310,6 @@ class JBrowser
 				// rendering engine.
 				$this->setBrowser('konqueror');
 				$this->majorVersion = $version[1];
-
 				if (isset($version[2]))
 				{
 					$this->minorVersion = $version[2];
@@ -445,7 +443,6 @@ class JBrowser
 		if (preg_match('|Version[/ ]([0-9.]+)|', $this->agent, $version))
 		{
 			list ($this->majorVersion, $this->minorVersion) = explode('.', $version[1]);
-
 			return;
 		}
 		// Can't identify browser version
@@ -577,7 +574,6 @@ class JBrowser
 			if (strpos($this->accept, '*/*') !== false)
 			{
 				$wildcard_match = true;
-
 				if ($type != 'image')
 				{
 					return true;

@@ -3,7 +3,7 @@
  * @package     Joomla.Legacy
  * @subpackage  Categories
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -15,7 +15,6 @@ defined('JPATH_PLATFORM') or die;
  * @package     Joomla.Legacy
  * @subpackage  Categories
  * @since       11.1
- * @deprecated  13.3
  */
 class JCategories
 {
@@ -139,7 +138,6 @@ class JCategories
 		if (!class_exists($classname))
 		{
 			$path = JPATH_SITE . '/components/' . $component . '/helpers/category.php';
-
 			if (is_file($path))
 			{
 				include_once $path;
@@ -282,7 +280,7 @@ class JCategories
  			c.path, c.published, c.rgt, c.title, c.modified_user_id');
 
 		// Filter by language
-		if ($app->isSite() && $app->getLanguageFilter())
+		if (empty($this->_options['allLanguages']) && $app->isSite() && JLanguageMultilang::isEnabled())
 		{
 			$query->where(
 				'(' . ($id != 'root' ? 'c.id=s.id OR ' : '') . 'c.language in (' . $db->Quote(JFactory::getLanguage()->getTag()) . ',' .
@@ -667,12 +665,11 @@ class JCategoryNode extends JObject
 	 *
 	 * @since   11.1
 	 */
-	public function __construct($category = null, JCategoryNode $constructor = null)
+	public function __construct($category = null, $constructor = null)
 	{
 		if ($category)
 		{
 			$this->setProperties($category);
-
 			if ($constructor)
 			{
 				$this->_constructor = $constructor;
@@ -741,9 +738,12 @@ class JCategoryNode extends JObject
 	 *
 	 * @since   11.1
 	 */
-	public function addChild(JCategoryNode $child)
+	public function addChild($child)
 	{
-		$child->setParent($this);
+		if ($child instanceof JCategoryNode)
+		{
+			$child->setParent($this);
+		}
 	}
 
 	/**
@@ -775,7 +775,6 @@ class JCategoryNode extends JObject
 		if (!$this->_allChildrenloaded)
 		{
 			$temp = $this->_constructor->get($this->id, true);
-
 			if ($temp)
 			{
 				$this->_children = $temp->getChildren();
@@ -788,7 +787,6 @@ class JCategoryNode extends JObject
 		if ($recursive)
 		{
 			$items = array();
-
 			foreach ($this->_children as $child)
 			{
 				$items[] = $child;
@@ -846,7 +844,7 @@ class JCategoryNode extends JObject
 	 *
 	 * @since   11.1
 	 */
-	public function setSibling(JCategoryNode $sibling, $right = true)
+	public function setSibling($sibling, $right = true)
 	{
 		if ($right)
 		{
@@ -968,7 +966,6 @@ class JCategoryNode extends JObject
 	public function setAllLoaded()
 	{
 		$this->_allChildrenloaded = true;
-
 		foreach ($this->_children as $child)
 		{
 			$child->setAllLoaded();

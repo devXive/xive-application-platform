@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Session
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -30,7 +30,7 @@ class JSessionStorageDatabase extends JSessionStorage
 	 */
 	public function read($id)
 	{
-		// Get the database connection object and verify that it is connected.
+		// Get the database connection object and verify its connected.
 		$db = JFactory::getDbo();
 
 		try
@@ -43,7 +43,11 @@ class JSessionStorageDatabase extends JSessionStorage
 
 			$db->setQuery($query);
 
-			return (string) $db->loadResult();
+			$result = (string) $db->loadResult();
+
+			$result = str_replace('\0\0\0', chr(0) . '*' . chr(0), $result);
+
+			return $result;
 		}
 		catch (Exception $e)
 		{
@@ -63,8 +67,10 @@ class JSessionStorageDatabase extends JSessionStorage
 	 */
 	public function write($id, $data)
 	{
-		// Get the database connection object and verify that it is connected.
+		// Get the database connection object and verify its connected.
 		$db = JFactory::getDbo();
+
+		$data = str_replace(chr(0) . '*' . chr(0), '\0\0\0', $data);
 
 		try
 		{
@@ -76,14 +82,14 @@ class JSessionStorageDatabase extends JSessionStorage
 
 			// Try to update the session data in the database table.
 			$db->setQuery($query);
-
 			if (!$db->execute())
 			{
 				return false;
 			}
-			// Since $db->execute did not throw an exception the query was successful.
-			// Either the data changed, or the data was identical. In either case we are done.
-
+			/* Since $db->execute did not throw an exception, so the query was successful.
+			Either the data changed, or the data was identical.
+			In either case we are done.
+			*/
 			return true;
 		}
 		catch (Exception $e)
@@ -103,7 +109,7 @@ class JSessionStorageDatabase extends JSessionStorage
 	 */
 	public function destroy($id)
 	{
-		// Get the database connection object and verify that it is connected.
+		// Get the database connection object and verify its connected.
 		$db = JFactory::getDbo();
 
 		try
@@ -134,7 +140,7 @@ class JSessionStorageDatabase extends JSessionStorage
 	 */
 	public function gc($lifetime = 1440)
 	{
-		// Get the database connection object and verify that it is connected.
+		// Get the database connection object and verify its connected.
 		$db = JFactory::getDbo();
 
 		// Determine the timestamp threshold with which to purge old sessions.

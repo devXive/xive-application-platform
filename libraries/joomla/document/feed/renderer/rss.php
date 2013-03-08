@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Document
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -84,7 +84,6 @@ class JDocumentRendererRSS extends JDocumentRenderer
 			$feed .= "			<url>" . $data->image->url . "</url>\n";
 			$feed .= "			<title>" . htmlspecialchars($data->image->title, ENT_COMPAT, 'UTF-8') . "</title>\n";
 			$feed .= "			<link>" . str_replace(' ', '%20', $data->image->link) . "</link>\n";
-
 			if ($data->image->width != "")
 			{
 				$feed .= "			<width>" . $data->image->width . "</width>\n";
@@ -230,7 +229,6 @@ class JDocumentRendererRSS extends JDocumentRenderer
 		}
 		$feed .= "	</channel>\n";
 		$feed .= "</rss>\n";
-
 		return $feed;
 	}
 

@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Database
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -244,7 +244,6 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 
 		$this->setQuery('SHOW LC_COLLATE');
 		$array = $this->loadAssocList();
-
 		return $array[0]['lc_collate'];
 	}
 
@@ -286,7 +285,6 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 			}
 
 			$this->queryObject = new JDatabaseQueryPostgresql($this);
-
 			return $this->queryObject;
 		}
 		else
@@ -518,7 +516,6 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 	{
 		$this->connect();
 		$version = pg_version($this->connection);
-
 		return $version['server'];
 	}
 
@@ -619,7 +616,6 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 
 		// Take a local copy so that we don't modify the original query and cause issues later
 		$sql = $this->replacePrefix((string) $this->sql);
-
 		if ($this->limit > 0 || $this->offset > 0)
 		{
 			$sql .= ' LIMIT ' . $this->limit . ' OFFSET ' . $this->offset;
@@ -727,7 +723,6 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 			);
 
 			$oldIndexes = $this->loadColumn();
-
 			foreach ($oldIndexes as $oldIndex)
 			{
 				$changedIdxName = str_replace($oldTable, $newTable, $oldIndex);
@@ -750,7 +745,6 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 			);
 
 			$oldSequences = $this->loadColumn();
-
 			foreach ($oldSequences as $oldSequence)
 			{
 				$changedSequenceName = str_replace($oldTable, $newTable, $oldSequence);
@@ -803,13 +797,12 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 	 *
 	 * @since   11.3
 	 */
-	public function sqlValue($columns, $field_name, $field_value)
+	protected function sqlValue($columns, $field_name, $field_value)
 	{
 		switch ($columns[$field_name])
 		{
 			case 'boolean':
 				$val = 'NULL';
-
 				if ($field_value == 't')
 				{
 					$val = 'TRUE';
@@ -847,94 +840,56 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 	/**
 	 * Method to commit a transaction.
 	 *
-	 * @param   boolean  $toSavepoint  If true, commit to the last savepoint.
-	 *
 	 * @return  void
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
 	 */
-	public function transactionCommit($toSavepoint = false)
+	public function transactionCommit()
 	{
 		$this->connect();
 
-		if (!$toSavepoint || $this->transactionDepth <= 1)
-		{
-			if ($this->setQuery('COMMIT')->execute())
-			{
-				$this->transactionDepth = 0;
-			}
-
-			return;
-		}
-
-		$this->transactionDepth--;
+		$this->setQuery('COMMIT');
+		$this->execute();
 	}
 
 	/**
 	 * Method to roll back a transaction.
 	 *
-	 * @param   boolean  $toSavepoint  If true, rollback to the last savepoint.
+	 * @param   string  $toSavepoint  If present rollback transaction to this savepoint
 	 *
 	 * @return  void
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
 	 */
-	public function transactionRollback($toSavepoint = false)
+	public function transactionRollback($toSavepoint = null)
 	{
 		$this->connect();
 
-		if (!$toSavepoint || $this->transactionDepth <= 1)
+		$query = 'ROLLBACK';
+		if (!is_null($toSavepoint))
 		{
-			if ($this->setQuery('ROLLBACK')->execute())
-			{
-				$this->transactionDepth = 0;
-			}
-
-			return;
+			$query .= ' TO SAVEPOINT ' . $this->escape($toSavepoint);
 		}
 
-		$savepoint = 'SP_' . ($this->transactionDepth - 1);
-		$this->setQuery('ROLLBACK TO SAVEPOINT ' . $this->quoteName($savepoint));
-
-		if ($this->execute())
-		{
-			$this->transactionDepth--;
-		}
+		$this->setQuery($query);
+		$this->execute();
 	}
 
 	/**
 	 * Method to initialize a transaction.
 	 *
-	 * @param   boolean  $asSavepoint  If true and a transaction is already active, a savepoint will be created.
-	 *
 	 * @return  void
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
 	 */
-	public function transactionStart($asSavepoint = false)
+	public function transactionStart()
 	{
 		$this->connect();
-
-		if (!$asSavepoint || !$this->transactionDepth)
-		{
-			if ($this->setQuery('START TRANSACTION')->execute())
-			{
-				$this->transactionDepth = 1;
-			}
-
-			return;
-		}
-
-		$savepoint = 'SP_' . $this->transactionDepth;
-		$this->setQuery('SAVEPOINT ' . $this->quoteName($savepoint));
-
-		if ($this->execute())
-		{
-			$this->transactionDepth++;
-		}
+		$this->setQuery('START TRANSACTION');
+		$this->execute();
 	}
 
 	/**
@@ -1050,7 +1005,6 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 			$this->setQuery($query);
 
 			$id = $this->loadResult();
-
 			if ($id)
 			{
 				$object->$key = $id;
@@ -1102,7 +1056,6 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 
 		$this->setQuery($query);
 		$tableList = $this->loadColumn();
-
 		return $tableList;
 	}
 
@@ -1141,15 +1094,15 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 	}
 
 	/**
-	 * Get the query string to alter the database character set.
+	 * Return the query string to alter the database character set.
 	 *
 	 * @param   string  $dbName  The database name
 	 *
 	 * @return  string  The query that alter the database query string
 	 *
-	 * @since   12.1
+	 * @since   12.2
 	 */
-	public function getAlterDbCharacterSet( $dbName )
+	protected function getAlterDbCharacterSet($dbName)
 	{
 		$query = 'ALTER DATABASE ' . $this->quoteName($dbName) . ' SET CLIENT_ENCODING TO ' . $this->quote('UTF8');
 
@@ -1157,18 +1110,17 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 	}
 
 	/**
-	 * Get the query string to create new Database in correct PostgreSQL syntax.
+	 * Return the query string to create new Database using PostgreSQL's syntax
 	 *
-	 * @param   object   $options  object coming from "initialise" function to pass user
-	 * 									and database name to database driver.
-	 * @param   boolean  $utf      True if the database supports the UTF-8 character set,
-	 * 									not used in PostgreSQL "CREATE DATABASE" query.
+	 * @param   stdClass  $options  Object used to pass user and database name to database driver.
+	 * 									This object must have "db_name" and "db_user" set.
+	 * @param   boolean   $utf      True if the database supports the UTF-8 character set.
 	 *
-	 * @return  string	The query that creates database, owned by $options['user']
+	 * @return  string  The query that creates database, owned by $options['user']
 	 *
-	 * @since   12.1
+	 * @since   12.2
 	 */
-	public function getCreateDbQuery($options, $utf)
+	protected function getCreateDatabaseQuery($options, $utf)
 	{
 		$query = 'CREATE DATABASE ' . $this->quoteName($options->db_name) . ' OWNER ' . $this->quoteName($options->db_user);
 
@@ -1202,7 +1154,6 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 			if ( strpos($sql, 'currval') )
 			{
 				$sql = explode('currval', $sql);
-
 				for ( $nIndex = 1; $nIndex < count($sql); $nIndex = $nIndex + 2 )
 				{
 					$sql[$nIndex] = str_replace($prefix, $this->tablePrefix, $sql[$nIndex]);
@@ -1214,7 +1165,6 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 			if ( strpos($sql, 'nextval') )
 			{
 				$sql = explode('nextval', $sql);
-
 				for ( $nIndex = 1; $nIndex < count($sql); $nIndex = $nIndex + 2 )
 				{
 					$sql[$nIndex] = str_replace($prefix, $this->tablePrefix, $sql[$nIndex]);
@@ -1226,7 +1176,6 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 			if ( strpos($sql, 'setval') )
 			{
 				$sql = explode('setval', $sql);
-
 				for ( $nIndex = 1; $nIndex < count($sql); $nIndex = $nIndex + 2 )
 				{
 					$sql[$nIndex] = str_replace($prefix, $this->tablePrefix, $sql[$nIndex]);
@@ -1298,7 +1247,6 @@ class JDatabaseDriverPostgresql extends JDatabaseDriver
 	public function unlockTables()
 	{
 		$this->transactionCommit();
-
 		return $this;
 	}
 

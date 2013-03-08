@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  FileSystem
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -182,7 +182,6 @@ class JStream extends JObject
 		if (!$filename)
 		{
 			$this->setError(JText::_('JLIB_FILESYSTEM_ERROR_STREAMS_FILENAME'));
-
 			return false;
 		}
 
@@ -297,7 +296,6 @@ class JStream extends JObject
 		if (!$this->fh)
 		{
 			$this->setError(JText::_('JLIB_FILESYSTEM_ERROR_STREAMS_FILE_NOT_OPEN'));
-
 			return true;
 		}
 

@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Session
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -189,5 +189,20 @@ abstract class JSessionStorage
 	public static function isSupported()
 	{
 		return true;
+	}
+
+	/**
+	 * Test to see if the SessionHandler is available.
+	 *
+	 * @return  boolean  True on success, false otherwise.
+	 *
+	 * @since   11.1
+	 * @deprecated  12.3 Use JSessionStorage::isSupported() instead.
+	 */
+	public static function test()
+	{
+		JLog::add('JSessionStorage::test() is deprecated. Use JSessionStorage::isSupported() instead.', JLog::WARNING, 'deprecated');
+
+		return static::isSupported();
 	}
 }

@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Document
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -110,7 +110,6 @@ class JDocumentOpensearch extends JDocument
 	public function render($cache = false, $params = array())
 	{
 		$xml = new DOMDocument('1.0', 'utf-8');
-
 		if (defined('JDEBUG') && JDEBUG)
 		{
 			$xml->formatOutput = true;
@@ -161,7 +160,6 @@ class JDocumentOpensearch extends JDocument
 
 		$xml->appendChild($elOs);
 		parent::render();
-
 		return $xml->saveXML();
 	}
 

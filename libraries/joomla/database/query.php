@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Database
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -1258,7 +1258,7 @@ abstract class JDatabaseQuery
 			throw new RuntimeException('JLIB_DATABASE_ERROR_INVALID_DB_OBJECT');
 		}
 
-		return $this->db->quote(($escape ? $this->db->escape($text) : $text));
+		return $this->db->quote($text, $escape);
 	}
 
 	/**

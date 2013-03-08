@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Database
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -246,7 +246,6 @@ class JDatabaseDriverMysql extends JDatabaseDriverMysqli
 
 		// Take a local copy so that we don't modify the original query and cause issues later
 		$sql = $this->replacePrefix((string) $this->sql);
-
 		if ($this->limit > 0 || $this->offset > 0)
 		{
 			$sql .= ' LIMIT ' . $this->offset . ', ' . $this->limit;

@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Cache
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -46,7 +46,7 @@ class JCacheControllerCallback extends JCacheController
 	/**
 	 * Executes a cacheable callback if not found in cache else returns cached output and result
 	 *
-	 * @param   mixed    $callback    Callable or string shorthand for a callback
+	 * @param   mixed    $callback    Callback or string shorthand for a callback
 	 * @param   array    $args        Callback arguments
 	 * @param   string   $id          Cache id
 	 * @param   boolean  $wrkarounds  True to use wrkarounds
@@ -103,7 +103,6 @@ class JCacheControllerCallback extends JCacheController
 		if ($data === false)
 		{
 			$locktest = $this->cache->lock($id);
-
 			if ($locktest->locked == true && $locktest->locklooped == true)
 			{
 				$data = $this->cache->get($id);
@@ -119,7 +118,6 @@ class JCacheControllerCallback extends JCacheController
 			$coptions['mergehead'] = isset($woptions['mergehead']) ? $woptions['mergehead'] : 0;
 			$output = ($wrkarounds == false) ? $cached['output'] : JCache::getWorkarounds($cached['output'], $coptions);
 			$result = $cached['result'];
-
 			if ($locktest->locked == true)
 			{
 				$this->cache->unlock($id);
@@ -173,7 +171,6 @@ class JCacheControllerCallback extends JCacheController
 
 			// Store the cache data
 			$this->cache->store(serialize($cached), $id);
-
 			if ($locktest->locked == true)
 			{
 				$this->cache->unlock($id);
@@ -181,14 +178,13 @@ class JCacheControllerCallback extends JCacheController
 		}
 
 		echo $output;
-
 		return $result;
 	}
 
 	/**
 	 * Generate a callback cache id
 	 *
-	 * @param   callable  $callback  Callback to cache
+	 * @param   callback  $callback  Callback to cache
 	 * @param   array     $args      Arguments to the callback method to cache
 	 *
 	 * @return  string  MD5 Hash : function cache id

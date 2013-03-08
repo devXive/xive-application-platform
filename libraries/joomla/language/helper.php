@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Language
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -24,7 +24,7 @@ class JLanguageHelper
 	 * @param   string   $actualLanguage  Client key for the area
 	 * @param   string   $basePath        Base path to use
 	 * @param   boolean  $caching         True if caching is used
-	 * @param   boolean  $installed       Get only installed languages
+	 * @param   array    $installed       An array of arrays (text, value, selected)
 	 *
 	 * @return  array  List of system languages
 	 *
@@ -36,7 +36,6 @@ class JLanguageHelper
 
 		// Cache activation
 		$langs = JLanguage::getKnownLanguages($basePath);
-
 		if ($installed)
 		{
 			$db = JFactory::getDBO();
@@ -59,7 +58,6 @@ class JLanguageHelper
 
 				$option['text'] = $metadata['name'];
 				$option['value'] = $lang;
-
 				if ($lang == $actualLanguage)
 				{
 					$option['selected'] = 'selected="selected"';
@@ -84,13 +82,11 @@ class JLanguageHelper
 		{
 			$browserLangs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 			$systemLangs = self::getLanguages();
-
 			foreach ($browserLangs as $browserLang)
 			{
 				// Slice out the part before ; on first step, the part before - on second, place into array
 				$browserLang = substr($browserLang, 0, strcspn($browserLang, ';'));
 				$primary_browserLang = substr($browserLang, 0, 2);
-
 				foreach ($systemLangs as $systemLang)
 				{
 					// Take off 3 letters iso code languages as they can't match browsers' languages and default them to en
@@ -139,7 +135,6 @@ class JLanguageHelper
 			{
 				$languages[$key] = array();
 				$knownLangs = JLanguage::getKnownLanguages(JPATH_BASE);
-
 				foreach ($knownLangs as $metadata)
 				{
 					// Take off 3 letters iso code languages as they can't match browsers' languages and default them to en
@@ -151,7 +146,6 @@ class JLanguageHelper
 			else
 			{
 				$cache = JFactory::getCache('com_languages', '');
-
 				if (!$languages = $cache->get('languages'))
 				{
 					$db = JFactory::getDBO();

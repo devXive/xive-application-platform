@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  HTML
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -150,8 +150,6 @@ abstract class JHtmlAccess
 
 		$html = array();
 
-		$html[] = '<ul class="checklist usergroups">';
-
 		for ($i = 0, $n = count($groups); $i < $n; $i++)
 		{
 			$item = &$groups[$i];
@@ -164,7 +162,6 @@ abstract class JHtmlAccess
 
 				// Don't call in_array unless something is selected
 				$checked = '';
-
 				if ($selected)
 				{
 					$checked = in_array($item->id, $selected) ? ' checked="checked"' : '';
@@ -172,16 +169,17 @@ abstract class JHtmlAccess
 				$rel = ($item->parent_id > 0) ? ' rel="' . $count . 'group_' . $item->parent_id . '"' : '';
 
 				// Build the HTML for the item.
-				$html[] = '	<li>';
-				$html[] = '		<input type="checkbox" name="' . $name . '[]" value="' . $item->id . '" id="' . $eid . '"';
-				$html[] = '				' . $checked . $rel . ' />';
-				$html[] = '		<label for="' . $eid . '">';
-				$html[] = '		' . str_repeat('<span class="gi">|&mdash;</span>', $item->level) . $item->title;
-				$html[] = '		</label>';
-				$html[] = '	</li>';
+				$html[] = '	<div class="control-group">';
+				$html[] = '		<div class="controls">';
+				$html[] = '			<label class="checkbox" for="' . $eid . '">';
+				$html[] = '			<input type="checkbox" name="' . $name . '[]" value="' . $item->id . '" id="' . $eid . '"';
+				$html[] = '					' . $checked . $rel . ' />';
+				$html[] = '			' . str_repeat('<span class="gi">|&mdash;</span>', $item->level) . $item->title;
+				$html[] = '			</label>';
+				$html[] = '		</div>';
+				$html[] = '	</div>';
 			}
 		}
-		$html[] = '</ul>';
 
 		return implode("\n", $html);
 	}
@@ -205,10 +203,7 @@ abstract class JHtmlAccess
 
 		$count++;
 
-		$actions = JAccess::getActionsFromFile(
-			JPATH_ADMINISTRATOR . '/components/' . $component . '/access.xml',
-			"/access/section[@name='" . $section . "']/"
-		);
+		$actions = JAccess::getActions($component, $section);
 
 		$html = array();
 		$html[] = '<ul class="checklist access-actions">';
@@ -278,7 +273,6 @@ abstract class JHtmlAccess
 		static $count;
 
 		$options = self::assetgroups();
-
 		if (isset($config['title']))
 		{
 			array_unshift($options, JHtml::_('select.option', '', $config['title']));

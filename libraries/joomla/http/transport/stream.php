@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  HTTP
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -93,7 +93,6 @@ class JHttpTransportStream implements JHttpTransport
 
 		// Build the headers string for the request.
 		$headerString = null;
-
 		if (isset($headers))
 		{
 			foreach ($headers as $key => $value)
@@ -126,29 +125,14 @@ class JHttpTransportStream implements JHttpTransport
 		// Create the stream context for the request.
 		$context = stream_context_create(array('http' => $options));
 
-		// Capture PHP errors
-		$php_errormsg = '';
-		$track_errors = ini_get('track_errors');
-		ini_set('track_errors', true);
-
 		// Open the stream for reading.
 		$stream = @fopen((string) $uri, 'r', false, $context);
 
+		// Check if the stream is open.
 		if (!$stream)
 		{
-			if (!$php_errormsg)
-			{
-				// Error but nothing from php? Create our own
-				$php_errormsg = sprintf('Could not connect to resource: %s', $uri, $err, $errno);
-			}
-			// Restore error tracking to give control to the exception handler
-			ini_set('track_errors', $track_errors);
-
-			throw new RuntimeException($php_errormsg);
+			throw new RuntimeException(sprintf('Could not connect to resource: %s', $uri));
 		}
-
-		// Restore error tracking to what it was before.
-		ini_set('track_errors', $track_errors);
 
 		// Get the metadata for the stream, including response headers.
 		$metadata = stream_get_meta_data($stream);
@@ -198,12 +182,10 @@ class JHttpTransportStream implements JHttpTransport
 		// Get the response code from the first offset of the response headers.
 		preg_match('/[0-9]{3}/', array_shift($headers), $matches);
 		$code = $matches[0];
-
 		if (is_numeric($code))
 		{
 			$return->code = (int) $code;
 		}
-
 		// No valid response code was detected.
 		else
 		{
@@ -221,7 +203,7 @@ class JHttpTransportStream implements JHttpTransport
 	}
 
 	/**
-	 * Method to check if http transport stream available for use
+	 * method to check if http transport stream available for using
 	 *
 	 * @return bool true if available else false
 	 *

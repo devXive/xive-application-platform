@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  HTTP
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -91,7 +91,6 @@ class JHttp
 	{
 		// Look for headers set in the options.
 		$temp = (array) $this->options->get('headers');
-
 		foreach ($temp as $key => $val)
 		{
 			if (!isset($headers[$key]))
@@ -124,7 +123,6 @@ class JHttp
 	{
 		// Look for headers set in the options.
 		$temp = (array) $this->options->get('headers');
-
 		foreach ($temp as $key => $val)
 		{
 			if (!isset($headers[$key]))
@@ -157,7 +155,6 @@ class JHttp
 	{
 		// Look for headers set in the options.
 		$temp = (array) $this->options->get('headers');
-
 		foreach ($temp as $key => $val)
 		{
 			if (!isset($headers[$key]))
@@ -191,7 +188,6 @@ class JHttp
 	{
 		// Look for headers set in the options.
 		$temp = (array) $this->options->get('headers');
-
 		foreach ($temp as $key => $val)
 		{
 			if (!isset($headers[$key]))
@@ -225,7 +221,6 @@ class JHttp
 	{
 		// Look for headers set in the options.
 		$temp = (array) $this->options->get('headers');
-
 		foreach ($temp as $key => $val)
 		{
 			if (!isset($headers[$key]))
@@ -258,7 +253,6 @@ class JHttp
 	{
 		// Look for headers set in the options.
 		$temp = (array) $this->options->get('headers');
-
 		foreach ($temp as $key => $val)
 		{
 			if (!isset($headers[$key]))
@@ -291,7 +285,6 @@ class JHttp
 	{
 		// Look for headers set in the options.
 		$temp = (array) $this->options->get('headers');
-
 		foreach ($temp as $key => $val)
 		{
 			if (!isset($headers[$key]))
@@ -325,7 +318,6 @@ class JHttp
 	{
 		// Look for headers set in the options.
 		$temp = (array) $this->options->get('headers');
-
 		foreach ($temp as $key => $val)
 		{
 			if (!isset($headers[$key]))

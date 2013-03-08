@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Profiler
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -136,6 +136,20 @@ class JProfiler
 		list ($usec, $sec) = explode(' ', microtime());
 
 		return ((float) $usec + (float) $sec);
+	}
+
+	/**
+	 * Get information about current memory usage.
+	 *
+	 * @return  integer  The memory usage
+	 *
+	 * @link    PHP_MANUAL#memory_get_usage
+	 * @since   11.1
+	 * @deprecated  12.3  Use PHP's native memory_get_usage()
+	 */
+	public function getMemory()
+	{
+		return memory_get_usage();
 	}
 
 	/**

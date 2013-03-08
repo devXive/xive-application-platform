@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  User
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -270,7 +270,6 @@ class JAuthentication extends JObject
 		foreach ($plugins as $plugin)
 		{
 			$className = 'plg' . $plugin->type . $plugin->name;
-
 			if (class_exists($className))
 			{
 				$plugin = new $className($this, (array) $plugin);
@@ -331,7 +330,6 @@ class JAuthentication extends JObject
 		JPluginHelper::importPlugin('authentication');
 		$dispatcher = JEventDispatcher::getInstance();
 		$results = $dispatcher->trigger('onUserAuthorisation', array($response, $options));
-
 		return $results;
 	}
 }

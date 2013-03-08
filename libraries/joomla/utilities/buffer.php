@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Utilities
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -155,7 +155,6 @@ class JBuffer
 				if ($offset < strlen($this->buffers[$this->name]) && $offset >= 0)
 				{
 					$this->position = $offset;
-
 					return true;
 				}
 				else
@@ -168,7 +167,6 @@ class JBuffer
 				if ($offset >= 0)
 				{
 					$this->position += $offset;
-
 					return true;
 				}
 				else
@@ -181,7 +179,6 @@ class JBuffer
 				if (strlen($this->buffers[$this->name]) + $offset >= 0)
 				{
 					$this->position = strlen($this->buffers[$this->name]) + $offset;
-
 					return true;
 				}
 				else

@@ -3,7 +3,7 @@
  * @package     Joomla.Legacy
  * @subpackage  Model
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -15,7 +15,6 @@ defined('JPATH_PLATFORM') or die;
  * @package     Joomla.Legacy
  * @subpackage  Model
  * @since       12.2
- * @deprecated  13.3
  */
 abstract class JModelAdmin extends JModelForm
 {
@@ -161,7 +160,6 @@ abstract class JModelAdmin extends JModelForm
 		if (empty($pks))
 		{
 			$this->setError(JText::_('JGLOBAL_NO_ITEM_SELECTED'));
-
 			return false;
 		}
 
@@ -174,7 +172,6 @@ abstract class JModelAdmin extends JModelForm
 			if ($cmd == 'c')
 			{
 				$result = $this->batchCopy($commands['category_id'], $pks, $contexts);
-
 				if (is_array($result))
 				{
 					$pks = $result;
@@ -214,7 +211,6 @@ abstract class JModelAdmin extends JModelForm
 		if (!$done)
 		{
 			$this->setError(JText::_('JLIB_APPLICATION_ERROR_INSUFFICIENT_BATCH_INFORMATION'));
-
 			return false;
 		}
 
@@ -252,14 +248,12 @@ abstract class JModelAdmin extends JModelForm
 				if (!$table->store())
 				{
 					$this->setError($table->getError());
-
 					return false;
 				}
 			}
 			else
 			{
 				$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_CANNOT_EDIT'));
-
 				return false;
 			}
 		}
@@ -292,20 +286,17 @@ abstract class JModelAdmin extends JModelForm
 		if ($categoryId)
 		{
 			$categoryTable = JTable::getInstance('Category');
-
 			if (!$categoryTable->load($categoryId))
 			{
 				if ($error = $categoryTable->getError())
 				{
 					// Fatal error
 					$this->setError($error);
-
 					return false;
 				}
 				else
 				{
 					$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_MOVE_CATEGORY_NOT_FOUND'));
-
 					return false;
 				}
 			}
@@ -314,18 +305,15 @@ abstract class JModelAdmin extends JModelForm
 		if (empty($categoryId))
 		{
 			$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_MOVE_CATEGORY_NOT_FOUND'));
-
 			return false;
 		}
 
 		// Check that the user has create permission for the component
 		$extension = JFactory::getApplication()->input->get('option', '');
 		$user = JFactory::getUser();
-
 		if (!$user->authorise('core.create', $extension . '.category.' . $categoryId))
 		{
 			$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_CANNOT_CREATE'));
-
 			return false;
 		}
 
@@ -344,7 +332,6 @@ abstract class JModelAdmin extends JModelForm
 				{
 					// Fatal error
 					$this->setError($error);
-
 					return false;
 				}
 				else
@@ -373,7 +360,6 @@ abstract class JModelAdmin extends JModelForm
 			if (!$table->check())
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 
@@ -381,7 +367,6 @@ abstract class JModelAdmin extends JModelForm
 			if (!$table->store())
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 
@@ -427,14 +412,12 @@ abstract class JModelAdmin extends JModelForm
 				if (!$table->store())
 				{
 					$this->setError($table->getError());
-
 					return false;
 				}
 			}
 			else
 			{
 				$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_CANNOT_EDIT'));
-
 				return false;
 			}
 		}
@@ -466,20 +449,17 @@ abstract class JModelAdmin extends JModelForm
 		if ($categoryId)
 		{
 			$categoryTable = JTable::getInstance('Category');
-
 			if (!$categoryTable->load($categoryId))
 			{
 				if ($error = $categoryTable->getError())
 				{
 					// Fatal error
 					$this->setError($error);
-
 					return false;
 				}
 				else
 				{
 					$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_MOVE_CATEGORY_NOT_FOUND'));
-
 					return false;
 				}
 			}
@@ -488,18 +468,15 @@ abstract class JModelAdmin extends JModelForm
 		if (empty($categoryId))
 		{
 			$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_MOVE_CATEGORY_NOT_FOUND'));
-
 			return false;
 		}
 
 		// Check that user has create and edit permission for the component
 		$extension = JFactory::getApplication()->input->get('option', '');
 		$user = JFactory::getUser();
-
 		if (!$user->authorise('core.create', $extension . '.category.' . $categoryId))
 		{
 			$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_CANNOT_CREATE'));
-
 			return false;
 		}
 
@@ -509,7 +486,6 @@ abstract class JModelAdmin extends JModelForm
 			if (!$user->authorise('core.edit', $contexts[$pk]))
 			{
 				$this->setError(JText::_('JLIB_APPLICATION_ERROR_BATCH_CANNOT_EDIT'));
-
 				return false;
 			}
 
@@ -520,7 +496,6 @@ abstract class JModelAdmin extends JModelForm
 				{
 					// Fatal error
 					$this->setError($error);
-
 					return false;
 				}
 				else
@@ -538,7 +513,6 @@ abstract class JModelAdmin extends JModelForm
 			if (!$table->check())
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 
@@ -546,7 +520,6 @@ abstract class JModelAdmin extends JModelForm
 			if (!$table->store())
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 		}
@@ -569,7 +542,6 @@ abstract class JModelAdmin extends JModelForm
 	protected function canDelete($record)
 	{
 		$user = JFactory::getUser();
-
 		return $user->authorise('core.delete', $this->option);
 	}
 
@@ -585,7 +557,6 @@ abstract class JModelAdmin extends JModelForm
 	protected function canEditState($record)
 	{
 		$user = JFactory::getUser();
-
 		return $user->authorise('core.edit.state', $this->option);
 	}
 
@@ -683,18 +654,15 @@ abstract class JModelAdmin extends JModelForm
 
 					// Trigger the onContentBeforeDelete event.
 					$result = $dispatcher->trigger($this->event_before_delete, array($context, $table));
-
 					if (in_array(false, $result, true))
 					{
 						$this->setError($table->getError());
-
 						return false;
 					}
 
 					if (!$table->delete($pk))
 					{
 						$this->setError($table->getError());
-
 						return false;
 					}
 
@@ -708,17 +676,14 @@ abstract class JModelAdmin extends JModelForm
 					// Prune items that you can't change.
 					unset($pks[$i]);
 					$error = $this->getError();
-
 					if ($error)
 					{
 						JLog::add($error, JLog::WARNING, 'jerror');
-
 						return false;
 					}
 					else
 					{
 						JLog::add(JText::_('JLIB_APPLICATION_ERROR_DELETE_NOT_PERMITTED'), JLog::WARNING, 'jerror');
-
 						return false;
 					}
 				}
@@ -727,7 +692,6 @@ abstract class JModelAdmin extends JModelForm
 			else
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 		}
@@ -753,7 +717,6 @@ abstract class JModelAdmin extends JModelForm
 	{
 		// Alter the title & alias
 		$table = $this->getTable();
-
 		while ($table->load(array('alias' => $alias, 'catid' => $category_id)))
 		{
 			$title = JString::increment($title);
@@ -786,7 +749,6 @@ abstract class JModelAdmin extends JModelForm
 			if ($return === false && $table->getError())
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 		}
@@ -849,7 +811,7 @@ abstract class JModelAdmin extends JModelForm
 	 *
 	 * @since   12.2
 	 */
-	protected function prepareTable(JTable $table)
+	protected function prepareTable($table)
 	{
 		// Derived class will provide its own implementation if required.
 	}
@@ -871,12 +833,6 @@ abstract class JModelAdmin extends JModelForm
 		$table = $this->getTable();
 		$pks = (array) $pks;
 
-		// Ensure that we do not receive an empty array
-		if (empty($pks))
-		{
-			return true;
-		}
-
 		// Include the content plugins for the change of state event.
 		JPluginHelper::importPlugin('content');
 
@@ -892,7 +848,6 @@ abstract class JModelAdmin extends JModelForm
 					// Prune items that you can't change.
 					unset($pks[$i]);
 					JLog::add(JText::_('JLIB_APPLICATION_ERROR_EDITSTATE_NOT_PERMITTED'), JLog::WARNING, 'jerror');
-
 					return false;
 				}
 			}
@@ -902,7 +857,6 @@ abstract class JModelAdmin extends JModelForm
 		if (!$table->publish($pks, $value, $user->get('id')))
 		{
 			$this->setError($table->getError());
-
 			return false;
 		}
 
@@ -914,7 +868,6 @@ abstract class JModelAdmin extends JModelForm
 		if (in_array(false, $result, true))
 		{
 			$this->setError($table->getError());
-
 			return false;
 		}
 
@@ -1030,7 +983,6 @@ abstract class JModelAdmin extends JModelForm
 			if (!$table->bind($data))
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 
@@ -1041,17 +993,14 @@ abstract class JModelAdmin extends JModelForm
 			if (!$table->check())
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 
 			// Trigger the onContentBeforeSave event.
 			$result = $dispatcher->trigger($this->event_before_save, array($this->option . '.' . $this->name, $table, $isNew));
-
 			if (in_array(false, $result, true))
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 
@@ -1059,7 +1008,6 @@ abstract class JModelAdmin extends JModelForm
 			if (!$table->store())
 			{
 				$this->setError($table->getError());
-
 				return false;
 			}
 
@@ -1126,7 +1074,6 @@ abstract class JModelAdmin extends JModelForm
 				if (!$table->store())
 				{
 					$this->setError($table->getError());
-
 					return false;
 				}
 

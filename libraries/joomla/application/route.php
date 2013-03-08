@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Application
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -33,7 +33,8 @@ class JRoute
 	 * @param   boolean  $xhtml  Replace & by &amp; for XML compilance.
 	 * @param   integer  $ssl    Secure state for the resolved URI.
 	 *                             1: Make URI secure using global secure site URI.
-	 *                             2: Make URI unsecure using the global unsecure site URI.
+	 *                             0: Leave URI in the same secure state as it was passed to the function.
+	 *                            -1: Make URI unsecure using the global unsecure site URI.
 	 *
 	 * @return  The translated humanly readible URL.
 	 *
@@ -78,7 +79,6 @@ class JRoute
 
 			// Get additional parts.
 			static $prefix;
-
 			if (!$prefix)
 			{
 				$prefix = $uri->toString(array('host', 'port'));

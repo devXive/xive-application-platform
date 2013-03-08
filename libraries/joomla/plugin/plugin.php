@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Plugin
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -101,7 +101,6 @@ abstract class JPlugin extends JEvent
 		}
 
 		$lang = JFactory::getLanguage();
-
 		return $lang->load(strtolower($extension), $basePath, null, false, false)
 			|| $lang->load(strtolower($extension), JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name, null, false, false)
 			|| $lang->load(strtolower($extension), $basePath, $lang->getDefault(), false, false)

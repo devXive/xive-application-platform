@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Cache
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -47,7 +47,6 @@ class JCacheStorageMemcache extends JCacheStorage
 	public function __construct($options = array())
 	{
 		parent::__construct($options);
-
 		if (self::$_db === null)
 		{
 			$this->getConnection();
@@ -87,7 +86,6 @@ class JCacheStorageMemcache extends JCacheStorage
 		self::$_db->addServer($server['host'], $server['port'], $this->_persistent);
 
 		$memcachetest = @self::$_db->connect($server['host'], $server['port']);
-
 		if ($memcachetest == false)
 		{
 			throw new RuntimeException('Could not connect to memcache server', 404);
@@ -118,7 +116,6 @@ class JCacheStorageMemcache extends JCacheStorage
 	{
 		$cache_id = $this->_getCacheId($id, $group);
 		$back = self::$_db->get($cache_id);
-
 		return $back;
 	}
 
@@ -193,7 +190,6 @@ class JCacheStorageMemcache extends JCacheStorage
 		}
 
 		$index = self::$_db->get($this->_hash . '-index');
-
 		if ($index === false)
 		{
 			$index = array();
@@ -235,7 +231,6 @@ class JCacheStorageMemcache extends JCacheStorage
 		}
 
 		$index = self::$_db->get($this->_hash . '-index');
-
 		if ($index === false)
 		{
 			$index = array();
@@ -275,14 +270,12 @@ class JCacheStorageMemcache extends JCacheStorage
 		}
 
 		$index = self::$_db->get($this->_hash . '-index');
-
 		if ($index === false)
 		{
 			$index = array();
 		}
 
 		$secret = $this->_hash;
-
 		foreach ($index as $key => $value)
 		{
 
@@ -294,7 +287,6 @@ class JCacheStorageMemcache extends JCacheStorage
 		}
 		self::$_db->replace($this->_hash . '-index', $index, 0, 0);
 		$this->unlockindex();
-
 		return true;
 	}
 
@@ -355,7 +347,6 @@ class JCacheStorageMemcache extends JCacheStorage
 		}
 
 		$index = self::$_db->get($this->_hash . '-index');
-
 		if ($index === false)
 		{
 			$index = array();
@@ -418,7 +409,6 @@ class JCacheStorageMemcache extends JCacheStorage
 		}
 
 		$index = self::$_db->get($this->_hash . '-index');
-
 		if ($index === false)
 		{
 			$index = array();

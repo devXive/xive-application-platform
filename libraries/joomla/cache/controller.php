@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Cache
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -65,7 +65,6 @@ class JCacheController
 	public function __call($name, $arguments)
 	{
 		$nazaj = call_user_func_array(array($this->cache, $name), $arguments);
-
 		return $nazaj;
 	}
 
@@ -181,7 +180,6 @@ class JCacheController
 			$locktest->locked = null;
 			$locktest->locklooped = null;
 			$locktest = $this->cache->lock($id, $group);
-
 			if ($locktest->locked == true && $locktest->locklooped == true)
 			{
 				$data = $this->cache->get($id, $group);

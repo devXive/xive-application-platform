@@ -3,7 +3,7 @@
  * @package     Joomla.Legacy
  * @subpackage  Form
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -18,7 +18,6 @@ jimport('joomla.filesystem.folder');
  * @package     Joomla.Legacy
  * @subpackage  Form
  * @since       11.1
- * @deprecated  13.3
  */
 class JFormFieldComponentlayout extends JFormField
 {
@@ -186,7 +185,6 @@ class JFormFieldComponentlayout extends JFormField
 						// Files with corresponding XML files are alternate menu items, not alternate layout files
 						// so we need to exclude these files from the list.
 						$xml_files = JFolder::files($template_path, '^[^_]*\.xml$', false, true);
-
 						for ($j = 0, $count = count($xml_files); $j < $count; $j++)
 						{
 							$xml_files[$j] = basename($xml_files[$j], '.xml');

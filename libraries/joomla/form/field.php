@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Form
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -141,24 +141,6 @@ abstract class JFormField
 	protected $required = false;
 
 	/**
-	 * The disabled state for the form field.  If true then there must not be a possibility
-	 * to change the pre-selected value, and the value must not be submitted by the browser.
-	 *
-	 * @var    boolean
-	 * @since  12.3
-	 */
-	protected $disabled = false;
-
-	/**
-	 * The readonly state for the form field.  If true then there must not be a possibility
-	 * to change the pre-selected value, and the value must submitted by the browser.
-	 *
-	 * @var    boolean
-	 * @since  12.3
-	 */
-	protected $readonly = false;
-
-	/**
 	 * The form field type.
 	 *
 	 * @var    string
@@ -214,7 +196,7 @@ abstract class JFormField
 	 *
 	 * @since   11.1
 	 */
-	public function __construct(JForm $form = null)
+	public function __construct($form = null)
 	{
 		// If there is a form passed into the constructor set the form and form control properties.
 		if ($form instanceof JForm)
@@ -227,7 +209,6 @@ abstract class JFormField
 		if (!isset($this->type))
 		{
 			$parts = JStringNormalise::fromCamelCase(get_called_class(), true);
-
 			if ($parts[0] == 'J')
 			{
 				$this->type = JString::ucfirst($parts[count($parts) - 1], '_');
@@ -259,8 +240,6 @@ abstract class JFormField
 			case 'multiple':
 			case 'name':
 			case 'required':
-			case 'disabled':
-			case 'readonly':
 			case 'type':
 			case 'validate':
 			case 'value':
@@ -345,13 +324,9 @@ abstract class JFormField
 		$multiple = (string) $element['multiple'];
 		$name = (string) $element['name'];
 		$required = (string) $element['required'];
-		$disabled = (string) $element['disabled'];
-		$readonly = (string) $element['readonly'];
 
-		// Set the required, disabled and validation options.
+		// Set the required and validation options.
 		$this->required = ($required == 'true' || $required == 'required' || $required == '1');
-		$this->disabled = ($disabled == 'true' || $disabled == 'disabled' || $disabled == '1');
-		$this->readonly = ($readonly == 'true' || $readonly == 'readonly' || $readonly == '1');
 		$this->validate = (string) $element['validate'];
 
 		// Add the required class if the field is required.
@@ -565,7 +540,6 @@ abstract class JFormField
 		{
 			// If we already have a name segment add the group control as another level.
 			$groups = explode('.', $this->group);
-
 			if ($name)
 			{
 				foreach ($groups as $group)
@@ -576,7 +550,6 @@ abstract class JFormField
 			else
 			{
 				$name .= array_shift($groups);
-
 				foreach ($groups as $group)
 				{
 					$name .= '[' . $group . ']';
@@ -621,7 +594,6 @@ abstract class JFormField
 		else
 		{
 			self::$count = self::$count + 1;
-
 			return self::$generated_fieldname . self::$count;
 		}
 	}

@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Registry
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -45,11 +45,9 @@ abstract class JRegistryFormat
 		{
 			// Only load the file the class does not exist.
 			$class = 'JRegistryFormat' . $type;
-
 			if (!class_exists($class))
 			{
 				$path = __DIR__ . '/format/' . $type . '.php';
-
 				if (is_file($path))
 				{
 					include_once $path;

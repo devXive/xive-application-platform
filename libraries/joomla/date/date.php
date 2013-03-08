@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Date
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -389,12 +389,10 @@ class JDate extends DateTime
 	 * @return  JDate
 	 *
 	 * @since   11.1
-	 * @note    This method can't be type hinted due to a PHP bug: https://bugs.php.net/bug.php?id=61483
 	 */
 	public function setTimezone($tz)
 	{
 		$this->tz = $tz;
-
 		return parent::setTimezone($tz);
 	}
 

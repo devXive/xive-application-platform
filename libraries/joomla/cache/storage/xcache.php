@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Cache
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -104,7 +104,6 @@ class JCacheStorageXcache extends JCacheStorage
 	{
 		$cache_id = $this->_getCacheId($id, $group);
 		$store = xcache_set($cache_id, $data, $this->_lifetime);
-
 		return $store;
 	}
 
@@ -150,7 +149,6 @@ class JCacheStorageXcache extends JCacheStorage
 		$keys = $allinfo['cache_list'];
 
 		$secret = $this->_hash;
-
 		foreach ($keys as $key)
 		{
 			if (strpos($key['name'], $secret . '-cache-' . $group . '-') === 0 xor $mode != 'group')

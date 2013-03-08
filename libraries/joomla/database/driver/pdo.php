@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Database
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -107,12 +107,6 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 		if ($this->connection)
 		{
 			return;
-		}
-
-		// Make sure the PDO extension for PHP is installed and enabled.
-		if (!self::isSupported())
-		{
-			throw new RuntimeException('PDO Extension is not available.', 1);
 		}
 
 		// Initialize the connection string variable:
@@ -285,6 +279,12 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 		// Create the connection string:
 		$connectionString = str_replace($replace, $with, $format);
 
+		// Make sure the PDO extension for PHP is installed and enabled.
+		if (!self::isSupported())
+		{
+			throw new RuntimeException('PDO Extension is not available.', 1);
+		}
+
 		try
 		{
 			$this->connection = new PDO(
@@ -367,7 +367,6 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 
 		// Take a local copy so that we don't modify the original query and cause issues later
 		$sql = $this->replacePrefix((string) $this->sql);
-
 		if ($this->limit > 0 || $this->offset > 0)
 		{
 			// @TODO
@@ -392,14 +391,12 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 
 		// Execute the query.
 		$this->executed = false;
-
 		if ($this->prepared instanceof PDOStatement)
 		{
 			// Bind the variables:
 			if ($this->sql instanceof JDatabaseQueryPreparable)
 			{
 				$bounded =& $this->sql->getBounded();
-
 				foreach ($bounded as $key => $obj)
 				{
 					$this->prepared->bindParam($key, $obj->value, $obj->dataType, $obj->length, $obj->driverOptions);
@@ -624,7 +621,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 	/**
 	 * Method to get the auto-incremented value from the last INSERT statement.
 	 *
-	 * @return  string  The value of the auto-increment field from the last inserted row.
+	 * @return  integer  The value of the auto-increment field from the last inserted row.
 	 *
 	 * @since   12.1
 	 */
@@ -707,67 +704,46 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 	/**
 	 * Method to commit a transaction.
 	 *
-	 * @param   boolean  $toSavepoint  If true, commit to the last savepoint.
-	 *
-	 * @return  void
+	 * @return  bool
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
 	 */
-	public function transactionCommit($toSavepoint = false)
+	public function transactionCommit()
 	{
 		$this->connect();
 
-		if (!$toSavepoint || $this->transactionDepth == 1)
-		{
-			$this->connection->commit();
-		}
-
-		$this->transactionDepth--;
+		return $this->connection->commit();
 	}
 
 	/**
 	 * Method to roll back a transaction.
 	 *
-	 * @param   boolean  $toSavepoint  If true, rollback to the last savepoint.
-	 *
-	 * @return  void
+	 * @return  bool
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
 	 */
-	public function transactionRollback($toSavepoint = false)
+	public function transactionRollback()
 	{
 		$this->connect();
 
-		if (!$toSavepoint || $this->transactionDepth == 1)
-		{
-			$this->connection->rollBack();
-		}
-
-		$this->transactionDepth--;
+		return $this->connection->rollBack();
 	}
 
 	/**
 	 * Method to initialize a transaction.
 	 *
-	 * @param   boolean  $asSavepoint  If true and a transaction is already active, a savepoint will be created.
-	 *
-	 * @return  void
+	 * @return  bool
 	 *
 	 * @since   12.1
 	 * @throws  RuntimeException
 	 */
-	public function transactionStart($asSavepoint = false)
+	public function transactionStart()
 	{
 		$this->connect();
 
-		if (!$asSavepoint || !$this->transactionDepth)
-		{
-			$this->connection->beginTransaction();
-		}
-
-		$this->transactionDepth++;
+		return $this->connection->beginTransaction();
 	}
 
 	/**
@@ -976,7 +952,7 @@ abstract class JDatabaseDriverPdo extends JDatabaseDriver
 		// Get properties of the current class
 		$properties = $reflect->getProperties();
 
-		foreach ($properties as $property)
+		foreach ($properties as $key => $property)
 		{
 			// Do not serialize properties that are PDO
 			if ($property->isStatic() == false && !($this->{$property->name} instanceof PDO))

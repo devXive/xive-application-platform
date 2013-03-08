@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Cache
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -114,7 +114,6 @@ class JCacheStorage
 		{
 			$conf = JFactory::getConfig();
 			$handler = $conf->get('cache_handler');
-
 			if (empty($handler))
 			{
 				throw new UnexpectedValueException('Cache Storage Handler not set.');
@@ -132,12 +131,10 @@ class JCacheStorage
 		$handler = strtolower(preg_replace('/[^A-Z0-9_\.-]/i', '', $handler));
 
 		$class = 'JCacheStorage' . ucfirst($handler);
-
 		if (!class_exists($class))
 		{
 			// Search for the class file in the JCacheStorage include paths.
 			jimport('joomla.filesystem.path');
-
 			if ($path = JPath::find(self::addIncludePath(), strtolower($handler) . '.php'))
 			{
 				include_once $path;
@@ -257,6 +254,21 @@ class JCacheStorage
 	}
 
 	/**
+	 * Test to see if the storage handler is available.
+	 *
+	 * @return  boolean  True on success, false otherwise.
+	 *
+	 * @since   11.1
+	 * @deprecated  12.3
+	 */
+	public static function test()
+	{
+		JLog::add('JCacheStorage::test() is deprecated. Use JCacheStorage::isSupported() instead.', JLog::WARNING, 'deprecated');
+
+		return static::isSupported();
+	}
+
+	/**
 	 * Lock cached item
 	 *
 	 * @param   string   $id        The cache data id
@@ -301,7 +313,6 @@ class JCacheStorage
 	{
 		$name = md5($this->_application . '-' . $id . '-' . $this->_language);
 		$this->rawname = $this->_hash . '-' . $name;
-
 		return $this->_hash . '-cache-' . $group . '-' . $name;
 	}
 

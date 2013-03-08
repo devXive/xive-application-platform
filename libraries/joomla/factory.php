@@ -2,7 +2,7 @@
 /**
  * @package    Joomla.Platform
  *
- * @copyright  Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -221,7 +221,7 @@ abstract class JFactory
 				$instance = JUser::getInstance();
 			}
 		}
-		elseif (!($instance instanceof JUser) || $instance->id != $id)
+		elseif ($instance->id != $id)
 		{
 			$instance = JUser::getInstance($id);
 		}
@@ -245,7 +245,6 @@ abstract class JFactory
 	public static function getCache($group = '', $handler = 'callback', $storage = null)
 	{
 		$hash = md5($group . $handler . $storage);
-
 		if (isset(self::$cache[$hash]))
 		{
 			return self::$cache[$hash];
@@ -375,7 +374,6 @@ abstract class JFactory
 		JLog::add(__METHOD__ . ' is deprecated. Use SimpleXML directly.', JLog::WARNING, 'deprecated');
 
 		$class = 'SimpleXMLElement';
-
 		if (class_exists('JXMLElement'))
 		{
 			$class = 'JXMLElement';
@@ -421,12 +419,11 @@ abstract class JFactory
 	 * @return  JEditor instance of JEditor
 	 *
 	 * @since   11.1
-	 * @deprecated 12.2 CMS developers should use JEditor directly.
-	 * @note There is no direct replacement in the Joomla Platform.
+	 * @deprecated 12.3 Use JEditor directly
 	 */
 	public static function getEditor($editor = null)
 	{
-		JLog::add(__METHOD__ . ' is deprecated. CMS developers should use JEditor directly.', JLog::WARNING, 'deprecated');
+		JLog::add(__METHOD__ . ' is deprecated. Use JEditor directly.', JLog::WARNING, 'deprecated');
 
 		if (!class_exists('JEditor'))
 		{
@@ -576,7 +573,6 @@ abstract class JFactory
 		$options['expire'] = ($conf->get('lifetime')) ? $conf->get('lifetime') * 60 : 900;
 
 		$session = JSession::getInstance($handler, $options);
-
 		if ($session->getState() == 'expired')
 		{
 			$session->restart();

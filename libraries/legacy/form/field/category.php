@@ -3,7 +3,7 @@
  * @package     Joomla.Legacy
  * @subpackage  Form
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -18,7 +18,6 @@ JFormHelper::loadFieldClass('list');
  * @package     Joomla.Legacy
  * @subpackage  Form
  * @since       11.1
- * @deprecated  13.3
  */
 class JFormFieldCategory extends JFormFieldList
 {

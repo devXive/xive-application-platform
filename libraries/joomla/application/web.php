@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Application
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -307,7 +307,7 @@ class JApplicationWeb extends JApplicationBase
 		// Setup the document options.
 		$options = array(
 			'template' => $this->get('theme'),
-			'file' => $this->get('themeFile', 'index.php'),
+			'file' => 'index.php',
 			'params' => $this->get('themeParams')
 		);
 
@@ -1043,7 +1043,6 @@ class JApplicationWeb extends JApplicationBase
 		// Instantiate the session object.
 		$session = JSession::getInstance($handler, $options);
 		$session->initialise($this->input, $this->dispatcher);
-
 		if ($session->getState() == 'expired')
 		{
 			$session->restart();
@@ -1069,7 +1068,6 @@ class JApplicationWeb extends JApplicationBase
 	public function afterSessionStart()
 	{
 		$session = JFactory::getSession();
-
 		if ($session->isNew())
 		{
 			$session->set('registry', new JRegistry('session'));
@@ -1103,7 +1101,6 @@ class JApplicationWeb extends JApplicationBase
 
 		// Check to see if an explicit base URI has been set.
 		$siteUri = trim($this->get('site_uri'));
-
 		if ($siteUri != '')
 		{
 			$uri = JUri::getInstance($siteUri);
@@ -1153,7 +1150,6 @@ class JApplicationWeb extends JApplicationBase
 
 		// Get an explicitly set media URI is present.
 		$mediaURI = trim($this->get('media_uri'));
-
 		if ($mediaURI)
 		{
 			if (strpos($mediaURI, '://') !== false)
@@ -1164,8 +1160,7 @@ class JApplicationWeb extends JApplicationBase
 			else
 			{
 				// Normalise slashes.
-				$mediaURI = trim($mediaURI, '/\\');
-				$mediaURI = !empty($mediaURI) ? '/' . $mediaURI . '/' : '/';
+				$mediaURI = '/' . trim($mediaURI, '/\\') . '/';
 				$this->set('uri.media.full', $this->get('uri.base.host') . $mediaURI);
 				$this->set('uri.media.path', $mediaURI);
 			}
@@ -1177,4 +1172,16 @@ class JApplicationWeb extends JApplicationBase
 			$this->set('uri.media.path', $this->get('uri.base.path') . 'media/');
 		}
 	}
+}
+
+/**
+ * Deprecated class placeholder.  You should use JApplicationWeb instead.
+ *
+ * @package     Joomla.Platform
+ * @subpackage  Application
+ * @since       11.3
+ * @deprecated  12.3
+ */
+class JWeb extends JApplicationWeb
+{
 }

@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Database
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -165,12 +165,6 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 	protected static $dbMinimum;
 
 	/**
-	 * @var    integer  The depth of the current transaction.
-	 * @since  12.3
-	 */
-	protected $transactionDepth = 0;
-
-	/**
 	 * Get a list of available database connectors.  The list will only be populated with connectors that both
 	 * the class exists and the static test method returns true.  This gives us the ability to have a multitude
 	 * of connector classes that are self-aware as to whether or not they are able to be used on a given system.
@@ -293,7 +287,6 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 		for ($i = 0; $i < $end; $i++)
 		{
 			$current = substr($sql, $i, 1);
-
 			if (($current == '"' || $current == '\''))
 			{
 				$n = 2;
@@ -381,6 +374,27 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 	}
 
 	/**
+	 * Alter database's character set, obtaining query string from protected member.
+	 *
+	 * @param   string  $dbName  The database name that will be altered
+	 *
+	 * @return  string  The query that alter the database query string
+	 *
+	 * @since   12.2
+	 * @throws  RuntimeException
+	 */
+	public function alterDbCharacterSet($dbName)
+	{
+		if (is_null($dbName))
+		{
+			throw new RuntimeException('Database name must not be null.');
+		}
+
+		$this->setQuery($this->getAlterDbCharacterSet($dbName));
+		return $this->execute();
+	}
+
+	/**
 	 * Connects to the database if needed.
 	 *
 	 * @return  void  Returns void if the database connected successfully.
@@ -398,6 +412,38 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 	 * @since   11.1
 	 */
 	abstract public function connected();
+
+	/**
+	 * Create a new database using information from $options object, obtaining query string
+	 * from protected member.
+	 *
+	 * @param   stdClass  $options  Object used to pass user and database name to database driver.
+	 * 									This object must have "db_name" and "db_user" set.
+	 * @param   boolean   $utf      True if the database supports the UTF-8 character set.
+	 *
+	 * @return  string  The query that creates database
+	 *
+	 * @since   12.2
+	 * @throws  RuntimeException
+	 */
+	public function createDatabase($options, $utf = true)
+	{
+		if (is_null($options))
+		{
+			throw new RuntimeException('$options object must not be null.');
+		}
+		elseif (empty($options->db_name))
+		{
+			throw new RuntimeException('$options object must have db_name set.');
+		}
+		elseif (empty($options->db_user))
+		{
+			throw new RuntimeException('$options object must have db_user set.');
+		}
+
+		$this->setQuery($this->getCreateDatabaseQuery($options, $utf));
+		return $this->execute();
+	}
 
 	/**
 	 * Disconnects the database.
@@ -422,7 +468,7 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 	public abstract function dropTable($table, $ifExists = true);
 
 	/**
-	 * Escapes a string for usage in an SQL statement.
+	 * Method to escape a string for usage in an SQL statement.
 	 *
 	 * @param   string   $text   The string to be escaped.
 	 * @param   boolean  $extra  Optional parameter to provide extra escaping.
@@ -486,6 +532,48 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 	 * @since   11.1
 	 */
 	abstract public function getAffectedRows();
+
+	/**
+	 * Return the query string to alter the database character set.
+	 *
+	 * @param   string  $dbName  The database name
+	 *
+	 * @return  string  The query that alter the database query string
+	 *
+	 * @since   12.2
+	 */
+	protected function getAlterDbCharacterSet($dbName)
+	{
+		$query = 'ALTER DATABASE ' . $this->quoteName($dbName) . ' CHARACTER SET `utf8`';
+
+		return $query;
+	}
+
+	/**
+	 * Return the query string to create new Database.
+	 * Each database driver, other than MySQL, need to override this member to return correct string.
+	 *
+	 * @param   stdClass  $options  Object used to pass user and database name to database driver.
+	 * 									This object must have "db_name" and "db_user" set.
+	 * @param   boolean   $utf      True if the database supports the UTF-8 character set.
+	 *
+	 * @return  string  The query that creates database
+	 *
+	 * @since   12.2
+	 */
+	protected function getCreateDatabaseQuery($options, $utf)
+	{
+		if ($utf)
+		{
+			$query = 'CREATE DATABASE ' . $this->quoteName($options->db_name) . ' CHARACTER SET `utf8`';
+		}
+		else
+		{
+			$query = 'CREATE DATABASE ' . $this->quoteName($options->db_name);
+		}
+
+		return $query;
+	}
 
 	/**
 	 * Method to get the database collation in use by sampling a text field of a table in the database.
@@ -767,6 +855,20 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 	 *
 	 * @return  boolean  True if the database engine supports UTF-8 character encoding.
 	 *
+	 * @since   11.1
+	 * @deprecated 12.3 Use hasUTFSupport() instead
+	 */
+	public function getUTFSupport()
+	{
+		JLog::add('JDatabase::getUTFSupport() is deprecated. Use JDatabase::hasUTFSupport() instead.', JLog::WARNING, 'deprecated');
+		return $this->hasUTFSupport();
+	}
+
+	/**
+	 * Determine whether or not the database engine supports UTF-8 character encoding.
+	 *
+	 * @return  boolean  True if the database engine supports UTF-8 character encoding.
+	 *
 	 * @since   12.1
 	 */
 	public function hasUTFSupport()
@@ -786,7 +888,7 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 	/**
 	 * Method to get the auto-incremented value from the last INSERT statement.
 	 *
-	 * @return  mixed  The value of the auto-increment field from the last inserted row.
+	 * @return  integer  The value of the auto-increment field from the last inserted row.
 	 *
 	 * @since   11.1
 	 */
@@ -837,7 +939,6 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 
 		// Set the query and execute the insert.
 		$this->setQuery($query);
-
 		if (!$this->execute())
 		{
 			return false;
@@ -845,7 +946,6 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 
 		// Update the primary key if it exists.
 		$id = $this->insertid();
-
 		if ($key && $id && is_string($key))
 		{
 			$object->$key = $id;
@@ -932,7 +1032,6 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 		while ($row = $this->fetchAssoc($cursor))
 		{
 			$value = ($column) ? (isset($row[$column]) ? $row[$column] : $row) : $row;
-
 			if ($key)
 			{
 				$array[$row[$key]] = $value;
@@ -1263,31 +1362,18 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 	public abstract function lockTable($tableName);
 
 	/**
-	 * Quotes and optionally escapes a string to database requirements for use in database queries.
+	 * Method to quote and optionally escape a string to database requirements for insertion into the database.
 	 *
-	 * @param   mixed    $text    A string or an array of strings to quote.
+	 * @param   string   $text    The string to quote.
 	 * @param   boolean  $escape  True (default) to escape the string, false to leave it unchanged.
 	 *
 	 * @return  string  The quoted input string.
 	 *
-	 * @note    Accepting an array of strings was added in 12.3.
 	 * @since   11.1
 	 */
 	public function quote($text, $escape = true)
 	{
-		if (is_array($text))
-		{
-			foreach ($text as $k => $v)
-			{
-				$text[$k] = $this->quote($v, $escape);
-			}
-
-			return $text;
-		}
-		else
-		{
-			return '\'' . ($escape ? $this->escape($text) : $text) . '\'';
-		}
+		return '\'' . ($escape ? $this->escape($text) : $text) . '\'';
 	}
 
 	/**
@@ -1310,7 +1396,6 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 			$quotedName = $this->quoteNameStr(explode('.', $name));
 
 			$quotedAs = '';
-
 			if (!is_null($as))
 			{
 				settype($as, 'array');
@@ -1333,7 +1418,6 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 			elseif (is_array($name) && (count($name) == count($as)))
 			{
 				$count = count($name);
-
 				for ($i = 0; $i < $count; $i++)
 				{
 					$fin[] = $this->quoteName($name[$i], $as[$i]);
@@ -1402,7 +1486,6 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 		while ($startPos < $n)
 		{
 			$ip = strpos($sql, $prefix, $startPos);
-
 			if ($ip === false)
 			{
 				break;
@@ -1410,7 +1493,6 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 
 			$j = strpos($sql, "'", $startPos);
 			$k = strpos($sql, '"', $startPos);
-
 			if (($k !== false) && (($k < $j) || ($j === false)))
 			{
 				$quoteChar = '"';
@@ -1441,13 +1523,11 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 			{
 				$k = strpos($sql, $quoteChar, $j);
 				$escaped = false;
-
 				if ($k === false)
 				{
 					break;
 				}
 				$l = $k - 1;
-
 				while ($l >= 0 && $sql{$l} == '\\')
 				{
 					$l--;
@@ -1552,38 +1632,32 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 	/**
 	 * Method to commit a transaction.
 	 *
-	 * @param   boolean  $toSavepoint  If true, commit to the last savepoint.
-	 *
 	 * @return  void
 	 *
 	 * @since   11.1
 	 * @throws  RuntimeException
 	 */
-	abstract public function transactionCommit($toSavepoint = false);
+	abstract public function transactionCommit();
 
 	/**
 	 * Method to roll back a transaction.
 	 *
-	 * @param   boolean  $toSavepoint  If true, rollback to the last savepoint.
-	 *
 	 * @return  void
 	 *
 	 * @since   11.1
 	 * @throws  RuntimeException
 	 */
-	abstract public function transactionRollback($toSavepoint = false);
+	abstract public function transactionRollback();
 
 	/**
 	 * Method to initialize a transaction.
 	 *
-	 * @param   boolean  $asSavepoint  If true and a transaction is already active, a savepoint will be created.
-	 *
 	 * @return  void
 	 *
 	 * @since   11.1
 	 * @throws  RuntimeException
 	 */
-	abstract public function transactionStart($asSavepoint = false);
+	abstract public function transactionStart();
 
 	/**
 	 * Method to truncate a table.
@@ -1680,7 +1754,6 @@ abstract class JDatabaseDriver extends JDatabase implements JDatabaseInterface
 
 		// Set the query and execute the update.
 		$this->setQuery(sprintf($statement, implode(",", $fields), implode(' AND ', $where)));
-
 		return $this->execute();
 	}
 

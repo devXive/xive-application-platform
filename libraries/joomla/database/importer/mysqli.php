@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Database
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -455,7 +455,6 @@ class JDatabaseImporterMysqli extends JDatabaseImporter
 	{
 		// First pass, create a lookup of the keys.
 		$lookup = array();
-
 		foreach ($keys as $key)
 		{
 			if ($key instanceof SimpleXMLElement)
@@ -494,7 +493,6 @@ class JDatabaseImporterMysqli extends JDatabaseImporter
 		$kColumn = (string) $columns[0]['Column_name'];
 
 		$prefix = '';
-
 		if ($kName == 'PRIMARY')
 		{
 			$prefix = 'PRIMARY ';

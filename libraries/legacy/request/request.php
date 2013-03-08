@@ -3,7 +3,7 @@
  * @package     Joomla.Legacy
  * @subpackage  Request
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -33,7 +33,7 @@ JLog::add('JRequest is deprecated.', JLog::WARNING, 'deprecated');
  * @package     Joomla.Legacy
  * @subpackage  Request
  * @since       11.1
- * @deprecated  13.1  Get the JInput object from the application instead
+ * @deprecated  12.1  Get the JInput object from the application instead
  */
 class JRequest
 {
@@ -49,7 +49,6 @@ class JRequest
 	public static function getURI()
 	{
 		$uri = JURI::getInstance();
-
 		return $uri->toString(array('path', 'query'));
 	}
 
@@ -65,7 +64,6 @@ class JRequest
 	public static function getMethod()
 	{
 		$method = strtoupper($_SERVER['REQUEST_METHOD']);
-
 		return $method;
 	}
 
@@ -104,7 +102,6 @@ class JRequest
 	{
 		// Ensure hash and type are uppercase
 		$hash = strtoupper($hash);
-
 		if ($hash === 'METHOD')
 		{
 			$hash = strtoupper($_SERVER['REQUEST_METHOD']);
@@ -354,7 +351,6 @@ class JRequest
 
 		// Get the request hash value
 		$hash = strtoupper($hash);
-
 		if ($hash === 'METHOD')
 		{
 			$hash = strtoupper($_SERVER['REQUEST_METHOD']);

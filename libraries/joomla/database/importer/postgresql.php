@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Database
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -355,7 +355,6 @@ class JDatabaseImporterPostgresql extends JDatabaseImporter
 	protected function getDropSequenceSQL($name)
 	{
 		$sql = 'DROP SEQUENCE ' . $this->db->quoteName($name);
-
 		return $sql;
 	}
 
@@ -387,7 +386,6 @@ class JDatabaseImporterPostgresql extends JDatabaseImporter
 				' OWNED BY ' . $this->db->quoteName(
 									(string) $field['Schema'] . '.' . (string) $field['Table'] . '.' . (string) $field['Column']
 								);
-
 		return $sql;
 	}
 
@@ -418,7 +416,6 @@ class JDatabaseImporterPostgresql extends JDatabaseImporter
 				' OWNED BY ' . $this->db->quoteName(
 									(string) $field['Schema'] . '.' . (string) $field['Table'] . '.' . (string) $field['Column']
 								);
-
 		return $sql;
 	}
 
@@ -612,7 +609,6 @@ class JDatabaseImporterPostgresql extends JDatabaseImporter
 	{
 		// First pass, create a lookup of the keys.
 		$lookup = array();
-
 		foreach ($keys as $key)
 		{
 			if ($key instanceof SimpleXMLElement)
@@ -647,7 +643,6 @@ class JDatabaseImporterPostgresql extends JDatabaseImporter
 	{
 		// First pass, create a lookup of the keys.
 		$lookup = array();
-
 		foreach ($sequences as $seq)
 		{
 			if ($seq instanceof SimpleXMLElement)
@@ -751,7 +746,6 @@ class JDatabaseImporterPostgresql extends JDatabaseImporter
 				$sql = $this->xmlToCreate($table);
 
 				$this->db->setQuery((string) $sql);
-
 				try
 				{
 					$this->db->execute();

@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Object
  *
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -24,10 +24,10 @@ class JObject
 	/**
 	 * An array of error messages or Exception objects.
 	 *
-	 * @var              array
-	 * @since            11.1
-	 * @see              JError
-	 * @deprecated       13.1
+	 * @var    array
+	 * @since  11.1
+	 * @see     JError
+	 * @deprecated 12.3  JError has been deprecated
 	 */
 	protected $_errors = array();
 
@@ -48,7 +48,20 @@ class JObject
 	}
 
 	/**
-	 * Sets a default value if not already assigned
+	 * Magic method to convert the object to a string gracefully.
+	 *
+	 * @return  string  The classname.
+	 *
+	 * @since   11.1
+	 * @deprecated 12.3  Classes should provide their own __toString() implementation.
+	 */
+	public function __toString()
+	{
+		return get_class($this);
+	}
+
+	/**
+	 * Sets a default value if not alreay assigned
 	 *
 	 * @param   string  $property  The name of the property.
 	 * @param   mixed   $default   The default value.
@@ -60,7 +73,6 @@ class JObject
 	public function def($property, $default = null)
 	{
 		$value = $this->get($property, $default);
-
 		return $this->set($property, $value);
 	}
 
@@ -99,7 +111,6 @@ class JObject
 	public function getProperties($public = true)
 	{
 		$vars = get_object_vars($this);
-
 		if ($public)
 		{
 			foreach ($vars as $key => $value)
@@ -122,9 +133,9 @@ class JObject
 	 *
 	 * @return  string   Error message
 	 *
-	 * @since       11.1
-	 * @see         JError
-	 * @deprecated  13.1
+	 * @since   11.1
+	 * @see     JError
+	 * @deprecated 12.3  JError has been deprecated
 	 */
 	public function getError($i = null, $toString = true)
 	{
@@ -158,9 +169,9 @@ class JObject
 	 *
 	 * @return  array  Array of error messages or JErrors.
 	 *
-	 * @since       11.1
-	 * @see         JError
-	 * @deprecated  13.1
+	 * @since   11.1
+	 * @see     JError
+	 * @deprecated 12.3  JError has been deprecated
 	 */
 	public function getErrors()
 	{
@@ -181,7 +192,6 @@ class JObject
 	{
 		$previous = isset($this->$property) ? $this->$property : null;
 		$this->$property = $value;
-
 		return $previous;
 	}
 
@@ -218,9 +228,9 @@ class JObject
 	 *
 	 * @return  void
 	 *
-	 * @since       11.1
-	 * @see         JError
-	 * @deprecated  13.1
+	 * @since   11.1
+	 * @see     JError
+	 * @deprecated 12.3  JError has been deprecated
 	 */
 	public function setError($error)
 	{
