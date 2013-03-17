@@ -29,5 +29,5 @@ if(!defined('DS')) {
 }
 
 // Init
-require_once (XPATH_PLATFORM . '/xap/init.php');
+require_once (XPATH_PLATFORM . '/init.php');
 
