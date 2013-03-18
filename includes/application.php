@@ -517,7 +517,7 @@ final class JSite extends JApplication
 		{
 			JError::raiseWarning(0, JText::_('JERROR_ALERTNOTEMPLATE'));
 			$template->template = 'beez3';
-			if (!file_exists(JPATH_THEMES . '/beez3/index.php'))
+			if (!file_exists(JPATH_THEMES . '/protostar/index.php'))
 			{
 				$template->template = '';
 			}
