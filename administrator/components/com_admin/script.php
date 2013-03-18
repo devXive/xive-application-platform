@@ -174,7 +174,6 @@ class joomlaInstallerScript
 		$extensions[] = array('plugin', 'remember', 'system', 0);
 		$extensions[] = array('plugin', 'sef', 'system', 0);
 		$extensions[] = array('plugin', 'logout', 'system', 0);
-		$extensions[] = array('plugin', 'contactcreator', 'user', 0);
 		$extensions[] = array('plugin', 'joomla', 'user', 0);
 		$extensions[] = array('plugin', 'profile', 'user', 0);
 		$extensions[] = array('plugin', 'joomla', 'extension', 0);
