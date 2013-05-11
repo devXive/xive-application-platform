@@ -1,7 +1,7 @@
 <?php
 /**
  * @package     Joomla.Plugin
- * @subpackage  Finder.Categories
+ * @subpackage  Finder.Tags
  *
  * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
@@ -9,64 +9,57 @@
 
 defined('JPATH_BASE') or die;
 
+// Load the base adapter.
 require_once JPATH_ADMINISTRATOR . '/components/com_finder/helpers/indexer/adapter.php';
 
 /**
- * Finder adapter for Joomla Categories.
+ * Finder adapter for Joomla Tag.
  *
  * @package     Joomla.Plugin
- * @subpackage  Finder.Categories
- * @since       2.5
+ * @subpackage  Finder.Tags
+ * @since       3.1
  */
-class PlgFinderCategories extends FinderIndexerAdapter
+class PlgFinderTags extends FinderIndexerAdapter
 {
 	/**
 	 * The plugin identifier.
 	 *
 	 * @var    string
-	 * @since  2.5
+	 * @since  3.1
 	 */
-	protected $context = 'Categories';
+	protected $context = 'Tags';
 
 	/**
 	 * The extension name.
 	 *
 	 * @var    string
-	 * @since  2.5
+	 * @since  3.1
 	 */
-	protected $extension = 'com_categories';
+	protected $extension = 'com_tags';
 
 	/**
 	 * The sublayout to use when rendering the results.
 	 *
 	 * @var    string
-	 * @since  2.5
+	 * @since  3.1
 	 */
-	protected $layout = 'category';
+	protected $layout = 'tag';
 
 	/**
 	 * The type of content that the adapter indexes.
 	 *
 	 * @var    string
-	 * @since  2.5
+	 * @since  3.1
 	 */
-	protected $type_title = 'Category';
+	protected $type_title = 'Tag';
 
 	/**
 	 * The table name.
 	 *
 	 * @var    string
-	 * @since  2.5
+	 * @since  3.1
 	 */
-	protected $table = '#__categories';
-
-	/**
-	 * The field the published state is stored in.
-	 *
-	 * @var    string
-	 * @since  2.5
-	 */
-	protected $state_field = 'published';
+	protected $table = '#__tags';
 
 	/**
 	 * Load the language file on instantiation.
@@ -77,6 +70,14 @@ class PlgFinderCategories extends FinderIndexerAdapter
 	protected $autoloadLanguage = true;
 
 	/**
+	 * The field the published state is stored in.
+	 *
+	 * @var    string
+	 * @since  3.1
+	 */
+	protected $state_field = 'published';
+
+	/**
 	 * Method to remove the link information for items that have been deleted.
 	 *
 	 * @param   string  $context  The context of the action being performed.
@@ -84,12 +85,12 @@ class PlgFinderCategories extends FinderIndexerAdapter
 	 *
 	 * @return  boolean  True on success.
 	 *
-	 * @since   2.5
+	 * @since   3.1
 	 * @throws  Exception on database error.
 	 */
-	public function onFinderDelete($context, $table)
+	public function onFinderAfterDelete($context, $table)
 	{
-		if ($context == 'com_categories.category')
+		if ($context == 'com_tags.tag')
 		{
 			$id = $table->id;
 		}
@@ -114,31 +115,25 @@ class PlgFinderCategories extends FinderIndexerAdapter
 	 *
 	 * @return  boolean  True on success.
 	 *
-	 * @since   2.5
+	 * @since   3.1
 	 * @throws  Exception on database error.
 	 */
 	public function onFinderAfterSave($context, $row, $isNew)
 	{
-		// We only want to handle categories here
-		if ($context == 'com_categories.category')
+		// We only want to handle tags here.
+		if ($context == 'com_tags.tag')
 		{
 			// Check if the access levels are different
 			if (!$isNew && $this->old_access != $row->access)
 			{
 				// Process the change.
 				$this->itemAccessChange($row);
-
-				// Reindex the item
-				$this->reindex($row->id);
 			}
 
-			// Check if the parent access level is different
-			if (!$isNew && $this->old_cataccess != $row->access)
-			{
-				$this->categoryAccessChange($row);
-			}
-
+			// Reindex the item
+			$this->reindex($row->id);
 		}
+
 		return true;
 	}
 
@@ -148,24 +143,23 @@ class PlgFinderCategories extends FinderIndexerAdapter
 	 * to queue the item to be indexed later.
 	 *
 	 * @param   string   $context  The context of the content passed to the plugin.
-	 * @param   JTable   $row     A JTable object
+	 * @param   JTable   $row      A JTable object
 	 * @param   boolean  $isNew    If the content is just about to be created
 	 *
 	 * @return  boolean  True on success.
 	 *
-	 * @since   2.5
+	 * @since   3.1
 	 * @throws  Exception on database error.
 	 */
 	public function onFinderBeforeSave($context, $row, $isNew)
 	{
-		// We only want to handle categories here
-		if ($context == 'com_categories.category')
+		// We only want to handle news feeds here
+		if ($context == 'com_tags.tag')
 		{
-			// Query the database for the old access level and the parent if the item isn't new
+			// Query the database for the old access level if the item isn't new
 			if (!$isNew)
 			{
 				$this->checkItemAccess($row);
-				$this->checkCategoryAccess($row);
 			}
 		}
 
@@ -183,43 +177,15 @@ class PlgFinderCategories extends FinderIndexerAdapter
 	 *
 	 * @return  void
 	 *
-	 * @since   2.5
+	 * @since   3.1
 	 */
 	public function onFinderChangeState($context, $pks, $value)
 	{
-		// We only want to handle categories here
-		if ($context == 'com_categories.category')
+		// We only want to handle tags here
+		if ($context == 'com_tags.tag')
 		{
-			// The category published state is tied to the parent category
-			// published state so we need to look up all published states
-			// before we change anything.
-			foreach ($pks as $pk)
-			{
-				$query = clone($this->getStateQuery());
-				$query->where('a.id = ' . (int) $pk);
-
-				// Get the published states.
-				$this->db->setQuery($query);
-				$item = $this->db->loadObject();
-
-				// Translate the state.
-				$state = null;
-
-				if ($item->parent_id != 1)
-				{
-					$state = $item->cat_state;
-				}
-
-				$temp = $this->translateState($value, $state);
-
-				// Update the item.
-				$this->change($pk, 'state', $temp);
-
-				// Reindex the item
-				$this->reindex($pk);
-			}
+			$this->itemStateChange($pks, $value);
 		}
-
 		// Handle when the plugin is disabled
 		if ($context == 'com_plugins.plugin' && $value === 0)
 		{
@@ -235,7 +201,7 @@ class PlgFinderCategories extends FinderIndexerAdapter
 	 *
 	 * @return  void
 	 *
-	 * @since   2.5
+	 * @since   3.1
 	 * @throws  Exception on database error.
 	 */
 	protected function index(FinderIndexerResult $item, $format = 'html')
@@ -248,53 +214,19 @@ class PlgFinderCategories extends FinderIndexerAdapter
 
 		$item->setLanguage();
 
-		// Need to import component route helpers dynamically, hence the reason it's handled here
-		$path = JPATH_SITE . '/components/' . $item->extension . '/helpers/route.php';
-		if (is_file($path))
-		{
-			include_once $path;
-		}
-
-		$extension = ucfirst(substr($item->extension, 4));
-
 		// Initialize the item parameters.
 		$registry = new JRegistry;
 		$registry->loadString($item->params);
-		$item->params = $registry;
+		$item->params = JComponentHelper::getParams('com_tags', true);
+		$item->params->merge($registry);
 
 		$registry = new JRegistry;
 		$registry->loadString($item->metadata);
 		$item->metadata = $registry;
 
-		/* Add the meta-data processing instructions based on the categories
-		 * configuration parameters.
-		 */
-		// Add the meta-author.
-		$item->metaauthor = $item->metadata->get('author');
-
-		// Handle the link to the meta-data.
-		$item->addInstruction(FinderIndexer::META_CONTEXT, 'link');
-		$item->addInstruction(FinderIndexer::META_CONTEXT, 'metakey');
-		$item->addInstruction(FinderIndexer::META_CONTEXT, 'metadesc');
-		$item->addInstruction(FinderIndexer::META_CONTEXT, 'metaauthor');
-		$item->addInstruction(FinderIndexer::META_CONTEXT, 'author');
-		//$item->addInstruction(FinderIndexer::META_CONTEXT, 'created_by_alias');
-
-		// Trigger the onContentPrepare event.
-		$item->summary = FinderIndexerHelper::prepareContent($item->summary, $item->params);
-
 		// Build the necessary route and path information.
-		$item->url = $this->getURL($item->id, $item->extension, $this->layout);
-
-		$class = $extension . 'HelperRoute';
-		if (class_exists($class) && method_exists($class, 'getCategoryRoute'))
-		{
-			$item->route = $class::getCategoryRoute($item->id);
-		}
-		else
-		{
-			$item->route = ContentHelperRoute::getCategoryRoute($item->slug, $item->catid);
-		}
+		$item->url = $this->getURL($item->id, $this->extension, $this->layout);
+		$item->route = TagsHelperRoute::getTagRoute($item->slug);
 		$item->path = FinderIndexerHelper::getContentPath($item->route);
 
 		// Get the menu title if it exists.
@@ -306,17 +238,28 @@ class PlgFinderCategories extends FinderIndexerAdapter
 			$item->title = $title;
 		}
 
-		// Translate the state. Categories should only be published if the parent category is published.
-		$item->state = $this->translateState($item->state);
+		// Add the meta-author.
+		$item->metaauthor = $item->metadata->get('author');
+
+		// Handle the link to the meta-data.
+		$item->addInstruction(FinderIndexer::META_CONTEXT, 'link');
+		$item->addInstruction(FinderIndexer::META_CONTEXT, 'metakey');
+		$item->addInstruction(FinderIndexer::META_CONTEXT, 'metadesc');
+		$item->addInstruction(FinderIndexer::META_CONTEXT, 'metaauthor');
+		$item->addInstruction(FinderIndexer::META_CONTEXT, 'author');
+		$item->addInstruction(FinderIndexer::META_CONTEXT, 'created_by_alias');
 
 		// Add the type taxonomy data.
-		$item->addTaxonomy('Type', 'Category');
+		$item->addTaxonomy('Type', 'Tag');
+
+		// Add the author taxonomy data.
+		if (!empty($item->author) || !empty($item->created_by_alias))
+		{
+			$item->addTaxonomy('Author', !empty($item->created_by_alias) ? $item->created_by_alias : $item->author);
+		}
 
 		// Add the language taxonomy data.
 		$item->addTaxonomy('Language', $item->language);
-
-		// Get content extras.
-		FinderIndexerHelper::getContentExtras($item);
 
 		// Index the item.
 		$this->indexer->index($item);
@@ -327,12 +270,12 @@ class PlgFinderCategories extends FinderIndexerAdapter
 	 *
 	 * @return  boolean  True on success.
 	 *
-	 * @since   2.5
+	 * @since   3.1
 	 */
 	protected function setup()
 	{
-		// Load com_content route helper as it is the fallback for routing in the indexer in this instance.
-		include_once JPATH_SITE . '/components/com_content/helpers/route.php';
+		// Load dependent classes.
+		require_once JPATH_SITE . '/components/com_tags/helpers/route.php';
 
 		return true;
 	}
@@ -344,17 +287,19 @@ class PlgFinderCategories extends FinderIndexerAdapter
 	 *
 	 * @return  JDatabaseQuery  A database object.
 	 *
-	 * @since   2.5
+	 * @since   3.1
 	 */
 	protected function getListQuery($query = null)
 	{
 		$db = JFactory::getDbo();
 		// Check if we can use the supplied SQL query.
 		$query = $query instanceof JDatabaseQuery ? $query : $db->getQuery(true)
-			->select('a.id, a.title, a.alias, a.description AS summary, a.extension')
-			->select('a.created_user_id AS created_by, a.modified_time AS modified, a.modified_user_id AS modified_by')
-			->select('a.metakey, a.metadesc, a.metadata, a.language, a.lft, a.parent_id, a.level')
-			->select('a.created_time AS start_date, a.published AS state, a.access, a.params');
+			->select('a.id, a.title, a.alias, a.description AS summary')
+			->select('a.created_time AS start_date, a.created_user_id AS created_by')
+			->select('a.metakey, a.metadesc, a.metadata, a.language, a.access')
+			->select('a.modified_time AS modified, a.modified_user_id AS modified_by')
+			->select('a.publish_up AS publish_start_date, a.publish_down AS publish_end_date')
+			->select('a.published AS state, a.access, a.created_time AS start_date, a.params');
 
 		// Handle the alias CASE WHEN portion of the query
 		$case_when_item_alias = ' CASE WHEN ';
@@ -365,28 +310,51 @@ class PlgFinderCategories extends FinderIndexerAdapter
 		$case_when_item_alias .= ' ELSE ';
 		$case_when_item_alias .= $a_id.' END as slug';
 		$query->select($case_when_item_alias)
-			->from('#__categories AS a')
-			->where($db->quoteName('a.id') . ' > 1');
+			->from('#__tags AS a');
+
+		// Join the #__users table
+		$query->select('u.name AS author')
+			->join('LEFT', '#__users AS u ON u.id = b.created_user_id')
+			->from('#__tags AS b');
+
+		// Exclude the ROOT item
+		$query->where($db->quoteName('a.id') . ' > 1');
 
 		return $query;
 	}
 
 	/**
-	 * Method to get a SQL query to load the published and access states for
-	 * an article and category.
+	 * Method to get a SQL query to load the published and access states for the given tag.
 	 *
 	 * @return  JDatabaseQuery  A database object.
 	 *
-	 * @since   2.5
+	 * @since   3.1
 	 */
 	protected function getStateQuery()
 	{
+		$query = $this->db->getQuery(true);
+		$query->select($this->db->quoteName('a.id'))
+			->select($this->db->quoteName('a.' . $this->state_field, 'state') . ', ' . $this->db->quoteName('a.access'))
+			->select('NULL AS cat_state, NULL AS cat_access')
+			->from($this->db->quoteName($this->table, 'a'));
+
+		return $query;
+	}
+
+	/**
+	 * Method to get the query clause for getting items to update by time.
+	 *
+	 * @param   string  $time  The modified timestamp.
+	 *
+	 * @return  JDatabaseQuery  A database object.
+	 *
+	 * @since   3.1
+	 */
+	protected function getUpdateQueryByTime($time)
+	{
+		// Build an SQL query based on the modified time.
 		$query = $this->db->getQuery(true)
-			->select($this->db->quoteName('a.id'))
-			->select('a.' . $this->state_field . ' AS state, c.published AS cat_state')
-			->select('a.access, c.access AS cat_access')
-			->from($this->db->quoteName('#__categories') . ' AS a')
-			->join('LEFT', '#__categories AS c ON c.id = a.parent_id');
+			->where('a.date >= ' . $this->db->quote($time));
 
 		return $query;
 	}
