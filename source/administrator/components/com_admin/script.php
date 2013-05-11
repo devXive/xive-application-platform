@@ -531,6 +531,12 @@ class joomlaInstallerScript
 			'/libraries/joomla/utilities/xmlelement.php',
 			'/media/plg_quickicon_extensionupdate/extensionupdatecheck.js',
 			'/media/plg_quickicon_joomlaupdate/jupdatecheck.js',
+			'/media/system/js/swf-uncompressed.js',
+			'/media/system/js/swf.js',
+			'/media/system/js/uploader-uncompressed.js',
+			'/media/system/js/uploader.js',
+			'/media/system/swf/index.html',
+			'/media/system/swf/uploader.swf',
 		);
 
 		// TODO There is an issue while deleting folders using the ftp mode
@@ -567,6 +573,7 @@ class joomlaInstallerScript
 			'/libraries/joomla/html/parameter/element',
 			'/libraries/joomla/image/filters',
 			'/libraries/joomla/log/loggers',
+			'/media/system/swf/',
 		);
 
 		jimport('joomla.filesystem.file');
