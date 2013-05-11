@@ -12,6 +12,8 @@
 	<files>
 		<filename>en-GB.com_admin.ini</filename>
 		<filename>en-GB.com_admin.sys.ini</filename>
+		<filename>en-GB.com_banners.ini</filename>
+		<filename>en-GB.com_banners.sys.ini</filename>
 		<filename>en-GB.com_cache.ini</filename>
 		<filename>en-GB.com_cache.sys.ini</filename>
 		<filename>en-GB.com_categories.ini</filename>
@@ -20,6 +22,8 @@
 		<filename>en-GB.com_checkin.sys.ini</filename>
 		<filename>en-GB.com_config.ini</filename>
 		<filename>en-GB.com_config.sys.ini</filename>
+		<filename>en-GB.com_contact.ini</filename>
+		<filename>en-GB.com_contact.sys.ini</filename>
 		<filename>en-GB.com_content.ini</filename>
 		<filename>en-GB.com_content.sys.ini</filename>
 		<filename>en-GB.com_cpanel.ini</filename>
@@ -57,6 +61,8 @@
 		<filename>en-GB.com_templates.sys.ini</filename>
 		<filename>en-GB.com_users.ini</filename>
 		<filename>en-GB.com_users.sys.ini</filename>
+		<filename>en-GB.com_weblinks.ini</filename>
+		<filename>en-GB.com_weblinks.sys.ini</filename>
 		<filename>en-GB.com_wrapper.ini</filename>
 		<filename>en-GB.com_wrapper.sys.ini</filename>
 		<filename>en-GB.ini</filename>
@@ -118,6 +124,8 @@
 		<filename>en-GB.plg_editors_codemirror.sys.ini</filename>
 		<filename>en-GB.plg_editors_none.ini</filename>
 		<filename>en-GB.plg_editors_none.sys.ini</filename>
+		<filename>en-GB.plg_editors_tinymce.ini</filename>
+		<filename>en-GB.plg_editors_tinymce.sys.ini</filename>
 		<filename>en-GB.plg_editors-xtd_article.ini</filename>
 		<filename>en-GB.plg_editors-xtd_article.sys.ini</filename>
 		<filename>en-GB.plg_editors-xtd_image.ini</filename>
@@ -130,22 +138,30 @@
 		<filename>en-GB.plg_extension_joomla.sys.ini</filename>
 		<filename>en-GB.plg_finder_categories.ini</filename>
 		<filename>en-GB.plg_finder_categories.sys.ini</filename>
+		<filename>en-GB.plg_finder_contacts.ini</filename>
+		<filename>en-GB.plg_finder_contacts.sys.ini</filename>
 		<filename>en-GB.plg_finder_content.ini</filename>
 		<filename>en-GB.plg_finder_content.sys.ini</filename>
 		<filename>en-GB.plg_finder_newsfeeds.ini</filename>
 		<filename>en-GB.plg_finder_newsfeeds.sys.ini</filename>
 		<filename>en-GB.plg_finder_tags.ini</filename>
 		<filename>en-GB.plg_finder_tags.sys.ini</filename>
+		<filename>en-GB.plg_finder_weblinks.ini</filename>
+		<filename>en-GB.plg_finder_weblinks.sys.ini</filename>
 		<filename>en-GB.plg_quickicon_extensionupdate.ini</filename>
 		<filename>en-GB.plg_quickicon_extensionupdate.sys.ini</filename>
 		<filename>en-GB.plg_quickicon_joomlaupdate.ini</filename>
 		<filename>en-GB.plg_quickicon_joomlaupdate.sys.ini</filename>
 		<filename>en-GB.plg_search_categories.ini</filename>
 		<filename>en-GB.plg_search_categories.sys.ini</filename>
+		<filename>en-GB.plg_search_contacts.ini</filename>
+		<filename>en-GB.plg_search_contacts.sys.ini</filename>
 		<filename>en-GB.plg_search_content.ini</filename>
 		<filename>en-GB.plg_search_content.sys.ini</filename>
 		<filename>en-GB.plg_search_newsfeeds.ini</filename>
 		<filename>en-GB.plg_search_newsfeeds.sys.ini</filename>
+		<filename>en-GB.plg_search_weblinks.ini</filename>
+		<filename>en-GB.plg_search_weblinks.sys.ini</filename>
 		<filename>en-GB.plg_system_cache.ini</filename>
 		<filename>en-GB.plg_system_cache.sys.ini</filename>
 		<filename>en-GB.plg_system_debug.ini</filename>
@@ -168,10 +184,14 @@
 		<filename>en-GB.plg_system_remember.sys.ini</filename>
 		<filename>en-GB.plg_system_sef.ini</filename>
 		<filename>en-GB.plg_system_sef.sys.ini</filename>
+		<filename>en-GB.plg_user_contactcreator.ini</filename>
+		<filename>en-GB.plg_user_contactcreator.sys.ini</filename>
 		<filename>en-GB.plg_user_joomla.ini</filename>
 		<filename>en-GB.plg_user_joomla.sys.ini</filename>
 		<filename>en-GB.plg_user_profile.ini</filename>
 		<filename>en-GB.plg_user_profile.sys.ini</filename>
+		<filename>en-GB.tpl_hathor.ini</filename>
+		<filename>en-GB.tpl_hathor.sys.ini</filename>
 		<filename>en-GB.tpl_isis.ini</filename>
 		<filename>en-GB.tpl_isis.sys.ini</filename>
 	</files>
