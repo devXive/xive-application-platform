@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<metafile version="3.0" client="site">
+<metafile version="3.1" client="site">
 	<name>English (United Kingdom)</name>
-	<version>3.0.3</version>
-	<creationDate>2008-03-15</creationDate>
+	<version>3.1.0</version>
+	<creationDate>2013-03-07</creationDate>
 	<author>Joomla! Project</author>
 	<authorEmail>admin@joomla.org</authorEmail>
 	<authorUrl>www.joomla.org</authorUrl>
@@ -10,6 +10,7 @@
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<description>en-GB site language</description>
 	<files>
+		<filename>en-GB.com_contact.ini</filename>
 		<filename>en-GB.com_content.ini</filename>
 		<filename>en-GB.com_finder.ini</filename>
 		<filename>en-GB.com_mailto.ini</filename>
@@ -17,7 +18,9 @@
 		<filename>en-GB.com_messages.ini</filename>
 		<filename>en-GB.com_newsfeeds.ini</filename>
 		<filename>en-GB.com_search.ini</filename>
+		<filename>en-GB.com_tags.ini</filename>
 		<filename>en-GB.com_users.ini</filename>
+		<filename>en-GB.com_weblinks.ini</filename>
 		<filename>en-GB.com_wrapper.ini</filename>
 		<filename>en-GB.files_joomla.sys.ini</filename>
 		<filename>en-GB.finder_cli.ini</filename>
@@ -40,6 +43,8 @@
 		<filename>en-GB.mod_articles_news.sys.ini</filename>
 		<filename>en-GB.mod_articles_popular.ini</filename>
 		<filename>en-GB.mod_articles_popular.sys.ini</filename>
+		<filename>en-GB.mod_banners.ini</filename>
+		<filename>en-GB.mod_banners.sys.ini</filename>
 		<filename>en-GB.mod_breadcrumbs.ini</filename>
 		<filename>en-GB.mod_breadcrumbs.sys.ini</filename>
 		<filename>en-GB.mod_custom.ini</filename>
@@ -66,12 +71,20 @@
 		<filename>en-GB.mod_stats.sys.ini</filename>
 		<filename>en-GB.mod_syndicate.ini</filename>
 		<filename>en-GB.mod_syndicate.sys.ini</filename>
+		<filename>en-GB.mod_tags_popular.ini</filename>
+		<filename>en-GB.mod_tags_popular.sys.ini</filename>
+		<filename>en-GB.mod_tags_similar.ini</filename>
+		<filename>en-GB.mod_tags_similar.sys.ini</filename>
 		<filename>en-GB.mod_users_latest.ini</filename>
 		<filename>en-GB.mod_users_latest.sys.ini</filename>
+		<filename>en-GB.mod_weblinks.ini</filename>
+		<filename>en-GB.mod_weblinks.sys.ini</filename>
 		<filename>en-GB.mod_whosonline.ini</filename>
 		<filename>en-GB.mod_whosonline.sys.ini</filename>
 		<filename>en-GB.mod_wrapper.ini</filename>
 		<filename>en-GB.mod_wrapper.sys.ini</filename>
+		<filename>en-GB.tpl_beez3.ini</filename>
+		<filename>en-GB.tpl_beez3.sys.ini</filename>
 		<filename>en-GB.tpl_protostar.ini</filename>
 		<filename>en-GB.tpl_protostar.sys.ini</filename>
 	</files>
