@@ -27,7 +27,7 @@ Contributing
 All contributions are welcome to be submitted for review for inclusion in the Xive-Application-Platform, but before they will be accepted, we ask that you follow these simple steps:
 
 1) We're all Joomla! fanatics and follow Joomla! Code Standards, therefore: submitted code (fe. "Pull Requests") must follow these standards
-* Please use the resources at http://docs.joomla.org/Coding_style_and_standards for more information about the code standards.
+* Please use the resources/coding-standards directory for more information about the code standards.
 
 3) Tests are *highly* encouraged for all pull requests
 * The Xive-Application-Platform uses PHPUnit for its unit testing. Please review the PHPUnit manual at http://www.phpunit.de/manual/current/en/index.html.
