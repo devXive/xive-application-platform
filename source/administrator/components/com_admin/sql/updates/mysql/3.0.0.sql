@@ -16,7 +16,6 @@ UPDATE `#__extensions` SET protected = 0 WHERE
 `name` = 'mod_articles_latest' OR
 `name` = 'mod_footer' OR
 `name` = 'mod_users_latest' OR
-`name` = 'mod_articles_category' OR
 `name` = 'plg_content_pagebreak' OR
 `name` = 'plg_content_pagenavigation' OR
 `name` = 'plg_content_vote' OR
