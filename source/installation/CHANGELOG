@@ -36,7 +36,6 @@ $ -> Language fix or change
  # [#30632] *Menu item Alias required setting. Thanks Jean-Marie Simonet.
  # [#29957] Administrator interface dropdown menus not working on tablets. Thanks Denia Si.
  # [#30660] Corrects font-file stack order. Thanks Seth Warburton.
- # [#30668] *Beez3 missing JHtml::_('behavior.caption');. Thanks Jean-Marie Simonet.
  # [#30398] com_tags show "{loadmodule..." when listing items. Thanks Elin Waring.
  # [#30495] Type check line 31, TemplatesHelper::getPositions. Thanks Christoffer Rødvik.
 
@@ -221,7 +220,6 @@ $ -> Language fix or change
  # [#30464] ACL Undefined variable error in contentadministrator.php on line 112. Thanks Constantin Romankiewicz
  # [#30062] Base Item option in mod_menu has no effect [regression]. Thanks René Alain Erichsen
  # [#30422] Tags drill down incorrectly finds match to multi-tag tagged items menu item. Thanks Mark
- # [#30210] Undefined index errors by using the style 'beezTabs' at an beez template. Thanks Constantin Romankiewicz
  # [#30444] Newfeeds Hide icon wrong colour
  # [#30450] Remove moduleclass suffix from <input> and <button> elements in mod_search. Thanks Thomas Hunziker
  # [#29377] Image select. Thanks Constantin Romankiewicz
@@ -420,7 +418,6 @@ $ -> Language fix or change
  ^ [#29803] Encourage proper use of JHtml APIs dealing with scripts and stylesheets
  ^ [#30120] Rename and move classes in the install library from Platform to CMS
  + [#30102] Update to Platform version code.  Thanks Elin
- + [#30243] Add TAGs in front end articles single view in BEEZ3.  Thanks Javier
  # [#29717] Typo in Formbehavior::Chosen.  Thanks Thomas
  # [#30241] Horizontal scroll appears when in edit articles.  Thanks Javier
  # [#29266] Uncaught exception in user profile when entering string for birth date.  Thanks Aleksander
@@ -460,7 +457,6 @@ $ -> Language fix or change
 
 28-Feb-2013 Jean-Marie Simonet
  # [#30100] Plugins ordering broken when search filter is populated. Thanks Jurian.
- # [#30030] Beez index.php. Thanks Angie.
  # [#30115] Component Options are not a Modal Pop Up Window - Help screen Language Keys needed. Thanks Mark
  # [#29252] Media manager Directory doesn't update while browsing folders. Thanks Piotr
 
@@ -472,7 +468,6 @@ $ -> Language fix or change
 
 22-Feb-2013 Jean-Marie Simonet
  # [#30126] *wrong alternate when using associations in multilanguage. Thanks Benjamin
- # [#30133] Duplicate quotes in beez3 category blog override. Thanks Babs
  #$ [#30001] Menu and Article Associations does not work under Global Cache
 
 16-Feb-2013 Jean-Marie Simonet
@@ -537,7 +532,6 @@ $ -> Language fix or change
 
 30-Jan-2013 Mark Dexter
  # [#27709] Saving in backend very slow when many user groups. Thanks Elin.
- # [#29705] blank login page J3.x beez3.
 
 30-Jan-2013 Jean-Marie Simonet
  $ Updating installation lang file: bg=BG, pt-BR, sy-IQ
@@ -558,7 +552,6 @@ $ -> Language fix or change
  #^ [#29997] Email validation fails with longer top level domains. Thanks Elin
 
 26-Jan-2013 Jean-Marie Simonet
- # [#30028] Ordering is not working in Beez3 article Category List. Thanks Roberto
  $ Updating installation lang file: be-BY, fi-FI, ko-KR, pl-PL
  # [#30031] *Notice: Undefined index: title in /plugins/content/pagebreak/pagebreak.php on line 197. Thanks Bernard
 
@@ -626,11 +619,9 @@ $ -> Language fix or change
  # [#29929] mod_custom with wrong client attribute Thanks Martin
 
 10-Jan-2013 Jean-Marie Simonet
- # [#29917] *Beez3 RTL wrong display of items in category list
  # [#29904] *With plugin Language Filter enabled, user articles parameter in frontend shows all articles
 
 08-Jan-2013 Jean-Marie Simonet
- # [#29914] *Login module wrong display in beez3 RTL
  # [#29906] *Viewing Access Levels order numbering is not shown
 
 06-Jan-2013 Michael Babker
@@ -655,7 +646,6 @@ $ -> Language fix or change
  # [#29836] *Weblinks, Newsfeeds, Contacts Search Filter (frontend). Thanks Glenn Arkell
 
 02-Jan-2013 Jean-Marie Simonet
- # [#29870] *Beez3 wrong messages display
  # [#29217] *Status column missing in weblinks mobile view. Thanks Tim
  # [#29691] Smart Search autocomplete.js issue. Thanks Viet
  # [#27903] invalid call to parent::getStoreId in getStoreId of NewsfeedsModelCategories (unused). Thanks Michael and Peter
@@ -675,8 +665,6 @@ $ -> Language fix or change
  # [#29727] Pagebreak plugin generates same ID for tabs and slides. Thanks Dennis.
 
 25-Dec-2012 Jean-Marie Simonet
- # [#29833] *Beez3 does not display Print, Mail, Edit, New icons Thanks Michael
- # [#29834] *Beez3 edit article wrong display
  # [#29824] Smart search saves * in language field. Thanks Elin
 
 24-Dec-2012 Jean-Marie Simonet
@@ -724,9 +712,6 @@ $ -> Language fix or change
  # [#29740] *HTML direction tag for Back-end login missed
  # [#29706] icon display in protostar pagination on active items. Thanks Lars
  # [#29707] protostar pagination: active items li not closed. Thanks Lars
-
-23-Nov-2012 Jean-Marie Simonet
- $ Missing Beez3 and library lang strings. Syncing both en-GB.lib_joomla.ini
 
 19-Nov-2012 Jean-Marie Simonet
  # [#29714] Code style fixes based on Jenkins, replace uses of JRequest. Thanks Michael.
@@ -805,7 +790,6 @@ $ -> Language fix or change
 
 01-Nov-2012 Jean-Marie Simonet
  # [#29597] 'Title' label doesn't appear when editing an article in frontend. Thanks Stephania
- # [#29599] *Beez article category list display issue.
  # [#29604] *Language no more available in Extension Manager after uninstall
 
 30-Oct-2012 Jean-Marie Simonet
@@ -846,7 +830,6 @@ $ -> Language fix or change
 20-Oct-2012 Jean-Marie Simonet
  # [#29530] *Language override search broken. Thanks Patrick
  # [#29525] No tooltip help for Global Configuration Text Filters. Thanks Mark.
- # [#29527] *Beez category list display issue.
 
 18-Oct-2012 Jean-Marie Simonet
  # [#29519] *Edit Menu Item layout usability
@@ -887,8 +870,6 @@ $ -> Language fix or change
 
 08-Oct-2012 Jean-Marie Simonet
  # [#29454] multi level menus not support RTL languages well. Thanks Chalak
- # [#29451] beez3: element closed before opened. Thanks Constantin.
- # [#29452] beez3: change meta tag name from apple-touch-fullscreen to apple-mobile-web-app-capable. Thanks Constantin.
  # [#29453] Update platform version to 12.2. Thanks Elin
  ^ Changing en-GB to version 3.0.1
  # [#29464] Untranslated string COM_INSTALLER_INSTALL_FTP
@@ -897,7 +878,6 @@ $ -> Language fix or change
  # [#29447] Broken installation with PostgreSQL. Thanks Viet
  ^ [#29449] *Normalising isis UI part2 components, modules, plugins
  $ Updating sk-SK.ini
- # [#29394] beez3 -- single contact. Thanks Constantin
 
 06-Oct-2012 Mark Dexter
  + [#29445] Allow different update packages for different version dev levels.
@@ -914,8 +894,6 @@ $ -> Language fix or change
 
 04-Oct-2012 Jean-Marie Simonet
  $ Updating ja-JP.ini
- # [#29393] beez3 CLOSE INFO. Thanks Angelika
- # [#29410] Beez3 template_Details.xml needs a rework and beez3 itselfs needs additional files.Thanks Angelika
  # [#29431] Protostar Template not honouring module Title Hide. Thanks Roberto
  # [#29429] Can't install Joomla update as an extension. Thanks Mark
 
@@ -983,7 +961,6 @@ $ -> Language fix or change
  # [#29348] Restore DS definition. Thanks Elin.
  # [#29349] Don't delete bluestork from the database.
  # [#29351] New layouts folder not created during update.
- # [#29352] Add beez3 during update, add mod_stats_admin during new install.
 
 26-Sep-2012 Jean-Marie Simonet
  +$ Adding installation languages: pt-BR, vi-VN
@@ -1000,7 +977,6 @@ $ -> Language fix or change
  +$ Adding installation languages: es-ES, fa-IR, hu-HU
  ^# [#29301] Protostar Site Title and Description Params. Thanks Kyle
  # [#29302] Moving Accordion fix to bootstrap-extended. Thanks Kyle.
- # Correcting double slashes in beez3 css loading
  -# [#29259] Remove unused pkg_joomla extension. Thanks Michael
  # [#29258] Update library and package manifests for 3.0. Thanks Michael
  # [#29284] Halthor Browser.Engine deprecated in Mootools 1.4.5. Thanks Roberto
@@ -1043,7 +1019,6 @@ $ -> Language fix or change
 
 21-Sep-2012 Jean-Marie Simonet
  +$ Adding installation languages: km-KH, sv-SE
- + [#29246] Improve Beez3 optional handling of Boot strap. Thanks Elin
  # [#29247] *Front-end profile edit broken
  # [#29141] *RTL filtering broken. Thanks Andrea
  #+ [#29227] Custom active menu item for menu module. Thanks Dennis
@@ -1090,7 +1065,6 @@ $ -> Language fix or change
  # Reverting #29141 as it creates unwanted pbs with dropbox while not solving fully the original issue
  # [#29201] Make it so submit button uses link color in protostar. Thanks Elin
  +$ Adding installation languages: pl-PL, ta-IN, uk-UA
- +# [#29180] Improvements/ clean up for beez 3. Thanks Elin
 
 16-Sep-2012 Rouven Weßling
  # [#29196] Plugin quickicon Joomlaupdate links to com_installer. Thanks Janich.
@@ -1166,7 +1140,6 @@ $ -> Language fix or change
  # [#28963] Add ordering to column titles where it was missing. Thanks Peter van Westen.
  # [#29064] Improve the isis header. Thanks Rouven.
  # [#29054] Update TinyMCE to 3.5.6. Thanks Rouven.
- # [#29087] Update Beez for Joomla 3. Thanks Elin.
  + [#29089] new minimal sample data set. Thanks Elin.
  + [#29025] Let the SEF plug-in add the canonical url to the head. Thanks Rouven.
 
@@ -1202,7 +1175,6 @@ $ -> Language fix or change
 01-Sep-2012 Rouven Weßling
  - Removed the bluestork admin template.
  - Removed the atomic template.
- - Removed the beez5 template.
  ^ Handle removed templates in the sample data. Thanks Elin.
  ^ Normalise all CSS files based on our own lessphp based compiler.
  # [#29026] Update Hathor Less files to use Bootstrap variable names and mixins. Thanks Michael.

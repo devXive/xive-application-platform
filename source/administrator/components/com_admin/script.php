@@ -193,7 +193,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('plugin', 'tags', 'finder', 0);
 
 		// Templates
-		$extensions[] = array('template', 'beez3', '', 0);
 		$extensions[] = array('template', 'hathor', '', 1);
 		$extensions[] = array('template', 'protostar', '', 0);
 		$extensions[] = array('template', 'isis', '', 1);
