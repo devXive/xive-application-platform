@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+  <update>
+    <name>German</name>
+    <description>German Translation of XAP</description>
+    <element>pkg_de-DE</element>
+    <type>package</type>
+    <version>3.0.0</version>
+    <downloads>
+      <downloadurl type="full" format="zip">https://raw.github.com/devXive/xive-application-platform/master/updlists/language/de-DE/de-DE_3000.zip</downloadurl>
+    </downloads>
+    <targetplatform name="joomla" version="3.[012345]"/>
+  </update>
+  <update>
+    <name>German</name>
+    <description>German Translation of XAP</description>
+    <element>pkg_de-DE</element>
+    <type>package</type>
+    <version>3.0.1</version>
+    <downloads>
+      <downloadurl type="full" format="zip">https://raw.github.com/devXive/xive-application-platform/master/updlists/language/de-DE/de-DE_3010.zip</downloadurl>
+    </downloads>
+    <targetplatform name="joomla" version="3.[012345]"/>
+  </update>
+  <update>
+    <name>German</name>
+    <description>German Translation of XAP</description>
+    <element>pkg_de-DE</element>
+    <type>package</type>
+    <version>3.0.2</version>
+    <downloads>
+      <downloadurl type="full" format="zip">https://raw.github.com/devXive/xive-application-platform/master/updlists/language/de-DE/de-DE_3020.zip</downloadurl>
+    </downloads>
+    <targetplatform name="joomla" version="3.[012345]"/>
+  </update>
+  <update>
+    <name>German</name>
+    <description>German Translation of XAP</description>
+    <element>pkg_de-DE</element>
+    <type>package</type>
+    <version>3.0.3</version>
+    <downloads>
+      <downloadurl type="full" format="zip">https://raw.github.com/devXive/xive-application-platform/master/updlists/language/de-DE/de-DE_3030.zip</downloadurl>
+    </downloads>
+    <targetplatform name="joomla" version="3.[012345]"/>
+  </update>
+  <update>
+    <name>German</name>
+    <description>German Translation of XAP</description>
+    <element>pkg_de-DE</element>
+    <type>package</type>
+    <version>3.1.0</version>
+    <downloads>
+      <downloadurl type="full" format="zip">https://raw.github.com/devXive/xive-application-platform/master/updlists/language/de-DE/de-DE_3100.zip</downloadurl>
+    </downloads>
+    <targetplatform name="joomla" version="3.[012345]"/>
+  </update>
+  <update>
+    <name>German</name>
+    <description>German Translation of XAP</description>
+    <element>pkg_de-DE</element>
+    <type>package</type>
+    <version>3.1.1</version>
+    <downloads>
+      <downloadurl type="full" format="zip">https://raw.github.com/devXive/xive-application-platform/master/updlists/language/de-DE/de-DE_3110.zip</downloadurl>
+    </downloads>
+    <targetplatform name="joomla" version="3.[012345]"/>
+  </update>
+</updates>
