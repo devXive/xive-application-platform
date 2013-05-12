@@ -43,8 +43,6 @@ $ -> Language fix or change
 
 23-Apr-2013 Mark Dexter
  # [#30652] Commit for issue 29916 broke Smart Search indexing. Thanks Don Gilbert.
- # [#30639] Hathor Tags issues Tag edit view. Thanks Elin Waring.
- # [#30640] Hathor - Not tag field shown in core content. Thanks Roberto Sequra.
  # [#30653] Use of undefined DEBUG constant. Thanks Elin Waring.
  # [#30603] Tags: Similar Tags Module Shows the same article multiple time. Thanks Thomas Hunziker.
  # [#30642] Creating a new Tag based on existing one, using "Save as Copy" appends a number even the new Title of the copy is different from the original. Thanks Ashan Fernando. 
@@ -60,7 +58,6 @@ $ -> Language fix or change
  # Fix incorrect commit for [#30617] *Tags: Discover sql not in sync. Thanks Thomas Hunziker.
 
 21-Apr-2013 Jean-Marie Simonet
- # [#30645] *Hathor: Icomoon icons don't show in multiple places
  # Fix loading all categories in multilanguage
  # [#30637] Error when publishing a child tag of an unpublished parent tag. Thanks Elin
 
@@ -90,8 +87,6 @@ $ -> Language fix or change
 
 23-Apr-2013 Mark Dexter
  # [#30652] Commit for issue 29916 broke Smart Search indexing. Thanks Don Gilbert.
- # [#30639] Hathor Tags issues Tag edit view. Thanks Elin Waring.
- # [#30640] Hathor - Not tag field shown in core content. Thanks Roberto Sequra.
  # [#30653] Use of undefined DEBUG constant. Thanks Elin Waring.
  # [#30603] Tags: Similar Tags Module Shows the same article multiple time. Thanks Thomas Hunziker.
  # [#30642] Creating a new Tag based on existing one, using "Save as Copy" appends a number even the new Title of the copy is different from the original. Thanks Ashan Fernando. 
@@ -107,7 +102,6 @@ $ -> Language fix or change
  # Fix incorrect commit for [#30617] *Tags: Discover sql not in sync. Thanks Thomas Hunziker.
 
 21-Apr-2013 Jean-Marie Simonet
- # [#30645] *Hathor: Icomoon icons don't show in multiple places
  # Fix loading all categories in multilanguage
  # [#30637] Error when publishing a child tag of an unpublished parent tag. Thanks Elin
 
@@ -453,7 +447,6 @@ $ -> Language fix or change
 
 01-Mar-2013 Jean-Marie Simonet
  # [#30172] *Moving the helper getAssociations() to the cms library. Thanks Roberto and Harald
- # [#30182] *Correcting some hathor display.
 
 28-Feb-2013 Jean-Marie Simonet
  # [#30100] Plugins ordering broken when search filter is populated. Thanks Jurian.
@@ -474,7 +467,6 @@ $ -> Language fix or change
  # [#29261] Admin template "super-patch". Thanks Michael
 
 14-Feb-2013 Jean-Marie Simonet
- # [#30095] *Select menu type modal corrections for Hathor and Isis RTL
  # [#29786] JHtmlBootstrap tabs broken. Thanks Tim Kramer.
 
 12-Feb-2013 Mark Dexter
@@ -525,7 +517,6 @@ $ -> Language fix or change
 
 31-Jan-2013 Jean-Marie Simonet
  $ Updating installation lang file: ru-RU
- # [#30043] *Correcting a few Hathor css issues
  $ Updating installation lang file: bs-BA, he-IL
  # Updating en-GB to 3.0.3
  $ Updating installation lang file: sw-KE
@@ -566,7 +557,6 @@ $ -> Language fix or change
  # [#30018] *Isis calendar display issue
 
 23-Jan-2013 Jean-Marie Simonet
- # [#29994] Clear tooltips at template hathor
  # [#29995] No language tooltip at the Joomla Login. Thanks Tobias.
  # [#30015] *Isis tooltip text is always centered
 
@@ -685,7 +675,6 @@ $ -> Language fix or change
  # [#29771] Inconsistent usage of module suffix at mod_menu and mod_breadcrumbs. Thanks Kevin Griffiths.
 
 13-Dec-2012 Jean-Marie Simonet
- # [#29819] *Correcting Hathor admin login
  # [#29762] *cpanel layout in backend messed up after adding feed to cpanel
  # [#29764] Missing icon-pending in back-end. Thanks Michael
 
@@ -702,7 +691,6 @@ $ -> Language fix or change
 
 29-Nov-2012 Mark Dexter
  # [#29744] Submenu module missing closing A tag. Thanks Kevin Griffiths.
- # [#29749] *Correcting Hathor CPanel display. Thanks JM.
  # [#29573] Remove unnecessary JS snippet from rules field. Thanks Michael.
 
 27-Nov-2012 Jean-Marie Simonet
@@ -723,7 +711,6 @@ $ -> Language fix or change
 18-Nov-2012 Jean-Marie Simonet
  # [#29684] Wrong HTML markup on category edit. Thanks Ofer
  # [#29528] Incorrect arrows in table heading. Thanks Dennis
- # [#29687] *Adapting hathor to new message using editor
  # [#29679] *Passwords fields not required when creating a new user in back-end
  # [#29698] *Adding bootsrtap-rtl to compiler, correcting some rtl classes
  # [#29693] *Position of Article Info. Setting Use Global not saved. Menu Manager: Edit Menu Item and Article Manager: Edit Article. Thanks Volkmar
@@ -781,7 +768,6 @@ $ -> Language fix or change
 
 04-Nov-2012 Jean-Marie Simonet
  # [#29610] User and Notes views missing chosen/bootstrap. Thanks Kyle.
- # [#29615] *Hathor edit user broken
 
 02-Nov-2012 Jean-Marie Simonet
  # [#29606] *New Feature Items associations also displays the parameter for other categories than com_content. Thanks Benjamin
@@ -824,7 +810,6 @@ $ -> Language fix or change
  # [#29340] Menu Manager: Menus
 
 22-Oct-2012 Jean-Marie Simonet
- # [#29553] Convert Hathor's brown color scheme to Less. Thanks Michael
  # [#29552] *Com_messages "My Settings" broken
 
 20-Oct-2012 Jean-Marie Simonet
@@ -838,9 +823,7 @@ $ -> Language fix or change
  # Category title display ommitted in Details column #29494
 
 17-Oct-2012 Jean-Marie Simonet
- # [#29470] *Hathor submenus broken. Thanks Yannick
  # [#29477] Missing style for Cancel
- # [#28379] *Normalizing Hathor css and js load in index.php + correcting a small error
  # [#29239] Increment the hit counter of the category. Thanks Roberto
  # [#29494] *Normalising Edit Category page
  # [#29499] "Browser Page Title" Not Considered in Category Blog Layouts. Thanks Mig
@@ -939,7 +922,6 @@ $ -> Language fix or change
  +$ Adding installation languages: tr-TR
  $ updating sy-IQ
  #$ Correcting hard coded text in Protostar
- $ [#29383] Language String TPL_HATHOR_COLOUR_CHOICE_BLUE Missing. Thanks Mig
  # Missing position footer in Protostar.xml
 
 -------------------- 3.0.0 Stable Release [27-Sep-2012] ------------------
@@ -993,7 +975,6 @@ $ -> Language fix or change
 24-Sep-2012 Jean-Marie Simonet
  # [#29287] String Global Configuration appears as title of every component Options. Thanks Michael
  # [#29288] Joomla update doesnt purge correctly. Thanks Janich
- #$ Wrong lang constant and missing strings in hathor
  +$ Adding installation languages: ja-JP, ko-KR, nl-NL
  # Updating joomla logos for ®. Thanks Pawel
 
@@ -1057,7 +1038,6 @@ $ -> Language fix or change
  # [#29141] *RTL filtering broken. Thanks Andrea
  #$ Correcting some installation lang strings + adding a sprintf
  # [#29177] Re-added module filter. Thanks Jason
- # [#29189] Hathor: Batch without function. Thanks Michael
  # [#29179] SQL error in related items module. Thanks Mark
  #^ [#29160] Optimise JavaScript loading. Thanks Rouven
  # [#29207] Unpublished badge not using jtext. Thanks Elin
@@ -1177,7 +1157,6 @@ $ -> Language fix or change
  - Removed the atomic template.
  ^ Handle removed templates in the sample data. Thanks Elin.
  ^ Normalise all CSS files based on our own lessphp based compiler.
- # [#29026] Update Hathor Less files to use Bootstrap variable names and mixins. Thanks Michael.
  # [#28964] Update jQuery to 1.8.1 and jQuery UI to 1.8.23
 
 01-Sep-2012 Jean-Marie Simonet

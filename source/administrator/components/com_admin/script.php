@@ -193,7 +193,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('plugin', 'tags', 'finder', 0);
 
 		// Templates
-		$extensions[] = array('template', 'hathor', '', 1);
 		$extensions[] = array('template', 'protostar', '', 0);
 		$extensions[] = array('template', 'isis', '', 1);
 
@@ -341,9 +340,6 @@ class JoomlaInstallerScript
 			'/administrator/includes/router.php',
 			'/administrator/manifests/packages/pkg_joomla.xml',
 			'/administrator/modules/mod_submenu/helper.php',
-			'/administrator/templates/hathor/css/ie6.css',
-			'/administrator/templates/hathor/html/mod_submenu/index.html',
-			'/administrator/templates/hathor/html/mod_submenu/default.php',
 			'/components/com_media/controller.php',
 			'/components/com_media/helpers/index.html',
 			'/components/com_media/helpers/media.php',
