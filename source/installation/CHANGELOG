@@ -196,14 +196,10 @@ $ -> Language fix or change
 
 06-Apr-2013 Mark Dexter
  # [#30453] Tags: Pagination not working when linking to a tag.
- # [#30486] *Banners Manager:Banners and Banners Manager:Clients Status filter issue. Thanks Jean-Marie Simonet.
  # [#30480] com_contact error in admin->view->contacts search "author:xxxx". Thanks Brent Cordis.
  # [#30481] Missing space between icon-cog and caret in featured view. Thanks Thomas Hunziker.
  # [#30250] Upgrade jQuery from 1.8.1 to 1.8.3. Thanks George Wilson.
  # [#30046] Update SQLSRV with platform fixes. Thanks David Hurley.
-
-05-Apr-2013 Jean-Marie Simonet
- # [#30416] duplicate alias in banner manager on pressing save as copy
 
 04-Apr-2013 Mark Dexter
  # Reverting [#30430] Severe bug with "com_content" component routing.
@@ -895,10 +891,8 @@ $ -> Language fix or change
  # [#29408] images upload to the wrong folder in image manager. Thanks Roberto
  $ Missing string for Protostar
  # Changing obsolete link to lang packs community page
- # [#29419] *Missing client field (and other fields) when creating a new banner
 
 01-Oct-2012 Jean-Marie Simonet
- # [#28297] com_banners: BannersModelClients SQL error (group by banner id). Thanks Nils
  # [#29403] *Missing required="true" in front-end login form
  # Correcting default_logout.php EOL
  # [#29407] *Isis wrong implementation of the color parameter
@@ -1099,7 +1093,6 @@ $ -> Language fix or change
 
 09-Sep-2012 Rouven Weßling
  # [#29127] Module save2copy dont work. Thanks Reinhard.
- # Fix an E_STRICT warning in com_banners. Thanks Elin.
 
 08-Sep-2012 Jean-Marie Simonet
  # [#29052] *Protostar Print article bug. Thanks Kyle.

@@ -72,7 +72,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('component', 'com_mailto', '', 0);
 		$extensions[] = array('component', 'com_wrapper', '', 0);
 		$extensions[] = array('component', 'com_admin', '', 1);
-		$extensions[] = array('component', 'com_banners', '', 1);
 		$extensions[] = array('component', 'com_cache', '', 1);
 		$extensions[] = array('component', 'com_categories', '', 1);
 		$extensions[] = array('component', 'com_checkin', '', 1);
@@ -107,7 +106,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('module', 'mod_articles_archive', '', 0);
 		$extensions[] = array('module', 'mod_articles_latest', '', 0);
 		$extensions[] = array('module', 'mod_articles_popular', '', 0);
-		$extensions[] = array('module', 'mod_banners', '', 0);
 		$extensions[] = array('module', 'mod_breadcrumbs', '', 0);
 		$extensions[] = array('module', 'mod_custom', '', 0);
 		$extensions[] = array('module', 'mod_feed', '', 0);
