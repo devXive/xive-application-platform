@@ -1,5 +1,4 @@
 ALTER TABLE `#__users` DROP KEY `usertype`;
-ALTER TABLE `#__session` DROP KEY `whosonline`;
 
 DROP TABLE IF EXISTS `#__update_categories`;
 
