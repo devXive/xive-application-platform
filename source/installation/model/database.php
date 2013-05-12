@@ -222,11 +222,14 @@ class InstallationModelDatabase extends JModelBase
 			return false;
 		}
 
-		// @internal MySQL versions pre 5.1.6 forbid . / or \ or NULL
-		if ((preg_match('#[\\\/\.\0]#', $options->db_name)) && (!version_compare($db_version, '5.1.6', '>=')))
+		if (($type == 'mysql') || ($type == 'mysqli'))
 		{
-			$app->enqueueMessage(JText::sprintf('INSTL_DATABASE_INVALID_NAME', $db_version), 'notice');
-			return false;
+			// @internal MySQL versions pre 5.1.6 forbid . / or \ or NULL
+			if ((preg_match('#[\\\/\.\0]#', $options->db_name)) && (!version_compare($db_version, '5.1.6', '>=')))
+			{
+				$app->enqueueMessage(JText::sprintf('INSTL_DATABASE_INVALID_NAME', $db_version), 'notice');
+				return false;
+			}
 		}
 
 		// @internal Check for spaces in beginning or end of name
@@ -241,6 +244,13 @@ class InstallationModelDatabase extends JModelBase
 		{
 			$app->enqueueMessage(JText::_('INSTL_DATABASE_NAME_INVALID_CHAR'), 'notice');
 			return false;
+		}
+
+		// PostgreSQL database older than version 9.0.0 needs to run 'CREATE LANGUAGE' to create function.
+		if (($options->db_type == 'postgresql') && (version_compare($db_version, '9.0.0', '<')))
+		{
+			$db->setQuery("CREATE LANGUAGE plpgsql");
+			$db->execute();
 		}
 
 		// Get database's UTF support
@@ -371,7 +381,18 @@ class InstallationModelDatabase extends JModelBase
 		$this->setDatabaseCharset($db, $options->db_name);
 
 		// Set the appropriate schema script based on UTF-8 support.
-		$schema = 'sql/mysql/joomla.sql';
+		if ($type == 'mysqli' || $type == 'mysql')
+		{
+			$schema = 'sql/mysql/joomla.sql';
+		}
+		elseif ($type == 'sqlsrv' || $type == 'sqlazure')
+		{
+			$schema = 'sql/sqlazure/joomla.sql';
+		}
+		else
+		{
+			$schema = 'sql/' . $type . '/joomla.sql';
+		}
 
 		// Check if the schema is a valid file
 		if (!is_file($schema))
@@ -389,8 +410,18 @@ class InstallationModelDatabase extends JModelBase
 		// Attempt to update the table #__schema.
 		$pathPart = JPATH_ADMINISTRATOR . '/components/com_admin/sql/updates/';
 
-		$pathPart .= 'mysql/';
-		
+		if ($type == 'mysqli' || $type == 'mysql')
+		{
+			$pathPart .= 'mysql/';
+		}
+		elseif ($type == 'sqlsrv' || $type == 'sqlazure')
+		{
+			$pathPart .= 'sqlazure/';
+		}
+		else
+		{
+			$pathPart .= $type . '/';
+		}
 		$files = JFolder::files($pathPart, '\.sql$');
 
 		if (empty($files))
@@ -459,8 +490,19 @@ class InstallationModelDatabase extends JModelBase
 		}
 
 		// Load the localise.sql for translating the data in joomla.sql
-		$dblocalise = 'sql/mysql/localise.sql';
-		
+		if ($type == 'mysqli' || $type == 'mysql')
+		{
+			$dblocalise = 'sql/mysql/localise.sql';
+		}
+		elseif ($type == 'sqlsrv' || $type == 'sqlazure')
+		{
+			$dblocalise = 'sql/sqlazure/localise.sql';
+		}
+		else
+		{
+			$dblocalise = 'sql/' . $type . '/localise.sql';
+		}
+
 		if (is_file($dblocalise))
 		{
 			if (!$this->populateDatabase($db, $dblocalise))
@@ -542,7 +584,18 @@ class InstallationModelDatabase extends JModelBase
 		// Get the options as a object for easier handling.
 		$options = JArrayHelper::toObject($options);
 
-		$type = 'mysql';
+		// Build the path to the sample data file.
+		$type = $options->db_type;
+
+		if ($type == 'mysqli')
+		{
+			$type = 'mysql';
+		}
+		elseif ($type == 'sqlsrv')
+		{
+			$type = 'sqlazure';
+		}
+
 		$data = JPATH_INSTALLATION . '/sql/' . $type . '/' . $options->sample_file;
 
 		// Attempt to import the database schema if one is chosen.
@@ -757,7 +810,7 @@ class InstallationModelDatabase extends JModelBase
 			// Trim any whitespace.
 			$query = trim($query);
 
-			// If the query isn't empty and is not a MySQL comment, execute it.
+			// If the query isn't empty and is not a MySQL or PostgreSQL comment, execute it.
 			if (!empty($query) && ($query{0} != '#') && ($query{0} != '-'))
 			{
 				// Execute the query.
@@ -825,6 +878,9 @@ class InstallationModelDatabase extends JModelBase
 
 		// Remove comment lines.
 		$query = preg_replace("/\n\#[^\n]*/", '', "\n" . $query);
+
+		// Remove PostgreSQL comment lines.
+		$query = preg_replace("/\n\--[^\n]*/", '', "\n" . $query);
 
 		// Find function
 		$funct = explode('CREATE OR REPLACE FUNCTION', $query);
