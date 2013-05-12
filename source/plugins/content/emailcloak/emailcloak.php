@@ -121,8 +121,8 @@ class PlgContentEmailcloak extends JPlugin
 
 		/*
 		 * Search and fix derivatives of link code <a href="http://mce_host/ourdirectory/email@amail.com"
-		 * >email@email.com</a>. This happens when inserting an email in TinyMCE, cancelling its suggestion to add
-		 * the mailto: prefix...
+		 * >email@email.com</a>. This happens when inserting an email in TinyMCE or TinyMCE based editors,
+		 * cancelling its suggestion to add the mailto: prefix...
 		 */
 		$pattern = $this->_getPattern($searchEmail, $searchEmail);
 		$pattern = str_replace('"mailto:', '"http://mce_host([\x20-\x7f][^<>]+/)', $pattern);
