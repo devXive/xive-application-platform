@@ -37,12 +37,12 @@ class JoomlaupdateModelDefault extends JModelLegacy
 		switch ($params->get('updatesource', 'nochange'))
 		{
 			// "(XAP) branch"
-			case 'lts':
+			case 'xap':
 				$updateURL = 'https://raw.github.com/devXive/xive-application-platform/master/updlists/core.xml';
 				break;
 
 			// "(WMS) branch"
-			case 'sts':
+			case 'wms':
 				$updateURL = 'https://raw.github.com/devXive/xive-application-platform/master/updlists/wms.xml';
 				break;
 
