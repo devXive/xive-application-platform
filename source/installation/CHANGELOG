@@ -66,7 +66,6 @@ $ -> Language fix or change
 20-Apr-2013 Mark Dexter
  # [#30323] tag created iso selected with ajax interface when using keyboard only selection. Thanks Roberto Segura.
  # [#30432] Optimize styling for small devices. Thanks Nick Savov.
- # [#30533] 'banner position missing in Protostar templateDetails.xml file. Thanks Kevin Griffiths.
  # [#30555] JTableContenttype->save() breaks type_alias. Thanks Thomas Hunziker.
  # [#30592] Module Class Suffix	 should be a multiline text area. Thanks Ben Tasker.
  # [#30595] Fixing "urls" within TagsTableTag->bind(). Thanks Thomas Hunziker.
@@ -110,7 +109,6 @@ $ -> Language fix or change
 20-Apr-2013 Mark Dexter
  # [#30323] tag created iso selected with ajax interface when using keyboard only selection. Thanks Roberto Segura.
  # [#30432] Optimize styling for small devices. Thanks Nick Savov.
- # [#30533] 'banner position missing in Protostar templateDetails.xml file. Thanks Kevin Griffiths.
  # [#30555] JTableContenttype->save() breaks type_alias. Thanks Thomas Hunziker.
  # [#30592] Module Class Suffix	 should be a multiline text area. Thanks Ben Tasker.
  # [#30595] Fixing "urls" within TagsTableTag->bind(). Thanks Thomas Hunziker.
@@ -465,7 +463,6 @@ $ -> Language fix or change
 12-Feb-2013 Jean-Marie Simonet
  # [#30074] *Front end edit button missing in category blog
  # [#30087] Second scrollbar at the media manager (isis). Thanks Constantin
- # Added the error file in the Protostar template xml. Thanks Miguel Angel
 
 11-Feb-2013 Jean-Marie Simonet
  # [#30056] * Icomoon issue with some character & More RTL compatibility for Isis template. Thanks Mohammad.
@@ -529,7 +526,6 @@ $ -> Language fix or change
  # [#29845] Joomla 3.0.2 Back-end Performance Issue with Item Associations (large #__associations table). Thanks Gary Mort.
 
 28-Jan-2013 Jean-Marie Simonet
- # [#30026] *Reverting parts of tracker #29875 which breaks container-fluid class in Protostar- regression
  #^ [#29997] Email validation fails with longer top level domains. Thanks Elin
 
 26-Jan-2013 Jean-Marie Simonet
@@ -552,7 +548,6 @@ $ -> Language fix or change
 
 22-Jan-2013 Jean-Marie Simonet
  # [#29960] Correct language specification in components' XML files. Thanks Alex B.
- # [#29907] *Protostar template does not display page break tab feature in a page.
 
 21-Jan-2013 Jean-Marie Simonet
  $ Updating installation lang file: id-ID, sr-RS, sr-YU, sv-SE, sw-KE, uk-UA
@@ -582,7 +577,6 @@ $ -> Language fix or change
 15-Jan-2013 Jean-Marie Simonet
  #$ [#29941] *User Profile frontend tooltips same as backend ones
  # [#29289] *No admin private message when an author submit a new content in frontend
- # [#29933] *'Article' string above the TOS article and print icon not working with Protostar
  # [#28778] Incorrect Rendering of Breadcrumb Trail for Home Page Sub-Items. Thanks James and Peter
 
 13-Jan-2013 Jean-Marie Simonet
@@ -612,7 +606,6 @@ $ -> Language fix or change
  # [#29842] Display error by the contactform with IE 8 and 9. Thanks Constantin.
 
 03-Jan-2013 Michael Babker
- # [#29875] Protostar invalid class names for itemid, layout and task.  Thanks Cristina
  # [#29895] Strict errors in categories models.  Thanks Elin
  # [#29862] *Filter_field Option missing in category list layout for Contact.  Thanks JM
  # [#29887] *Disable System redirect breaks 404.  Thanks Yannick
@@ -684,8 +677,6 @@ $ -> Language fix or change
  $ Although not used, adding missing JText::script strings in installation as they show in debug.
  # [#29665] *Cache plugin is not differentiating between Menu-Items. Thanks Dennis.
  # [#29740] *HTML direction tag for Back-end login missed
- # [#29706] icon display in protostar pagination on active items. Thanks Lars
- # [#29707] protostar pagination: active items li not closed. Thanks Lars
 
 19-Nov-2012 Jean-Marie Simonet
  # [#29714] Code style fixes based on Jenkins, replace uses of JRequest. Thanks Michael.
@@ -721,7 +712,6 @@ $ -> Language fix or change
 
 13-Nov-2012 Jean-Marie Simonet
  #$ [#29669] Consistent form validation notifications. Thanks Roland
- # [#29675] *Protostar error page tries to load search module even when module is not published
  $ [#29668] language installer coordinator team URL must changed j3 TT. Thanks Chalak
  # [#29646] Some errors on Updater. Thanks Mark.
 
@@ -791,7 +781,6 @@ $ -> Language fix or change
 23-Oct-2012 Jean-Marie Simonet
  # [#29547] Category parent link missing
  # [#29545] Incorrect label / date in article created date. Thanks Denia
- # [#29535] Invalid XHTML syntax in Protostar Joomla 3.0.1. Thanks Denia
  # [#29340] Menu Manager: Menus
 
 22-Oct-2012 Jean-Marie Simonet
@@ -862,7 +851,6 @@ $ -> Language fix or change
 
 04-Oct-2012 Jean-Marie Simonet
  $ Updating ja-JP.ini
- # [#29431] Protostar Template not honouring module Title Hide. Thanks Roberto
  # [#29429] Can't install Joomla update as an extension. Thanks Mark
 
 03-Oct-2012 Mark Dexter
@@ -878,7 +866,6 @@ $ -> Language fix or change
 
 02-Oct-2012 Jean-Marie Simonet
  # [#29408] images upload to the wrong folder in image manager. Thanks Roberto
- $ Missing string for Protostar
  # Changing obsolete link to lang packs community page
 
 01-Oct-2012 Jean-Marie Simonet
@@ -904,15 +891,12 @@ $ -> Language fix or change
 28-Sep-2012 Jean-Marie Simonet
  +$ Adding installation languages: tr-TR
  $ updating sy-IQ
- #$ Correcting hard coded text in Protostar
- # Missing position footer in Protostar.xml
 
 -------------------- 3.0.0 Stable Release [27-Sep-2012] ------------------
 
 27-Sep-2012 Jean-Marie Simonet
  +$ Adding installation languages: bg-BG, de-DE, ru-RU. Updated pt-BR
  # [#29367] *Filtering by category does not work for Featured articles
- # [#29336] *Protostar page navigation does not work
  # [#29358] A single contact does not send email and return 500 system error. Thanks Andrea
  # [#29344] Javascript Error with JHTML tabs. Thanks Jérôme GLATIGNY $ Peter
 
@@ -940,7 +924,6 @@ $ -> Language fix or change
 
 25-Sep-2012 Jean-Marie Simonet
  +$ Adding installation languages: es-ES, fa-IR, hu-HU
- ^# [#29301] Protostar Site Title and Description Params. Thanks Kyle
  # [#29302] Moving Accordion fix to bootstrap-extended. Thanks Kyle.
  -# [#29259] Remove unused pkg_joomla extension. Thanks Michael
  # [#29258] Update library and package manifests for 3.0. Thanks Michael
@@ -1025,7 +1008,6 @@ $ -> Language fix or change
  # [#29207] Unpublished badge not using jtext. Thanks Elin
  # [#29208] com_contact categories list items count badge alignment. Thanks Jon
  # Reverting #29141 as it creates unwanted pbs with dropbox while not solving fully the original issue
- # [#29201] Make it so submit button uses link color in protostar. Thanks Elin
  +$ Adding installation languages: pl-PL, ta-IN, uk-UA
 
 16-Sep-2012 Rouven Weßling
@@ -1054,7 +1036,7 @@ $ -> Language fix or change
  # [#29149] html5 validation is failing. Thanks Jean-Marie.
 
 13-Sep-2012 Jean-Marie Simonet
- # [#29144] error.php for Isis and Protostar Templates. Thanks Kyle
+ # [#29144] error.php for Isis Template. Thanks Kyle
  # [#29139] *RTL incorrect display in new module creation window
  # [#29140] *RTL incorrect display when selecting a menu item type
  # [#29135] Improve popover loading. Thanks Rouven
@@ -1083,9 +1065,7 @@ $ -> Language fix or change
  # [#29127] Module save2copy dont work. Thanks Reinhard.
 
 08-Sep-2012 Jean-Marie Simonet
- # [#29052] *Protostar Print article bug. Thanks Kyle.
  # [#29067] *Ordering dropdown display issue. Thanks Kyle.
- # [#29101] Fix Protostar Responsive Grid and Menus. Thanks Kyle.
 
 07-Sep-2012 Jean-Marie Simonet
  # [#29104] Typo in 3.0.0 update script
@@ -1130,7 +1110,7 @@ $ -> Language fix or change
  ^ Merge latest platform (c15b8db512c26b6e5308b157c518702d617e47a4)
 
 02-Sep-2012 Jean-Marie Simonet
- # Correcting en-GB.xml to reflect adding protostar and isis + mod_stats_admin ini files
+ # Correcting en-GB.xml to reflect adding isis + mod_stats_admin ini files
 
 01-Sep-2012 Rouven Weßling
  - Removed the bluestork admin template.
@@ -1153,9 +1133,7 @@ $ -> Language fix or change
 
 29-Aug-2012 Jean-Marie Simonet
  # [#28980] Publication information should not have h2 styling. Thanks Elin
- + [#28975] Add background color selector to protostar. Thanks Elin
  # [#29014] *Firefox 14.0.1: Insert Image, Article or Pagebreak always inserts on top
- # [#29004] *regression: protostar does not include the necessary css when inserting image in article
 
 28-Aug-2012 Rouven Weßling
  ^ Reduce use of the deprecated JFile methods.
@@ -1209,11 +1187,11 @@ $ -> Language fix or change
 -------------------- 3.0 Alpha 2 Release [16-Aug-2012] ------------------
 
 16-Aug-2012 Mark Dexter
- # [#28927] Update sample data files for protostar and isis. Thanks Elin.
+ # [#28927] Update sample data files for isis. Thanks Elin.
 
 16-Aug-2012 Jean-Marie Simonet
  # [#28925] Change the variable name on the submenu rendering to avoid conflicts. Thanks Andrea.
- # [#28926] Add Isis and Protostar to mysql/joomla.sql. Thanks Elin.
+ # [#28926] Add Isis to mysql/joomla.sql. Thanks Elin.
  # Fix installation languages issue. Thanks Roberto
 
 16-Aug-2012 Rouven Weßling

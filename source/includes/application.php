@@ -530,12 +530,12 @@ final class JSite extends JApplication
 		{
 			$this->enqueueMessage(JText::_('JERROR_ALERTNOTEMPLATE'), 'error');
 
-			// try to find data for 'protostar' template
+			// try to find data for 'default' template
 			$original_tmpl = $template->template;
 
 			foreach ($templates as $tmpl)
 			{
-				if ($tmpl->template == 'protostar')
+				if ($tmpl->template == 'default')
 				{
 					$template = $tmpl;
 					break;
