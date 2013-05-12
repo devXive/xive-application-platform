@@ -44,7 +44,7 @@
 	</fileset>
 
 	<updateservers>
-		<server type="collection">http://update.joomla.org/core/list.xml</server>
-		<server type="collection">http://update.joomla.org/jed/list.xml</server>
+		<server type="collection">https://raw.github.com/devXive/xive-application-platform/master/updlists/core.xml</server>
+		<server type="collection">https://raw.github.com/devXive/xive-application-platform/master/updlists/apps.xml</server>
 	</updateservers>
 </extension>

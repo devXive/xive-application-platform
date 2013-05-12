@@ -36,19 +36,19 @@ class JoomlaupdateModelDefault extends JModelLegacy
 		$params = JComponentHelper::getParams('com_joomlaupdate');
 		switch ($params->get('updatesource', 'nochange'))
 		{
-			// "Long Term Support (LTS) branch - Recommended"
+			// "(XAP) branch"
 			case 'lts':
-				$updateURL = 'http://update.joomla.org/core/list.xml';
+				$updateURL = 'https://raw.github.com/devXive/xive-application-platform/master/updlists/core.xml';
 				break;
 
-			// "Short term support (STS) branch"
+			// "(WMS) branch"
 			case 'sts':
-				$updateURL = 'http://update.joomla.org/core/sts/list_sts.xml';
+				$updateURL = 'https://raw.github.com/devXive/xive-application-platform/master/updlists/wms.xml';
 				break;
 
 			// "Testing"
 			case 'testing':
-				$updateURL = 'http://update.joomla.org/core/test/list_test.xml';
+				$updateURL = 'https://raw.github.com/devXive/xive-application-platform/master/updlists/test.xml';
 				break;
 
 			// "Custom"
