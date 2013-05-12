@@ -177,7 +177,6 @@ $ -> Language fix or change
  # [#29916] MySQL connections are not closed.  Thanks Ian Goldstein
  # [#30508] Fixed typo $text = $text = '..';.  Thanks Piotr Konieczny
  # [#30504] List All Tags doesn't have pagination.  Thanks Mark Dexter
- # [#30505] Weblink module ignores end publishing date.  Thanks Thomas Hunziker
  # [#30507] *Edit contact display issue with editor.  Thanks Jean-Marie Simonet
 
 08-Apr-2013 Jean-Marie Simonet
@@ -275,7 +274,6 @@ $ -> Language fix or change
 25-Mar-2013 Michael Babker
  # [#30375] When state is changed in a list view it isn't changed in core_content
  # Incorrect field names used in JTableContenttype (discovered implementing unit tests)
- # [#30382] Fatal error in mod_weblinks.  Thanks Elin
  ^ [#30142] Add optional class param to accordion slider.  Thanks Anderson
  - [#30387] Remove compact.xml.  Thanks Elin
 
@@ -353,7 +351,7 @@ $ -> Language fix or change
  ^ [#30311] Move code from tag model to tags class.  Thanks Elin
 
 17-Mar-2013 Jean-Marie Simonet
- # [#30121] Save as copy does not work in com_weblinks, com_contacts, com_newsfeeds. Thanks Lemings
+ # [#30121] Save as copy does not work in com_contacts, com_newsfeeds. Thanks Lemings
  # [#30267] *Modifying constant in logged in module (back-end)
  # [#30190] allow string-based input fields to use the "multiple" attribute. Thanks Randy.
  # [#30305] Correcting the similar tags module. Thanks Elin
@@ -375,7 +373,7 @@ $ -> Language fix or change
 
 16-Mar-2013 Jean-Marie Simonet
  #$ [#30231] *TAGS: does not filter on language. Thanks Elin
- # [#30283] *Missing filter field parameter for contacts, newsfeeds, weblinks List All Categories menu items + error in Article categories menu item
+ # [#30283] *Missing filter field parameter for contacts, newsfeeds List All Categories menu items + error in Article categories menu item
  $ Updating Installation ini files: et-EE, fi-FI, ug-CN, zh-cn
  +$ [#27945] Hide Subcategories text. Thanks Aka.
  + [#30230] JPlugin autoloadLanguage property. Thanks Elijah
@@ -439,7 +437,6 @@ $ -> Language fix or change
 
 02-Mar-2013 Jean-Marie Simonet
  # [#30189] * [#30157] did not take into account apostrophies in lang strings values
- # [#30186] Weblinks module fails
 
 01-Mar-2013 Jean-Marie Simonet
  # [#30172] *Moving the helper getAssociations() to the cms library. Thanks Roberto and Harald
@@ -614,14 +611,13 @@ $ -> Language fix or change
  # [#27699] Only text gets passed to content events in blog view.  Thanks Peter
 
 05-Jan-2013 Jean-Marie Simonet
- # [#29905] Issue 29895 broke weblinks categories. Thanks Mark
  # [#29903] Fix a reference in jDatabaseDriver. Thanks Elin
  # [#29842] Display error by the contactform with IE 8 and 9. Thanks Constantin.
 
 03-Jan-2013 Michael Babker
  # [#29875] Protostar invalid class names for itemid, layout and task.  Thanks Cristina
  # [#29895] Strict errors in categories models.  Thanks Elin
- # [#29862] *Filter_field Option missing in category list layout for Contact, Newsfeeds, Weblinks.  Thanks JM
+ # [#29862] *Filter_field Option missing in category list layout for Contact, Newsfeeds.  Thanks JM
  # [#29887] *Disable System redirect breaks 404.  Thanks Yannick
 
 03-Jan-2013 Mark Dexter
@@ -629,10 +625,9 @@ $ -> Language fix or change
  [#29865] JLayoutFile keeps rendering same layout. Thanks Yannick Gaultier.
 
 03-Jan-2013 Jean-Marie Simonet
- # [#29836] *Weblinks, Newsfeeds, Contacts Search Filter (frontend). Thanks Glenn Arkell
+ # [#29836] *Newsfeeds, Contacts Search Filter (frontend). Thanks Glenn Arkell
 
 02-Jan-2013 Jean-Marie Simonet
- # [#29217] *Status column missing in weblinks mobile view. Thanks Tim
  # [#29691] Smart Search autocomplete.js issue. Thanks Viet
  # [#27903] invalid call to parent::getStoreId in getStoreId of NewsfeedsModelCategories (unused). Thanks Michael and Peter
 
@@ -678,7 +673,6 @@ $ -> Language fix or change
  # [#29821] Cannot select contact or newsfeed in modal after filtering
 
 12-Dec-2012 Mark Dexter
- # [#29738] Weblinks Hits Display when set to hide. Thanks Glenn Arkell.
  # [#29809] Callback logger wrongly named. Thanks Elijah Madden.
  # [#29715] *Submit an Article doesn't work. Thanks Jean-Marie.
 
@@ -1012,7 +1006,7 @@ $ -> Language fix or change
  # [#28990] Unpublish default menu item gives a PHP exception. Thanks Roberto
  +$ Adding installation languages: bs-BA, hr-HR, lv-LV, mk-MK
  # [#29223] *Sliders implementation prevents display of some Options in dropdowns (bootstrap). Thanks Yannick
- # [#29232] Com_weblinks and com_newsfeeds loose "Status" filter state. Thanks Yannick
+ # [#29232] Com_newsfeeds loose "Status" filter state. Thanks Yannick
  # [#29225] Code quality in installation script. Thanks Dennis
 
 18-Sep-2012 Jean-Marie Simonet
