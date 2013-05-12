@@ -691,6 +691,5 @@ class ContentModelArticle extends JModelAdmin
 	protected function cleanCache($group = null, $client_id = 0)
 	{
 		parent::cleanCache('com_content');
-		parent::cleanCache('mod_articles_popular');
 	}
 }

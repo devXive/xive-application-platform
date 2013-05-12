@@ -99,7 +99,6 @@ class JoomlaInstallerScript
 
 		// Modules site
 		// Site
-		$extensions[] = array('module', 'mod_articles_popular', '', 0);
 		$extensions[] = array('module', 'mod_breadcrumbs', '', 0);
 		$extensions[] = array('module', 'mod_custom', '', 0);
 		$extensions[] = array('module', 'mod_footer', '', 0);

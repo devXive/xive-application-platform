@@ -998,7 +998,6 @@ class CategoriesModelCategory extends JModelAdmin
 		{
 			case 'com_content':
 				parent::cleanCache('com_content');
-				parent::cleanCache('mod_articles_popular');
 				break;
 			default:
 				parent::cleanCache($extension);
