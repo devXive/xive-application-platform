@@ -74,7 +74,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('component', 'com_cache', '', 1);
 		$extensions[] = array('component', 'com_categories', '', 1);
 		$extensions[] = array('component', 'com_checkin', '', 1);
-		$extensions[] = array('component', 'com_contact', '', 1);
 		$extensions[] = array('component', 'com_cpanel', '', 1);
 		$extensions[] = array('component', 'com_installer', '', 1);
 		$extensions[] = array('component', 'com_languages', '', 1);
@@ -152,7 +151,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('plugin', 'pagebreak', 'editors-xtd', 0);
 		$extensions[] = array('plugin', 'readmore', 'editors-xtd', 0);
 		$extensions[] = array('plugin', 'categories', 'search', 0);
-		$extensions[] = array('plugin', 'contacts', 'search', 0);
 		$extensions[] = array('plugin', 'content', 'search', 0);
 		$extensions[] = array('plugin', 'languagefilter', 'system', 0);
 		$extensions[] = array('plugin', 'p3p', 'system', 0);
@@ -163,7 +161,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('plugin', 'remember', 'system', 0);
 		$extensions[] = array('plugin', 'sef', 'system', 0);
 		$extensions[] = array('plugin', 'logout', 'system', 0);
-		$extensions[] = array('plugin', 'contactcreator', 'user', 0);
 		$extensions[] = array('plugin', 'joomla', 'user', 0);
 		$extensions[] = array('plugin', 'profile', 'user', 0);
 		$extensions[] = array('plugin', 'joomla', 'extension', 0);
@@ -173,7 +170,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('plugin', 'extensionupdate', 'quickicon', 0);
 		$extensions[] = array('plugin', 'recaptcha', 'captcha', 0);
 		$extensions[] = array('plugin', 'categories', 'finder', 0);
-		$extensions[] = array('plugin', 'contacts', 'finder', 0);
 		$extensions[] = array('plugin', 'content', 'finder', 0);
 		$extensions[] = array('plugin', 'tags', 'finder', 0);
 
@@ -258,11 +254,6 @@ class JoomlaInstallerScript
 			'/administrator/components/com_admin/views/sysinfo/tmpl/default_navigation.php',
 			'/administrator/components/com_categories/config.xml',
 			'/administrator/components/com_categories/helpers/categoriesadministrator.php',
-			'/administrator/components/com_contact/elements/contact.php',
-			'/administrator/components/com_contact/elements/index.html',
-			'/administrator/components/com_content/elements/article.php',
-			'/administrator/components/com_content/elements/author.php',
-			'/administrator/components/com_content/elements/index.html',
 			'/administrator/components/com_installer/models/fields/client.php',
 			'/administrator/components/com_installer/models/fields/group.php',
 			'/administrator/components/com_installer/models/fields/index.html',
@@ -523,7 +514,6 @@ class JoomlaInstallerScript
 			'/media/com_finder/images',
 			'/components/com_media/helpers',
 			// Joomla 3.0
-			'/administrator/components/com_contact/elements',
 			'/administrator/components/com_content/elements',
 			'/administrator/components/com_installer/models/fields',
 			'/administrator/components/com_installer/models/forms',

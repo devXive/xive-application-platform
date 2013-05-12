@@ -29,7 +29,6 @@ class ConfigViewComponent extends JViewLegacy
 	protected $helpScreenArray = array(
 		'com_cache' => 'JHELP_COMPONENTS_CACHE_MANAGER_SETTINGS',
 		'com_checkin' => 'JHELP_COMPONENTS_CHECK-IN_CONFIGURATION',
-		'com_contact' => 'JHELP_COMPONENTS_CONTACT_MANAGER_OPTIONS',
 		'com_content' => 'JHELP_COMPONENTS_ARTICLE_MANAGER_OPTIONS',
 		'com_finder' => 'JHELP_COMPONENTS_SMART_SEARCH_CONFIGURATION',
 		'com_installer' => 'JHELP_COMPONENTS_INSTALLER_CONFIGURATION',

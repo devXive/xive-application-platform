@@ -2,7 +2,6 @@ ALTER TABLE `#__users` DROP KEY `usertype`;
 
 DROP TABLE IF EXISTS `#__update_categories`;
 
-ALTER TABLE `#__contact_details` DROP `imagepos`;
 ALTER TABLE `#__content` DROP COLUMN `title_alias`;
 ALTER TABLE `#__content` DROP COLUMN `sectionid`;
 ALTER TABLE `#__content` DROP COLUMN `mask`;
@@ -24,7 +23,6 @@ UPDATE `#__extensions` SET protected = 0 WHERE
 `name` = 'plg_content_pagenavigation' OR
 `name` = 'plg_content_vote' OR
 `name` = 'plg_system_p3p' OR
-`name` = 'plg_user_contactcreator' OR
 `name` = 'plg_user_profile';
 
 DELETE FROM `#__extensions` WHERE `extension_id` = 800;
@@ -32,7 +30,6 @@ DELETE FROM `#__extensions` WHERE `extension_id` = 800;
 ALTER TABLE `#__assets` ENGINE=InnoDB;
 ALTER TABLE `#__associations` ENGINE=InnoDB;
 ALTER TABLE `#__categories` ENGINE=InnoDB;
-ALTER TABLE `#__contact_details` ENGINE=InnoDB;
 ALTER TABLE `#__content` ENGINE=InnoDB;
 ALTER TABLE `#__content_frontpage` ENGINE=InnoDB;
 ALTER TABLE `#__content_rating` ENGINE=InnoDB;
@@ -83,8 +80,6 @@ ALTER TABLE `#__user_profiles` ENGINE=InnoDB;
 ALTER TABLE `#__user_usergroup_map` ENGINE=InnoDB;
 ALTER TABLE `#__viewlevels` ENGINE=InnoDB;
 
-ALTER TABLE `#__contact_details` ADD COLUMN `version` int(10) unsigned NOT NULL DEFAULT '1';
-ALTER TABLE `#__contact_details` ADD COLUMN `hits` int(10) unsigned NOT NULL DEFAULT '0';
 ALTER TABLE `#__categories` ADD COLUMN `version` int(10) unsigned NOT NULL DEFAULT '1';
 UPDATE  `#__assets` SET name=REPLACE( name, 'com_user.notes.category','com_users.category'  );
 UPDATE  `#__categories` SET extension=REPLACE( extension, 'com_user.notes.category','com_users.category'  );
