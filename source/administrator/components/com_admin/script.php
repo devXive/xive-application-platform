@@ -146,7 +146,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('plugin', 'debug', 'system', 0);
 		$extensions[] = array('plugin', 'log', 'system', 0);
 		$extensions[] = array('plugin', 'redirect', 'system', 0);
-		$extensions[] = array('plugin', 'remember', 'system', 0);
 		$extensions[] = array('plugin', 'sef', 'system', 0);
 		$extensions[] = array('plugin', 'logout', 'system', 0);
 		$extensions[] = array('plugin', 'joomla', 'user', 0);
