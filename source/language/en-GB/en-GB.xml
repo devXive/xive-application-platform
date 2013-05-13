@@ -49,8 +49,6 @@
 		<filename>en-GB.mod_syndicate.sys.ini</filename>
 		<filename>en-GB.mod_tags_popular.ini</filename>
 		<filename>en-GB.mod_tags_popular.sys.ini</filename>
-		<filename>en-GB.mod_tags_similar.ini</filename>
-		<filename>en-GB.mod_tags_similar.sys.ini</filename>
 		<filename>en-GB.tpl_default.ini</filename>
 		<filename>en-GB.tpl_default.sys.ini</filename>
 	</files>
