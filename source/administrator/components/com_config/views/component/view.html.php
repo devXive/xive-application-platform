@@ -46,7 +46,6 @@ class ConfigViewComponent extends JViewLegacy
 		'com_tags' => 'JHELP_COMPONENTS_TAGS_MANAGER_OPTIONS',
 		'com_templates' => 'JHELP_COMPONENTS_TEMPLATE_MANAGER_OPTIONS',
 		'com_users' => 'JHELP_COMPONENTS_USERS_CONFIGURATION',
-		'com_weblinks' => 'JHELP_COMPONENTS_WEB_LINKS_MANAGER_OPTIONS',
 	);
 
 	/**
