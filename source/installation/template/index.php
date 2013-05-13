@@ -54,7 +54,7 @@ JText::script('INSTL_FTP_SETTINGS_CORRECT');
 			<hr />
 			<h5>
 				<?php
-				$xap = 'The <a href="http://www.devxive.com/extensions/xap">Xive Application Framework</a>';
+				$xap = 'The <a href="http://www.devxive.com/extensions/xap">Xive Application Platform</a>';
 				$license = '<a data-toggle="modal" href="#licenseModal">' . JText::_('INSTL_GNU_GPL_LICENSE') . '</a>';
 				echo JText::sprintf('JGLOBAL_ISFREESOFTWARE', $xap, $license);
 				?>
