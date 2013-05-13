@@ -13,7 +13,6 @@ ALTER TABLE `#__updates` DROP COLUMN `categoryid`;
 
 UPDATE `#__extensions` SET protected = 0 WHERE
 `name` = 'com_search' OR
-`name` = 'mod_footer' OR
 `name` = 'plg_content_pagebreak' OR
 `name` = 'plg_content_pagenavigation' OR
 `name` = 'plg_content_vote' OR
