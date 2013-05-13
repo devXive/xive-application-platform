@@ -103,16 +103,12 @@ class JoomlaInstallerScript
 
 		// Modules site
 		// Site
-		$extensions[] = array('module', 'mod_articles_archive', '', 0);
-		$extensions[] = array('module', 'mod_articles_latest', '', 0);
-		$extensions[] = array('module', 'mod_articles_popular', '', 0);
 		$extensions[] = array('module', 'mod_breadcrumbs', '', 0);
 		$extensions[] = array('module', 'mod_custom', '', 0);
 		$extensions[] = array('module', 'mod_feed', '', 0);
 		$extensions[] = array('module', 'mod_footer', '', 0);
 		$extensions[] = array('module', 'mod_login', '', 0);
 		$extensions[] = array('module', 'mod_menu', '', 0);
-		$extensions[] = array('module', 'mod_articles_news', '', 0);
 		$extensions[] = array('module', 'mod_random_image', '', 0);
 		$extensions[] = array('module', 'mod_related_items', '', 0);
 		$extensions[] = array('module', 'mod_search', '', 0);
@@ -122,8 +118,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('module', 'mod_weblinks', '', 0);
 		$extensions[] = array('module', 'mod_whosonline', '', 0);
 		$extensions[] = array('module', 'mod_wrapper', '', 0);
-		$extensions[] = array('module', 'mod_articles_category', '', 0);
-		$extensions[] = array('module', 'mod_articles_categories', '', 0);
 		$extensions[] = array('module', 'mod_languages', '', 0);
 		$extensions[] = array('module', 'mod_tags_popular', '', 0);
 		$extensions[] = array('module', 'mod_tags_similar', '', 0);
