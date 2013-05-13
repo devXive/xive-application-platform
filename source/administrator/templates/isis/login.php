@@ -88,8 +88,8 @@ $debug  = (boolean) $config->get('debug');
 	<div class="container">
 		<div id="content">
 			<!-- Begin Content -->
-			<div id="element-box" class="login well">
-				<img src="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template ?>/images/joomla.png" alt="Joomla!" />
+			<div id="element-box" class="login well center">
+				<img src="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template ?>/images/xap.png" alt="XAP" />
 				<hr />
 				<jdoc:include type="message" />
 				<jdoc:include type="component" />
