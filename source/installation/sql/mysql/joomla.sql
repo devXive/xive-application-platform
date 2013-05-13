@@ -1507,6 +1507,8 @@ CREATE TABLE IF NOT EXISTS `#__users` (
   `params` text NOT NULL,
   `lastResetTime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date of last password reset',
   `resetCount` int(11) NOT NULL DEFAULT '0' COMMENT 'Count of password resets since lastResetTime',
+  `customerid` varchar(50) NOT NULL DEFAULT '',
+  `jobtitle` varchar(150) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `idx_name` (`name`),
   KEY `idx_block` (`block`),

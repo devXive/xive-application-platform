@@ -73,6 +73,9 @@ $loggeduser = JFactory::getUser();
 				<th width="1%" class="nowrap center">
 					<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
 				</th>
+				<th width="5%" class="nowrap center">
+					<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_CUSTOMER_ID', 'a.customerid', $listDirn, $listOrder); ?>
+				</th>
 			</tr>
 		</thead>
 		<tfoot>
@@ -158,6 +161,9 @@ $loggeduser = JFactory::getUser();
 				</td>
 				<td class="center">
 					<?php echo (int) $item->id; ?>
+				</td>
+				<td class="center">
+					<?php echo $this->escape($item->customerid); ?>
 				</td>
 			</tr>
 			<?php endforeach; ?>
