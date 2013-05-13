@@ -108,7 +108,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('module', 'mod_stats', '', 0);
 		$extensions[] = array('module', 'mod_syndicate', '', 0);
 		$extensions[] = array('module', 'mod_languages', '', 0);
-		$extensions[] = array('module', 'mod_tags_popular', '', 0);
 
 		// Administrator
 		$extensions[] = array('module', 'mod_custom', '', 1);
