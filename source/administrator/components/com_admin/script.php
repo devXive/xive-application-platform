@@ -84,7 +84,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('component', 'com_menus', '', 1);
 		$extensions[] = array('component', 'com_messages', '', 1);
 		$extensions[] = array('component', 'com_modules', '', 1);
-		$extensions[] = array('component', 'com_newsfeeds', '', 1);
 		$extensions[] = array('component', 'com_plugins', '', 1);
 		$extensions[] = array('component', 'com_search', '', 1);
 		$extensions[] = array('component', 'com_templates', '', 1);
@@ -146,7 +145,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('plugin', 'categories', 'search', 0);
 		$extensions[] = array('plugin', 'contacts', 'search', 0);
 		$extensions[] = array('plugin', 'content', 'search', 0);
-		$extensions[] = array('plugin', 'newsfeeds', 'search', 0);
 		$extensions[] = array('plugin', 'languagefilter', 'system', 0);
 		$extensions[] = array('plugin', 'p3p', 'system', 0);
 		$extensions[] = array('plugin', 'cache', 'system', 0);
@@ -168,7 +166,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('plugin', 'categories', 'finder', 0);
 		$extensions[] = array('plugin', 'contacts', 'finder', 0);
 		$extensions[] = array('plugin', 'content', 'finder', 0);
-		$extensions[] = array('plugin', 'newsfeeds', 'finder', 0);
 		$extensions[] = array('plugin', 'tags', 'finder', 0);
 
 		// Templates
@@ -256,8 +253,6 @@ class JoomlaInstallerScript
 			'/administrator/components/com_modules/models/fields/index.html',
 			'/administrator/components/com_modules/models/fields/moduleorder.php',
 			'/administrator/components/com_modules/models/fields/moduleposition.php',
-			'/administrator/components/com_newsfeeds/elements/index.html',
-			'/administrator/components/com_newsfeeds/elements/newsfeed.php',
 			'/administrator/components/com_templates/views/prevuuw/index.html',
 			'/administrator/components/com_templates/views/prevuuw/tmpl/default.php',
 			'/administrator/components/com_templates/views/prevuuw/tmpl/index.html',
@@ -509,7 +504,6 @@ class JoomlaInstallerScript
 			'/administrator/components/com_installer/models/fields',
 			'/administrator/components/com_installer/models/forms',
 			'/administrator/components/com_modules/models/fields',
-			'/administrator/components/com_newsfeeds/elements',
 			'/administrator/components/com_templates/views/prevuuw/tmpl',
 			'/administrator/components/com_templates/views/prevuuw',
 			'/libraries/cms/controller',
