@@ -40,6 +40,8 @@ class UsersModelUsers extends JModelList
 				'registerDate', 'a.registerDate',
 				'lastvisitDate', 'a.lastvisitDate',
 				'activation', 'a.activation',
+				'customerid', 'a.customerid',
+				'jobtitle', 'a.jobtitle',
 			);
 		}
 
@@ -296,7 +298,7 @@ class UsersModelUsers extends JModelList
 		if ($groupId || isset($groups))
 		{
 			$query->join('LEFT', '#__user_usergroup_map AS map2 ON map2.user_id = a.id')
-				->group($db->quoteName(array('a.id', 'a.name', 'a.username', 'a.password', 'a.block', 'a.sendEmail', 'a.registerDate', 'a.lastvisitDate', 'a.activation', 'a.params', 'a.email')));
+				->group($db->quoteName(array('a.id', 'a.name', 'a.username', 'a.password', 'a.block', 'a.sendEmail', 'a.registerDate', 'a.lastvisitDate', 'a.activation', 'a.params', 'a.email', 'a.customerid', 'a.jobtitle')));
 
 			if ($groupId)
 			{
@@ -320,6 +322,7 @@ class UsersModelUsers extends JModelList
 			$searches[] = 'a.name LIKE ' . $token;
 			$searches[] = 'a.username LIKE ' . $token;
 			$searches[] = 'a.email LIKE ' . $token;
+			$searches[] = 'a.customerid LIKE ' . $token;
 
 			// Add the clauses to the query.
 			$query->where('(' . implode(' OR ', $searches) . ')');
