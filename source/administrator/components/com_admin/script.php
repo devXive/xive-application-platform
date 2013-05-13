@@ -110,7 +110,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('module', 'mod_login', '', 0);
 		$extensions[] = array('module', 'mod_menu', '', 0);
 		$extensions[] = array('module', 'mod_random_image', '', 0);
-		$extensions[] = array('module', 'mod_related_items', '', 0);
 		$extensions[] = array('module', 'mod_search', '', 0);
 		$extensions[] = array('module', 'mod_stats', '', 0);
 		$extensions[] = array('module', 'mod_syndicate', '', 0);
