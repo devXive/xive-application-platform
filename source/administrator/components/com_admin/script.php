@@ -116,7 +116,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('module', 'mod_syndicate', '', 0);
 		$extensions[] = array('module', 'mod_users_latest', '', 0);
 		$extensions[] = array('module', 'mod_weblinks', '', 0);
-		$extensions[] = array('module', 'mod_whosonline', '', 0);
 		$extensions[] = array('module', 'mod_wrapper', '', 0);
 		$extensions[] = array('module', 'mod_languages', '', 0);
 		$extensions[] = array('module', 'mod_tags_popular', '', 0);
