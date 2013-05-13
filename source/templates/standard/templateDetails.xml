@@ -4,9 +4,10 @@
 	<name>standard</name>
 	<version>1.0</version>
 	<creationDate>4/30/2012</creationDate>
-	<author>Kyle Ledbetter</author>
-	<authorEmail>admin@joomla.org</authorEmail>
-	<copyright>Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.</copyright>
+	<author>devXive</author>
+	<authorEmail>support@devxive.com</authorEmail>
+	<authorUrl>http://devxive.com</authorUrl>
+	<copyright>Copyright (C) 1997 - 2013 devXive - research and development. All rights reserved.</copyright>
 	<description>TPL_STANDARD_XML_DESCRIPTION</description>
 	<files>
 		<filename>component.php</filename>
