@@ -85,15 +85,27 @@ class InstallationControllerRemovefolder extends JControllerBase
 				}
 			}
 
-			// Rename the robots.txt.dist file to robots.txt
+			// Rename the robots.txt.example file to robots.txt
 			if ($return)
 			{
 				$robotsFile = JPath::clean($options->ftp_root . '/robots.txt');
-				$distFile = JPath::clean($options->ftp_root . '/robots.txt.dist');
+				$exampleFile = JPath::clean($options->ftp_root . '/robots.txt.example');
 
-				if (!file_exists($robotsFile) && file_exists($distFile))
+				if (!file_exists($robotsFile) && file_exists($exampleFile))
 				{
-					$return = $ftp->rename($distFile, $robotsFile);
+					$return = $ftp->rename($exampleFile, $robotsFile);
+				}
+			}
+
+			// Rename the htaccess.example file to .htaccess
+			if ($return)
+			{
+				$htaccessFile = JPath::clean($options->ftp_root . '/.htaccess');
+				$exampleFile = JPath::clean($options->ftp_root . '/htaccess.example');
+
+				if (!file_exists($htaccessFile) && file_exists($exampleFile))
+				{
+					$return = $ftp->rename($exampleFile, $htaccessFile);
 				}
 			}
 
@@ -109,10 +121,16 @@ class InstallationControllerRemovefolder extends JControllerBase
 			ob_start();
 			$return = JFolder::delete($path) && (!file_exists(JPATH_ROOT . '/joomla.xml') || JFile::delete(JPATH_ROOT . '/joomla.xml'));
 
-			// Rename the robots.txt.dist file if robots.txt doesn't exist
-			if ($return && !file_exists(JPATH_ROOT . '/robots.txt') && file_exists(JPATH_ROOT . '/robots.txt.dist'))
+			// Rename the robots.txt.example file if robots.txt doesn't exist
+			if (!file_exists(JPATH_ROOT . '/robots.txt') && file_exists(JPATH_ROOT . '/robots.txt.example'))
 			{
-				$return = JFile::move(JPATH_ROOT . '/robots.txt.dist', JPATH_ROOT . '/robots.txt');
+				JFile::move(JPATH_ROOT . '/robots.txt.example', JPATH_ROOT . '/robots.txt');
+			}
+
+			// Rename the htaccess.example file if .htaccess doesn't exist
+			if (!file_exists(JPATH_ROOT . '/.htaccess') && file_exists(JPATH_ROOT . '/htaccess.example'))
+			{
+				JFile::move(JPATH_ROOT . '/htaccess.example', JPATH_ROOT . '/.htaccess');
 			}
 
 			ob_end_clean();
