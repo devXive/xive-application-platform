@@ -3,6 +3,6 @@
 	<sites>
 		<site
 			tag="en-GB"
-			url="http://help.joomla.org/proxy/index.php?option=com_help&amp;keyref=Help{major}{minor}:{keyref}">English (GB) - Joomla help wiki</site>
+			url="http://help.mootombo.net/index.php?title=Help{major}{minor}:{keyref}&amp;redlink=0&amp;printable=yes">English (GB) - XAP help wiki</site>
 	</sites>
 </joshelp>

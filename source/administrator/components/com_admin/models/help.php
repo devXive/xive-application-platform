@@ -177,7 +177,7 @@ class AdminModelHelp extends JModelLegacy
 	{
 		if (!$this->latest_version_check)
 		{
-			$override = 'http://help.joomla.org/proxy/index.php?option=com_help&keyref=Help{major}{minor}:Joomla_Version_{major}_{minor}_{maintenance}';
+			$override = 'http://help.mootombo.net/index.php?title=Help{major}{minor}:XAP_Version_{major}_{minor}_{maintenance}&amp;redlink=0&amp;printable=yes';
 			$this->latest_version_check = JHelp::createUrl('JVERSION', false, $override);
 		}
 
