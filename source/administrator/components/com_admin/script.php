@@ -136,7 +136,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('plugin', 'vote', 'content', 0);
 		$extensions[] = array('plugin', 'codemirror', 'editors', 0);
 		$extensions[] = array('plugin', 'none', 'editors', 0);
-		$extensions[] = array('plugin', 'readmore', 'editors-xtd', 0);
 		$extensions[] = array('plugin', 'categories', 'search', 0);
 		$extensions[] = array('plugin', 'contacts', 'search', 0);
 		$extensions[] = array('plugin', 'content', 'search', 0);
