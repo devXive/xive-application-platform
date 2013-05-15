@@ -128,7 +128,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('module', 'mod_multilangstatus', '', 1);
 
 		// Plug-ins
-		$extensions[] = array('plugin', 'gmail', 'authentication', 0);
 		$extensions[] = array('plugin', 'joomla', 'authentication', 0);
 		$extensions[] = array('plugin', 'emailcloak', 'content', 0);
 		$extensions[] = array('plugin', 'loadmodule', 'content', 0);
