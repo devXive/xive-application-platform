@@ -117,7 +117,6 @@ class JoomlaInstallerScript
 		$extensions[] = array('module', 'mod_logged', '', 1);
 		$extensions[] = array('module', 'mod_login', '', 1);
 		$extensions[] = array('module', 'mod_menu', '', 1);
-		$extensions[] = array('module', 'mod_popular', '', 1);
 		$extensions[] = array('module', 'mod_quickicon', '', 1);
 		$extensions[] = array('module', 'mod_stats_admin', '', 1);
 		$extensions[] = array('module', 'mod_status', '', 1);
