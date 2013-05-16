@@ -158,6 +158,8 @@
 		<filename>en-GB.plg_user_joomla.sys.ini</filename>
 		<filename>en-GB.plg_user_profile.ini</filename>
 		<filename>en-GB.plg_user_profile.sys.ini</filename>
+		<filename>en-GB.plg_user_xprofile.ini</filename>
+		<filename>en-GB.plg_user_xprofile.sys.ini</filename>
 		<filename>en-GB.tpl_isis.ini</filename>
 		<filename>en-GB.tpl_isis.sys.ini</filename>
 	</files>

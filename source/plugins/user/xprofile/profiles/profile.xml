@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="xprofile">
+		<fieldset name="xprofile"
+			label="PLG_USER_XPROFILE_SLIDER_LABEL"
+		>
+			<field
+				name="customerid"
+				type="text"
+				id="customerid"
+				description="PLG_USER_XPROFILE_FIELD_CUSTOMERID_DESC"
+				filter="string"
+				label="PLG_USER_XPROFILE_FIELD_CUSTOMERID_LABEL"
+				size="30"
+			/>
+
+			<field
+				name="jobtitle"
+				type="text"
+				id="jobtitle"
+				description="PLG_USER_XPROFILE_FIELD_JOBTITLE_DESC"
+				filter="string"
+				label="PLG_USER_XPROFILE_FIELD_JOBTITLE_LABEL"
+				size="30"
+			/>
+		</fieldset>
+	</fields>
+</form>
