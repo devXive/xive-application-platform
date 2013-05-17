@@ -161,7 +161,7 @@ class JAdministrator extends JApplication
 
 		$document->setTitle($this->getCfg('sitename') . ' - ' . JText::_('JADMINISTRATION'));
 		$document->setDescription($this->getCfg('MetaDesc'));
-		$document->setGenerator('Joomla! - Open Source Content Management');
+		$document->setGenerator('XAP - Xive Application Platform');
 
 		$contents = JComponentHelper::renderComponent($component);
 		$document->setBuffer($contents, 'component');
@@ -305,6 +305,7 @@ class JAdministrator extends JApplication
 
 		return $template->template;
 	}
+
 
 	/**
 	 * Purge the jos_messages table of old messages

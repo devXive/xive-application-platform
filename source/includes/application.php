@@ -211,11 +211,11 @@ final class JSite extends JApplication
 		// Add version number or not based on global configuration
 		if ($this->getCfg('MetaVersion', 0))
 		{
-			$document->setGenerator('Joomla! - Open Source Content Management  - Version ' . JVERSION);
+			$document->setGenerator('XAP - Xive Application Platform - Version ' . JVERSION);
 		}
 		else
 		{
-			$document->setGenerator('Joomla! - Open Source Content Management');
+			$document->setGenerator('XAP - Xive Application Platform');
 		}
 
 		$contents = JComponentHelper::renderComponent($component);
