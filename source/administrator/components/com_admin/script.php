@@ -158,6 +158,7 @@ class JoomlaInstallerScript
 		$extensions[] = array('plugin', 'contacts', 'finder', 0);
 		$extensions[] = array('plugin', 'content', 'finder', 0);
 		$extensions[] = array('plugin', 'tags', 'finder', 0);
+		$extensions[] = array('plugin', 'xprofile', 'user', 0);
 
 		// Templates
 		$extensions[] = array('template', 'standard', '', 0);
