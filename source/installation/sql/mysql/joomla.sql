@@ -356,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `#__extensions` (
   KEY `element_clientid` (`element`,`client_id`),
   KEY `element_folder_clientid` (`element`,`folder`,`client_id`),
   KEY `extension` (`type`,`element`,`folder`,`client_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10000 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20000 ;
 
 --
 -- Dumping data for table `#__extensions`
@@ -454,8 +454,7 @@ INSERT INTO `#__extensions` (`extension_id`, `name`, `type`, `element`, `folder`
 (600, 'English (United Kingdom)', 'language', 'en-GB', '', 0, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (601, 'English (United Kingdom)', 'language', 'en-GB', '', 1, 1, 1, 1, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (700, 'Joomla! CMS', 'file', 'joomla', '', 0, 1, 1, 1, '{"legacy":false,"name":"files_joomla","type":"file","creationDate":"April 2013","author":"Joomla!","copyright":"(C) 2005 - 2013 Open Source Matters. All rights reserved","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.1.1","description":"FILES_JOOMLA_XML_DESCRIPTION","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(1400, 'plg_user_xprofile', 'plugin', 'profile', 'user', 0, 0, 1, 0, '', '{"register-customerid":"1","register-jobtitle":"1","profile-customerid":"1","profile-jobtitle":"1"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(1999, 'Dummy', 'file', '', '', 0, 0, 0, 0, '', '', '', '', 0, '0000-00-00 00:00:00', 0, 0);
+(4000, 'plg_user_xprofile', 'plugin', 'xprofile', 'user', 0, 0, 1, 0, '', '{"register-customerid":"1","register-jobtitle":"1","profile-customerid":"1","profile-jobtitle":"1"}', '', '', 0, '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
