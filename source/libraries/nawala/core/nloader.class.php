@@ -13,7 +13,7 @@
 // no direct access
 defined('_NFWRA') or die;
 
-class NFWLoader
+class NLoader
 {
 	/**
 	 * Loads a class from specified directories.

@@ -13,7 +13,7 @@
 // no direct access
 defined('_NFWRA') or die;
 
-class NFWConnect {
+class NConnect {
 	/**
 	 * Connect to an external url and load file content
 	 * @param  string $url    the full url to the file (incl. http://)

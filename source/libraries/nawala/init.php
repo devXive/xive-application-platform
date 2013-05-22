@@ -13,8 +13,8 @@
 // no direct access
 defined('_NFWRA') or die;
 
-// Init NFWLoader.Class
-require_once (realpath(dirname(__FILE__)) . '/core/nfwloader.class.php');
+// Init NLoader.Class
+require_once (realpath(dirname(__FILE__)) . '/core/nloader.class.php');
 
 /**
  * @param  string $path the nawala path to the class to import
@@ -23,7 +23,7 @@ require_once (realpath(dirname(__FILE__)) . '/core/nfwloader.class.php');
  */
 function nawala_import($path, $config)
 {
-	return NFWLoader::import($path, $config);
+	return NLoader::import($path, $config);
 }
 
 // Import the framework version class if necessary.

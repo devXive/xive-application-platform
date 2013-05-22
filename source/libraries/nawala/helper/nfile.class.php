@@ -13,7 +13,7 @@
 // no direct access
 defined('_NFWRA') or die;
 
-class NFWFile {
+class NFile {
 	/**
 	 * Write content to a local file
 	 * @param  string $path      the path to the local file, if path = null, try to save file to current folder
