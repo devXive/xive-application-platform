@@ -2,6 +2,7 @@
 
 With XAP we build easy2use-Apps, intuitive, useful & beautiful in form and function.
 
+* short note: The Nawala Framework is now a core part of the XAP!
 * more will be added shortly
 
 
