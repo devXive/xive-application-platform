@@ -1,7 +1,7 @@
 <?php
 /**
  * @package     XAP.Plugin
- * @subpackage  User.xprofile
+ * @subpackage  User.xiveirmclientprofile
  *
  * @copyright   Copyright (C) 1997 - 2013 devXive - research and development. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
@@ -16,7 +16,7 @@ defined('JPATH_BASE') or die;
  * @subpackage  User.profile
  * @since       3.0
  */
-class PlgUserXProfile extends JPlugin
+class PlgUserXiveIrmClientProfile extends JPlugin
 {
 	/**
 	 * @param   string     $context  The context for the data
@@ -41,7 +41,7 @@ class PlgUserXProfile extends JPlugin
 		$db->setQuery(
 			'SELECT profile_key, profile_value FROM #__user_profiles' .
 			' WHERE user_id = ' . (int) $userId .
-			' AND profile_key LIKE \'xprofile.%\'' .
+			' AND profile_key LIKE \'xiveirmclientprofile.%\'' .
 			' ORDER BY ordering'
 		);
 		$results = $db->loadRowList();
@@ -53,10 +53,10 @@ class PlgUserXProfile extends JPlugin
 		}
 
 		// Merge the profile data.
-		$data->xprofile = array();
+		$data->xiveirmclientprofile = array();
 		foreach ($results as $v) {
-			$k = str_replace('xprofile.', '', $v[0]);
-			$data->xprofile[$k] = json_decode($v[1], true);
+			$k = str_replace('xiveirmclientprofile.', '', $v[0]);
+			$data->xiveirmclientprofile[$k] = json_decode($v[1], true);
 		}
 
 		return true;
@@ -71,9 +71,9 @@ class PlgUserXProfile extends JPlugin
 	 */
 	public function onContentPrepareForm($form, $data)
 	{
-		//Load user_xprofile plugin language
+		//Load user_xiveirmclientprofile plugin language
 		$lang = JFactory::getLanguage();
-		$lang->load('plg_user_xprofile', JPATH_ADMINISTRATOR);
+		$lang->load('plg_user_xiveirmclientprofile', JPATH_ADMINISTRATOR);
 
 		if (!($form instanceof JForm))
 		{
@@ -93,20 +93,20 @@ class PlgUserXProfile extends JPlugin
 			JForm::addFormPath(dirname(__FILE__).'/profiles');
 			$form->loadFile('profile', false);
 
-			// Toggle whether the customerid field is required.
-			if ($this->params->get('profile-customerid', 1) > 0)
+			// Toggle whether the xiveirmclientid field is required.
+			if ($this->params->get('profile-xiveirmclientid', 1) > 0)
 			{
-				$form->setFieldAttribute('customerid', 'required', $this->params->get('profile-customerid') == 2, 'xprofile');
+				$form->setFieldAttribute('xiveirmclientid', 'required', $this->params->get('profile-xiveirmclientid') == 2, 'xiveirmclientprofile');
 			} else {
-				$form->removeField('customerid', 'xprofile');
+				$form->removeField('xiveirmclientid', 'xiveirmclientprofile');
 			}
 
 			// Toggle whether the jobtitle field is required.
 			if ($this->params->get('profile-jobtitle', 1) > 0)
 			{
-				$form->setFieldAttribute('jobtitle', 'required', $this->params->get('profile-jobtitle') == 2, 'xprofile');
+				$form->setFieldAttribute('jobtitle', 'required', $this->params->get('profile-jobtitle') == 2, 'xiveirmclientprofile');
 			} else {
-				$form->removeField('something', 'xprofile');
+				$form->removeField('jobtitle', 'xiveirmclientprofile');
 			}
 		}
 
@@ -117,20 +117,20 @@ class PlgUserXProfile extends JPlugin
 			JForm::addFormPath(dirname(__FILE__).'/profiles');
 			$form->loadFile('profile', false);
 
-			// Toggle whether the customerid field is required.
-			if ($this->params->get('register-customerid', 1) > 0)
+			// Toggle whether the xiveirmclientid field is required.
+			if ($this->params->get('register-xiveirmclientid', 1) > 0)
 			{
-				$form->setFieldAttribute('customerid', 'required', $this->params->get('register-customerid') == 2, 'xprofile');
+				$form->setFieldAttribute('xiveirmclientid', 'required', $this->params->get('register-xiveirmclientid') == 2, 'xiveirmclientprofile');
 			} else {
-				$form->removeField('customerid', 'xprofile');
+				$form->removeField('xiveirmclientid', 'xiveirmclientprofile');
 			}
 
 			// Toggle whether the jobtitle field is required.
 			if ($this->params->get('register-jobtitle', 1) > 0)
 			{
-				$form->setFieldAttribute('jobtitle', 'required', $this->params->get('register-jobtitle') == 2, 'xprofile');
+				$form->setFieldAttribute('jobtitle', 'required', $this->params->get('register-jobtitle') == 2, 'xiveirmclientprofile');
 			} else {
-				$form->removeField('jobtitle', 'xprofile');
+				$form->removeField('jobtitle', 'xiveirmclientprofile');
 			}
 		}
 	}
@@ -139,12 +139,12 @@ class PlgUserXProfile extends JPlugin
 	{
 		$userId = JArrayHelper::getValue($data, 'id', 0, 'int');
 
-		if ($userId && $result && isset($data['xprofile']) && (count($data['xprofile'])))
+		if ($userId && $result && isset($data['xiveirmclientprofile']) && (count($data['xiveirmclientprofile'])))
 		{
 			try
 			{
 				$db = &JFactory::getDbo();
-				$db->setQuery('DELETE FROM #__user_profiles WHERE user_id = '.$userId.' AND profile_key LIKE \'xprofile.%\'');
+				$db->setQuery('DELETE FROM #__user_profiles WHERE user_id = '.$userId.' AND profile_key LIKE \'xiveirmclientprofile.%\'');
 				if (!$db->query())
 				{
 					throw new Exception($db->getErrorMsg());
@@ -152,9 +152,9 @@ class PlgUserXProfile extends JPlugin
 
 				$tuples = array();
 				$order  = 1;
-				foreach ($data['xprofile'] as $k => $v)
+				foreach ($data['xiveirmclientprofile'] as $k => $v)
 				{
-					$tuples[] = '('.$userId.', '.$db->quote('xprofile.'.$k).', '.$db->quote(json_encode($v)).', '.$order++.')';
+					$tuples[] = '('.$userId.', '.$db->quote('xiveirmclientprofile.'.$k).', '.$db->quote(json_encode($v)).', '.$order++.')';
 				}
 
 				$db->setQuery('INSERT INTO #__user_profiles VALUES '.implode(', ', $tuples));
