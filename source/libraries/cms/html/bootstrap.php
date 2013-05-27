@@ -150,9 +150,17 @@ abstract class JHtmlBootstrap
 		{
 			return;
 		}
+// ----------------------------------------------------------------------------------------------------------------- BEGIN FRAMEOUT
+		$app = JFactory::getApplication();
+		if ($app->isAdmin()) {
+// ----------------------------------------------------------------------------------------------------------------- END FRAMEOUT
 
 		// Load jQuery
 		JHtml::_('jquery.framework');
+
+// ----------------------------------------------------------------------------------------------------------------- BEGIN FRAMEOUT
+		}
+// ----------------------------------------------------------------------------------------------------------------- END FRAMEOUT
 
 		// If no debugging value is set, use the configuration setting
 		if ($debug === null)
@@ -161,7 +169,17 @@ abstract class JHtmlBootstrap
 			$debug = (boolean) $config->get('debug');
 		}
 
+// ----------------------------------------------------------------------------------------------------------------- BEGIN FRAMEOUT
+		$app = JFactory::getApplication();
+		if ($app->isAdmin()) {
+// ----------------------------------------------------------------------------------------------------------------- END FRAMEOUT
+
 		JHtml::_('script', 'jui/bootstrap.min.js', false, true, false, false, $debug);
+
+// ----------------------------------------------------------------------------------------------------------------- BEGIN FRAMEOUT
+		}
+// ----------------------------------------------------------------------------------------------------------------- END FRAMEOUT
+
 		self::$loaded[__METHOD__] = true;
 
 		return;
@@ -389,6 +407,11 @@ abstract class JHtmlBootstrap
 
 			$options = JHtml::getJSObject($opt);
 
+// ----------------------------------------------------------------------------------------------------------------- BEGIN FRAMEOUT
+		$app = JFactory::getApplication();
+		if ($app->isAdmin()) {
+// ----------------------------------------------------------------------------------------------------------------- END FRAMEOUT
+
 			// Attach tooltips to document
 			JFactory::getDocument()->addScriptDeclaration(
 				"jQuery(document).ready(function()
@@ -396,6 +419,10 @@ abstract class JHtmlBootstrap
 					jQuery('" . $selector . "').tooltip(" . $options . ");
 				});"
 			);
+// ----------------------------------------------------------------------------------------------------------------- BEGIN FRAMEOUT
+		}
+// ----------------------------------------------------------------------------------------------------------------- END FRAMEOUT
+
 
 			// Set static array
 			self::$loaded[__METHOD__][$selector] = true;
