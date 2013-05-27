@@ -40,6 +40,16 @@ class NTemplateHelper {
 	var $sessionData;
 
 	/**
+	 * INITIATE THE CONSTRUCTOR
+	 */
+	public function __construct() {
+		$docInit = JFactory::getDocument();
+		$this->doc = $docInit;
+		$this->headData = $docInit->getHeadData();
+		$this->sessionData = JFactory::getSession();
+	}
+
+	/**
 	 * remove selected javascripts from head
 	 * @param	string		$fnJs		the filenames of the scriptfiles - comma separated (file1,file2)
 	 * @param	self		$doc
@@ -144,8 +154,8 @@ class NTemplateHelper {
 	 * @since	11.3
 	 */
 	public function addNewJsHead($type, $string, $dirName = 'framework') {
-		if($type = 'file'):
-			if($direction = 'framework') {
+		if($type == 'file'):
+			if($direction == 'framework') {
 				$baseurl = '/media/nawala/js/' . $string;
 			} else {
 				$baseurl = '/templates/' . $dirName . '/assets/js/' . $string;
@@ -169,22 +179,23 @@ class NTemplateHelper {
 	 * @output					stores scripts in session to be load in template NFWS = (N)awala (F)rame(W)ork (S)ession
 	 */
 	public function addNewJsBodyBottom($type, $string, $dirName = 'framework', $order) {
-		$scriptDec = array();
-		if($type = 'file')
+		$sessionScripts = $this->sessionData->get('NFWSScriptBodyBottom');
+		if($type == 'file')
 		{
-			if($direction = 'framework') {
+			if($dirName == 'framework') {
 				$url = '/media/nawala/js/' . $string;
-				$scriptDec[$order] = '<script type="text/javascript" src="' . $url . '"></script>';
+				$sessionScripts[$order] = '<script type="text/javascript" src="' . $url . '"></script>';
 			} else {
 				$url = '/templates/' . $dirName . '/assets/js/' . $string;
-				$scriptDec[$order] = '<script type="text/javascript" src="' . $url . '"></script>';
+				$sessionScripts[$order] = '<script type="text/javascript" src="' . $url . '"></script>';
 			}
 		}
 		else
 		{
-			$scriptDec[$order] = '<script type="text/javascript">' . $string . '</script>';
+			$sessionScripts[$order] = '<script type="text/javascript">' . $string . '</script>';
 		}
-		return $this->sessionData->set('NFWSScriptBodyBottom', $scriptDec);
+
+		return $this->sessionData->set('NFWSScriptBodyBottom', $sessionScripts);
 	}
 
 	/**
@@ -196,12 +207,12 @@ class NTemplateHelper {
 	 * @since	11.3
 	 */
 	public function addNewCssHead($type, $string, $dirName = 'framework') {
-		if($type = 'file')
+		if($type == 'file')
 		{
-			if($direction = 'framework') {
-				$baseurl = '/media/nawala/css/' . $string;
+			if($dirName == 'framework') {
+				$url = '/media/nawala/css/' . $string;
 			} else {
-				$baseurl = '/templates/' . $dirName . '/assets/css/' . $string;
+				$url = '/templates/' . $dirName . '/assets/css/' . $string;
 			}
 			return $this->doc->addStyleSheet($url);
 		}
@@ -214,8 +225,9 @@ class NTemplateHelper {
 	/**
 	 * load the style and js framework if nessesary
 	 * @param	string		$type		type of what framework should be load ("core" or "nawala")
+	 * @param	boolean	$noConflict	should noconflict load? true or false
 	 */
-	public function loadFramework($type) {
+	public function loadFramework($type, $noConflict) {
 		if($type == 'core')
 		{
 			return JHtml::_('bootstrap.framework');
@@ -223,17 +235,21 @@ class NTemplateHelper {
 		else if($type == 'nawala')
 		{
 			$baseurl = '/media/nawala/js/';
-			$scriptDec[1] = '<script type="text/javascript" src="' . $baseurlurl . 'jquery.min.js"></script>';
-			$scriptDec[2] = '<script type="text/javascript" src="' . $baseurlurl . 'jquery-noconflict.js"></script>';
-			$scriptDec[3] = '<script type="text/javascript" src="' . $baseurlurl . 'bootstrap.min.js"></script>';
+			$scriptDec[1] = '<script type="text/javascript" src="' . $baseurl . 'jquery.min.js"></script>';
+			if($noConflict) {
+				$scriptDec[2] = '<script type="text/javascript" src="' . $baseurl . 'jquery-noconflict.js"></script>';
+			}
+			$scriptDec[3] = '<script type="text/javascript" src="' . $baseurl . 'bootstrap.min.js"></script>';
 			return $this->sessionData->set('NFWSScriptBodyBottom', $scriptDec);
 		}
 		else
 		{
 			$baseurl = '/templates/' . $type . '/assets/js/';
-			$scriptDec[1] = '<script type="text/javascript" src="' . $baseurlurl . 'jquery.min.js"></script>';
-			$scriptDec[2] = '<script type="text/javascript" src="' . $baseurlurl . 'jquery-noconflict.js"></script>';
-			$scriptDec[3] = '<script type="text/javascript" src="' . $baseurlurl . 'bootstrap.min.js"></script>';
+			$scriptDec[1] = '<script type="text/javascript" src="' . $baseurl . 'jquery.min.js"></script>';
+			if($noConflict) {
+				$scriptDec[2] = '<script type="text/javascript" src="' . $baseurl . 'jquery-noconflict.js"></script>';
+			}
+			$scriptDec[3] = '<script type="text/javascript" src="' . $baseurl . 'bootstrap.min.js"></script>';
 			return $this->sessionData->set('NFWSScriptBodyBottom', $scriptDec);
 		}
 	}
@@ -246,22 +262,16 @@ class NTemplateHelper {
 		if($sessionScripts)
 		{
 			$html = '<!-- NFWSScriptBodyBottom -->' . "\n";
-			for($i = 0; $i < 5000; $i++)
+			for($i = 0; $i < 1000; $i++)
 			{
-				if($sessionScripts[$i])
+				if(isset($sessionScripts[$i]))
 				{
 					$html .= $sessionScripts[$i] . "\n";
 				}
 			}
 			$html .= '</div>';
-			
-			return $html;
+
+			echo $html;
 		}
 	}
 }
-
-new NTemplateHelper();
-
-//  = JFactory::getDocument()
-//  = $doc->getHeadData()
-//  = JFactory::getSession()
