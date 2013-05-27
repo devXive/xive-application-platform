@@ -184,15 +184,15 @@ class NTemplateHelper {
 		{
 			if($dirName == 'framework') {
 				$url = '/media/nawala/js/' . $string;
-				$sessionScripts[$order] = '<script type="text/javascript" src="' . $url . '"></script>';
+				$sessionScripts[] = '<!--' . $order . '--><script type="text/javascript" src="' . $url . '"></script>';
 			} else {
 				$url = '/templates/' . $dirName . '/assets/js/' . $string;
-				$sessionScripts[$order] = '<script type="text/javascript" src="' . $url . '"></script>';
+				$sessionScripts[] = '<!--' . $order . '--><script type="text/javascript" src="' . $url . '"></script>';
 			}
 		}
 		else
 		{
-			$sessionScripts[$order] = '<script type="text/javascript">' . $string . '</script>';
+			$sessionScripts[] = '<!--' . $order . '--><script type="text/javascript">' . $string . '</script>';
 		}
 
 		return $this->sessionData->set('NFWSScriptBodyBottom', $sessionScripts);
@@ -235,21 +235,21 @@ class NTemplateHelper {
 		else if($type == 'nawala')
 		{
 			$baseurl = '/media/nawala/js/';
-			$scriptDec[1] = '<script type="text/javascript" src="' . $baseurl . 'jquery.min.js"></script>';
+			$scriptDec[] = '<!--0001--><script type="text/javascript" src="' . $baseurl . 'jquery.min.js"></script>';
 			if($noConflict) {
-				$scriptDec[2] = '<script type="text/javascript" src="' . $baseurl . 'jquery-noconflict.js"></script>';
+				$scriptDec[] = '<!--0002--><script type="text/javascript" src="' . $baseurl . 'jquery-noconflict.js"></script>';
 			}
-			$scriptDec[3] = '<script type="text/javascript" src="' . $baseurl . 'bootstrap.min.js"></script>';
+			$scriptDec[] = '<!--0003--><script type="text/javascript" src="' . $baseurl . 'bootstrap.min.js"></script>';
 			return $this->sessionData->set('NFWSScriptBodyBottom', $scriptDec);
 		}
 		else
 		{
 			$baseurl = '/templates/' . $type . '/assets/js/';
-			$scriptDec[1] = '<script type="text/javascript" src="' . $baseurl . 'jquery.min.js"></script>';
+			$scriptDec[] = '<!--0001--><script type="text/javascript" src="' . $baseurl . 'jquery.min.js"></script>';
 			if($noConflict) {
-				$scriptDec[2] = '<script type="text/javascript" src="' . $baseurl . 'jquery-noconflict.js"></script>';
+				$scriptDec[] = '<!--0002--><script type="text/javascript" src="' . $baseurl . 'jquery-noconflict.js"></script>';
 			}
-			$scriptDec[3] = '<script type="text/javascript" src="' . $baseurl . 'bootstrap.min.js"></script>';
+			$scriptDec[] = '<!--0003--><script type="text/javascript" src="' . $baseurl . 'bootstrap.min.js"></script>';
 			return $this->sessionData->set('NFWSScriptBodyBottom', $scriptDec);
 		}
 	}
@@ -261,13 +261,11 @@ class NTemplateHelper {
 		$sessionScripts = $this->sessionData->get('NFWSScriptBodyBottom');
 		if($sessionScripts)
 		{
+			sort($sessionScripts);
 			$html = '<!-- NFWSScriptBodyBottom -->' . "\n";
-			for($i = 0; $i < 1000; $i++)
+			foreach($sessionScripts as $script)
 			{
-				if(isset($sessionScripts[$i]))
-				{
-					$html .= $sessionScripts[$i] . "\n";
-				}
+				$html .= $script . "\n";
 			}
 			$html .= '</div>';
 
