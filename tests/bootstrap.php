@@ -26,4 +26,4 @@ if (!$loader = @include($loader)) {
 	exit(1);
 }
 
-$loader->add('BitTorrent\Announcer', __DIR__);
+$loader->add('source', __DIR__);
