@@ -2,3 +2,7 @@ language: php
 php:
   - "5.4"
   - "5.3"
+
+before_script:
+  - mysql -e 'create database xap_ut;'
+  - mysql xap_ut < tests/mysql/mysql.sql
