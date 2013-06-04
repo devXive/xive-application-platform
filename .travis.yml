@@ -5,3 +5,6 @@ php:
 before_script:
   - mysql -e 'create database xap_ut;'
   - mysql xap_ut < tests/mysql/mysql.sql
+
+script:
+  - phpunit --configuration phpunit.travis.xml
