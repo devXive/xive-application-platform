@@ -4,7 +4,7 @@
 	"description": "XAP - a application platform build for building applications",
 	"keywords": ["irm", "wms", "cms", "bootstrap", "devxive", "xive"],
 	"homepage": "https://github.com/devXive/xive-application-platform",
-	"license": "GPL,
+	"license": "GPL",
 	"authors": [{
 		"name": "devXive",
 		"email": "support@devxive.com"
