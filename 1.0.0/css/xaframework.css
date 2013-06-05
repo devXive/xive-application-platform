@@ -1,0 +1,25 @@
+sup {
+    font-size: 75%;
+    line-height: 100%;
+    vertical-align: 57%;
+}
+
+sub {
+    font-size: 75%;
+    line-height: 100%;
+    vertical-align: -10%;
+}
+
+.caps {
+    letter-spacing: 0.1em;
+}
+
+.quo {
+    margin-left: -0.16em;
+    width: 0.16em;    
+}
+
+.dquo {
+    margin-left: -0.33em;
+    width: 0.33em;
+}

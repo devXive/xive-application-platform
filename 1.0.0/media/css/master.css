@@ -1,0 +1,7 @@
+/*IMPORT ALL CSS FILES IN MEDIA CSS FOLDER*/
+
+/* FONTS */
+@import url(fonts.css);
+
+/* SPRITES AND IMAGES */
+@import url(base64_sprites.css);
