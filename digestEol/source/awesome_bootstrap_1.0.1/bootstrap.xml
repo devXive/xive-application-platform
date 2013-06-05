@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="2.5" method="upgrade" group="system">
+    <name>System - Awesome Bootstrap 3.0</name>
+    <creationDate>2012-07-04</creationDate>
+    <author>devXive - research and development</author>
+    <authorEmail>support@devXive.com</authorEmail>
+    <authorUrl>http://www.devXive.com</authorUrl>
+    <copyright>http://www.devXive.com</copyright>
+    <license></license>
+    <version>1.0.1</version>
+	<description><![CDATA[
+		<h1>The power of both</h1>
+		<h2>Twitter Bootstrap and Font Awesome</h2>
+		<p>
+			Using Twitter Bootstrap and Font Awesome as a library in Joomla or Mootombo sites easily.<br>
+			<ul>
+				<li>Twitter Bootstrap is a powerful CSS framework, more details, please refer http://twitter.github.com/bootstrap/</li>
+				<li>Font Awesome is an iconic font, designed for the Twitter Bootstrap, more details, please refer http://fortawesome.github.com/Font-Awesome/</li>
+			</ul>
+		</p>
+		<br>
+		<h2>Changelog</h2>
+		<h4>Version: 1.0.1</h4>
+		<ul>
+			<li>+ abillity to add CSS_Styles to override.css and custom.css (Setup at plugin settings)</li>
+		</ul>
+		<h4>Version: 1.0.0</h4>
+		<ul>
+			<li>initial release</li>
+		</ul>
+		<br>
+		<p>Twitter Bootstrap Version: 2.0.4 - Font Awesone Version: 2.0.0.25, jquery Version: 1.7.1</p>
+		<p>Created by <a href="http://www.devxive.com" target="_blank">devXive - research and development | devXive.com</a>.</p>
+	]]></description>
+    <files>
+        <filename plugin="bootstrap">bootstrap.php</filename>
+        <filename>index.html</filename>
+    </files>
+    <media>
+        <folder>bootstrap</folder>
+    </media>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="loadCSS" type="radio"
+                       default="1"
+                       description="Load Bootstrap CSS files for all pages"
+                       label="Load CSS"
+                        >
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field name="loadExtendedCSS" type="radio"
+                       default="1"
+                       description="Load Custom and Override CSS files for all pages"
+                       label="Load Extended CSS"
+                        >
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field name="loadJS" type="radio"
+                       default="1"
+                       description="Load Bootstrap JavaScript files for all pages"
+                       label="Load JavaScript"
+                        >
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+
+                <field name="loadJQuery" type="radio"
+                       default="1"
+                       description="Bootstrap JavaScript depends on jQuery"
+                       label="Load jQuery"
+                        >
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field name="jQueryFromLocal" type="radio"
+                       default="1"
+                       description="Load jQuery from your own site, otherwise load jQuery from Google AJAX Libraries CDN."
+                       label="Load jQuery from Local"
+                        >
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+
+            </fieldset>
+            <fieldset  name="advanced">
+                <field name="loadFontAwesome" type="radio"
+                       default="0"
+                       description="Load Font Awesome CSS and Font files for all pages. More information at www.fortawesome.github.com/Font-Awesome"
+                       label="Load FontAwesome"
+                        >
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field name="loadGoogleCodePrettify" type="radio"
+                       default="0"
+                       description="Load Google Code Prettify"
+                       label="Load GoogleCodePrettify"
+                        >
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field name="onlyFrontside" type="radio"
+                       default="1"
+                       description="The Scope to enable bootstrap"
+                       label="Scope"
+                        >
+                    <option value="1">Site</option>
+                    <option value="0">Both Admin and Site</option>
+                </field>
+                <field name="onlyHTML" type="radio"
+                       default="1"
+                       description="Which file type to enalbe bootstrap"
+                       label="File Types"
+                        >
+                    <option value="1">HTML</option>
+                    <option value="0">All Types</option>
+                </field>
+                <field name="notModal" type="radio"
+                       default="1"
+                       description="Enable Bootstrap for Modal Dialog"
+                       label="Modal Dialog"
+                        >
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
