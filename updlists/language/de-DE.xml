@@ -66,4 +66,15 @@
     </downloads>
     <targetplatform name="joomla" version="3.[012345]"/>
   </update>
+  <update>
+    <name>German</name>
+    <description>German Translation of XAP</description>
+    <element>pkg_de-DE</element>
+    <type>package</type>
+    <version>3.1.1.1</version>
+    <downloads>
+      <downloadurl type="full" format="zip">https://raw.github.com/devXive/xive-application-platform/master/updlists/language/de-DE/3111.zip</downloadurl>
+    </downloads>
+    <targetplatform name="joomla" version="3.[012345]"/>
+  </update>
 </updates>
