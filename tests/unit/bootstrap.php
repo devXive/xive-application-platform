@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Prepares a minimalist framework for unit testing.
  *
