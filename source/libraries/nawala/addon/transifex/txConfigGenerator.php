@@ -111,6 +111,10 @@ foreach($filesArray as $file) {
 
 	$txFileSlug = $key . '-' . str_replace('.', '_', $stripSourceLang);
 
+	if($fileArray[1] == $sourceWhitelistExt) {
+		$txFileSlug = $key . '-main_' . str_replace('.', '_', $stripSourceLang);
+	}
+
 	echo "[$txProjectSlug.$txFileSlug]\n";
 	echo "source_file = $finalSourceFileDir[$key]/$sourceLang/$sourceLang.$stripSourceLang\n";
 	echo "file_filter = $finalFilterFileDir[$key]/<lang>/<lang>.$stripSourceLang\n";
