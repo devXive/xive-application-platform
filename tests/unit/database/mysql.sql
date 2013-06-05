@@ -3,7 +3,7 @@
 
 DROP TABLE IF EXISTS `xap_dbtest`;
 
-CREATE TABLE `jos_dbtest` (
+CREATE TABLE `xap_dbtest` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `date` datetime NOT NULL,
   `title` varchar(50) NOT NULL,
