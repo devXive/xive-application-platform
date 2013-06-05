@@ -753,11 +753,6 @@ source_file = source/language/en-GB/en-GB.com_finder.ini
 file_filter = source/language/<lang>/<lang>.com_finder.ini
 source_lang = en_GB
 
-[xive-application-platform.site-com_invoices_ini]
-source_file = source/language/en-GB/en-GB.com_invoices.ini
-file_filter = source/language/<lang>/<lang>.com_invoices.ini
-source_lang = en_GB
-
 [xive-application-platform.site-com_mailto_ini]
 source_file = source/language/en-GB/en-GB.com_mailto.ini
 file_filter = source/language/<lang>/<lang>.com_mailto.ini
@@ -941,16 +936,6 @@ source_lang = en_GB
 [xive-application-platform.site-tpl_standard_sys_ini]
 source_file = source/language/en-GB/en-GB.tpl_standard.sys.ini
 file_filter = source/language/<lang>/<lang>.tpl_standard.sys.ini
-source_lang = en_GB
-
-[xive-application-platform.site-tpl_xapptheme_ini]
-source_file = source/language/en-GB/en-GB.tpl_xapptheme.ini
-file_filter = source/language/<lang>/<lang>.tpl_xapptheme.ini
-source_lang = en_GB
-
-[xive-application-platform.site-tpl_xapptheme_sys_ini]
-source_file = source/language/en-GB/en-GB.tpl_xapptheme.sys.ini
-file_filter = source/language/<lang>/<lang>.tpl_xapptheme.sys.ini
 source_lang = en_GB
 
 [xive-application-platform.installation-installer_ini]
