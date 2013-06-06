@@ -3781,6 +3781,7 @@ div.modal.fade.in {
 .thumbnail {
 	display: block;
 	padding: 4px;
+	min-width: 68px;
 	line-height: 18px;
 	border: 1px solid #ddd;
 	-webkit-border-radius: 4px;
