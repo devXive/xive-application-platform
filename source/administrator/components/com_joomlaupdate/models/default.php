@@ -39,6 +39,19 @@ class JoomlaupdateModelDefault extends JModelLegacy
 			// "XAP branch - Recommended"
 			case 'xap':
 				$updateURL = 'https://raw.github.com/devXive/xive-application-platform/master/updlists/core.xml';
+			// "Long Term Support (LTS) branch - Recommended"
+			case 'lts':
+				$updateURL = 'http://update.joomla.org/core/list.xml';
+				break;
+
+			// "Short term support (STS) branch"
+			case 'sts':
+				$updateURL = 'http://update.joomla.org/core/sts/list_sts.xml';
+				break;
+
+			// "Testing"
+			case 'testing':
+				$updateURL = 'http://update.joomla.org/core/test/list_test.xml';
 				break;
 
 			// "Custom"
