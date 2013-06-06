@@ -1,0 +1,484 @@
+<?php
+/**
+ * @package		XAP.Installation
+ * @copyright	Copyright (C) 1997 - 2013 devXive - research and development. All rights reserved.
+ * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
+defined('_JEXEC') or die;
+?>
+
+-----Please save file as UTF8
+
+-------------------- XAP 3.x Credits ---------------------
+
+Code contributors:
+------------------
+Adrian Louter
+Adrian Victor III Onod
+Airton Torres
+Akarawuth Tamrareang
+Amy Stephen
+Andrea Tarr
+Andrew Eddie
+Andy Capiau
+Angie Radtke
+Anja Hage
+Anthony Ferrara
+Anthony McLin
+Antonio Escobar Tizon
+Artyom Bisyarin
+Benjamin Trenkle
+Bill Richardson
+Birger Lehner
+Boris Baddenoff
+Brian Teeman
+C. Tapuscrine
+Cherif Gouiaa
+Chris Davenport
+Christophe Demko
+Christopher Garvis
+Cristina Solana
+CY Lee
+Dennis Hermacki
+Elin Waring
+Ercan Ozkaya
+Franklin Tse
+Gergő Erdősi
+Gobezu Sewu
+Hannes Papenberg
+Harry Reinhardt
+Ian MacLennan
+Iszak Bryan
+Jacob Waisner
+Janich Rasmussen
+Jason Pettett
+Jean-Marie Simonet
+Jen Kramer
+Jennifer Marriott
+Jeremy Wilken
+Jonatas Braganca
+Jonnathan S. Lima
+Joseph LeBlanc
+Kevin Devine
+Klas Berlič
+Louis Landry
+Loyd Headrick
+Marijke Stuivenberg
+Marius van Rijnsoever
+Mark Dexter
+Martijn Maandag
+Mathavan Jeyadev
+Matt Thomas
+Michael Babker
+Navid Zeraati
+Nicholas Dionysopoulos
+Nikolai Plath
+Ole Bang Ottosen
+Omar Ramos
+Peter Osipof
+Phani Kalluri
+Phil Snell
+Prasit Gebsaap
+Radek Suski
+Ramindu Deshapriya
+Rob Joyce
+Rob Schley
+Robert Deutz
+Roland Dalmulder
+Ron Severdia
+Ronald de Vries
+Ronald Pijpers
+Rouven Weßling
+Rune Sjøen
+Samuel Moffatt
+Sander Potjer
+Selene Feigl
+Sergio Iglesias
+Stefania Gaianigo
+Steve Burge
+Sudhi Seshachala
+Thierry Bela
+Tim Plummer
+Tore Krudtaa
+Troy Hall
+Tudor Mazilu
+Viet Hoang Vu
+Zachary Draper.
+
+
+
+Documentation Contributors:
+---------------------------
+
+
+
+
+Translation Contributors:
+-------------------------
+German (de-DE)/(de-CH)/(de-AT) - Lahmizzar Muinela
+
+
+-------------------- XAP 2.x Credits ---------------------
+
+Code contributers:
+------------------
+Levis Bisson
+Blagovest Dachev
+Andrew Eddie
+Anthony Ferrara
+David Gall
+Gergo Erdosi
+Rey Gigataras
+Wilco Jansen
+Johan Janssens
+Alex Kempkens
+Jason Kendall
+Enno Klasing
+Mati Kochen
+Mateusz Kreszowiec
+Louis Landry
+Alan Langford
+Mickael Maison
+Rastin Mehr
+Andy Miller
+Samuel Moffatt
+Robin Muilwijk
+Hannes Pappenberg
+Toby Patterson
+Nur Aini Rakhmawati
+Emir Sakic
+Rob Schley
+Amy Stephen
+Marko Schmuck
+Airton Torres
+Jui-Yu Tsai (Ray)
+Charl van Niekerk
+Laurens Vanderput
+Elin Warring
+Arno Zijlstra
+
+Documentation Contributers:
+---------------------------
+Leandro Bergantiños
+Michelle Bisson
+Chris Davenport
+Ian MacLennan
+Chad McKissick
+René Serradeil
+Andy Wallace
+
+Translation contributors:
+-------------------------
+German (de-DE)/(de-CH)/(de-AT) - Lahmizzar Muinela
+
+XAP 2.x includes or is derivative of works distributed under the licenses listed below.
+The full text for most of the licenses listed below can be found in the LICENSES.php file.
+The original copyright notices have been preserved within the respective files and or
+packages. Please refer to the specific files and/or packages for more detailed information
+about the authors, copyright notices, and licenses.
+---------------------------------------------------------------------------------------------
+
+Archive
+-------
+Author:		Vincent Blavet
+Copyright:	Copyright (C) 1997-2003 The PHP Group
+License:	BSD License
+
+Domit
+-----
+Author:		John Heinstein
+Copyright:	Copyright (C) 2004 John Heinstein. All rights reserved
+License:	GNU Lesser General Public License (LGPL) 2.1 or later
+
+Feedcreator
+-----------
+Author:		Kai Blankenhorn
+Copyright:	Copyright (C) Kai Blankenhorn
+License:	GNU Lesser General Public License (LGPL) 2.1 or later
+
+js-calendar
+-----------
+Author:		Mihai Bazon
+Copyright:	Copyright (C) Mihai Bazon, 2002
+License:	GNU Lesser General Public License (LGPL) 2.1 or later
+
+js-dtree
+--------
+Author:		Geir Landrö
+Copyright:	Copyright (c) 2002-2003 Geir Landrö
+License:	Freeware license
+
+js-jscook-menu
+--------------
+Author:		Heng Yuan
+Copyright:	Copyright (C) 2002-2005 by Heng Yuan
+License:	MIT License
+
+js-overlib
+----------
+Author:		Erik Bosrup
+Copyright:	Copyright (C) Erik Bosrup 1998-2004. All rights reserved.
+License:	Artistic (see http://www.bosrup.com/web/overlib/?License)
+
+js-squeezebox, js-swiff, js-fancyupload
+---------------------------------------
+Author:		Harald Kirschner
+Copyright:	Copyright (C) Harald Kirschner
+License:	MIT-style license
+
+js-tab-pane
+-----------
+Author:		Erik Arvidsson
+Copyright:	Copyright (C) 1998 - 2003 Erik Arvidsson
+License:	GNU General Public License (GPL)
+
+js-wz-tooltip
+-------------
+Author:		Walter Zorn
+Copyright:	Copyright (c) 2002-2004 Walter Zorn. All rights reserved.
+License:	GNU Lesser General Public License (LGPL) 2.1 or later
+
+Mootools
+--------
+Author:		Valerio Proietti
+Copyright:	Copyright (C) 2007 Valerio Proietti
+License:	MIT license
+
+patError
+------
+Author:		gERD Schaufelberger, Sebastian Mordziol, Stephan Schmidt
+Copyright:	Copyright (C) gERD Schaufelberger, Sebastian Mordziol, Stephan Schmidt
+License:	GNU Lesser General Public License (LGPL)
+
+patTemplate
+-----------
+Author:		Stephan Schmidt
+Copyright:	Copyright (C) Stephan Schmidt
+License:	GNU Lesser General Public License (LGPL)
+
+Pear
+----
+Author:		Sterling Hughes, Stig Bakken, Tomas V.V.Cox, Greg Beaver
+Copyright:	Copyright (C) 1997-2006 The PHP Group
+License:	PHP License 3.0
+
+PHPGACL
+-------
+Author:		Mike Benoit
+Copyright:	Copyright (C) 2002, 2003 Mike Benoit
+License:	GNU Lesser General Public License (LGPL) 2.1 or later
+
+PHPInputfilter
+--------------
+Author:		Daniel Morris
+Copyright:	Copyright (C) Daniel Morris
+License:	GNU General Public License (GPL)
+
+PHPMailer
+--------
+Author:		Brent R. Matzelle
+Copyright:	Copyright (C) 2001 - 2003 Brent R. Matzelle
+License:	GNU Lesser General Public License (LGPL) 2.1
+
+phpUTF8
+-------
+Author:		Harry Fuecks
+Copyright:	Copyright (C) Harry Fuecks
+License:	GNU Lesser General Public License (LGPL) 2.1
+
+PHPXMLRPC
+---------
+Author:		Edd Dumbill
+Copyright:	Copyright (C) 1999,2000,2002 Edd Dumbill
+License:	BSD License
+
+SimplePie
+---------
+Author:		Ryan Parman and Geoffrey Sneddon
+Copyright:	Copyright (C) 2004-2007, Ryan Parman and Geoffrey Sneddon
+License:	BSD License
+
+TCPDF
+-----
+Author:		Nicola Asuni
+Copyright:	Copyright (C) Nicola Asuni
+License:	GNU Lesser General Public License (LGPL) 2.1
+
+VCard
+-----
+Author:		Kai Blankenhorn
+Copyright:	Copyright (C) Kai Blankenhorn
+License:	GNU General Public License (GPL) 2 or later
+
+XStandard Lite
+--------------
+Author:		Belus Technology Inc.
+Copyright:	Copyright (c) 2006 Belus Technology Inc.
+License:	Freeware license
+
+FOOOD Icons
+-----------
+Copyright:	2004 iCandy Junior Icons
+License:	http://www.iconaholic.com/help/joomla.html
+Notes:		Please note these icons are NOT OPEN SOURCE but used with permission
+
+Print & Email Front End Icons
+-----------------------------
+Copyright:	Copyright (C) 2005 Plone Foundation
+License:	GNU Lesser General Public License (LGPL)
+
+
+
+-------------------- XAP 1.x Credits ---------------------
+
+Code contributers:
+------------------
+Nick Anies
+Brad Baker
+Ron Bakker
+Shayne Bartlett
+Tim Broeker
+Levis Bisson
+Michelle Bisson
+Robert Castley
+Andrew Eddie
+Rey Gigataras
+Johan Janssens
+Alex Kempkens
+Peter Koch
+Louis Landry
+James Logan
+Andy Miller
+Mitch Pirtle
+Steen Rabol
+Peter Russel
+Phil Taylor
+Brian Teeman
+Emir Sakic
+Rob Schley
+Jean-Marie Simonet
+Andy Stewart
+Trijnie Wanders
+Arno Zijlstra
+
+XAP 1.x includes or is derivative of works distributed under the licenses listed below.
+The full text for most of the licenses listed below can be found in the LICENSES.php file.
+Some of the licenses could not be copied without permission. In those cases, URLs are
+provided to the full text of the license. The original copyright notices have been preserved
+within the respective files and or packages.  Please refer to the specific files and/or
+packages for more detailed information about the authors, copyrights, and licenses.
+---------------------------------------------------------------------------------------------
+
+Archive
+-------
+Author:		Vincent Blavet
+Copyright:	Copyright (C) 1997-2003 The PHP Group
+License:	PHP License 3.0
+
+Cache
+-----
+Author:		Fabien Marty
+Copyright:	Copyright (C) Fabien Marty
+License:	GNU Lesser General Public License (LGPL)
+
+Domit
+-----
+Author:		John Heinstein
+Copyright:	Copyright (C) 2004 John Heinstein. All rights reserved
+License:	GNU Lesser General Public License (LGPL)
+
+ezpdf
+-----
+Author:		Wayne Munro, R&OS Ltd.
+License:	Public Domain
+
+Feedcreator
+-----------
+Author:		Kai Blankenhorn
+Copyright:	Copyright (C) Kai Blankenhorn
+License:	GNU Lesser General Public License (LGPL)
+
+js-calendar
+-----------
+Author:		Mihai Bazon
+Copyright:	Copyright (C) Mihai Bazon, 2002
+License:    GNU Lesser General Public License (LGPL)
+
+js-jscook-menu
+--------------
+Author:		Heng Yuan
+Copyright:	Copyright (C) 2002-2005 by Heng Yuan
+License:    MIT License
+
+js-overlib
+----------
+Author:		Erik Bosrup
+Copyright:	Copyright (C) Erik Bosrup 1998-2004. All rights reserved.
+License:	Artistic (see http://www.bosrup.com/web/overlib/?License)
+
+js-tabs
+-------
+Author:		Erik Arvidsson
+Copyright:	Copyright (C) 1998 - 2003 Erik Arvidsson
+License:	GNU General Public License (GPL)
+
+Mambo
+-----
+Copyright:	Copyright (C) 2000 - 2004 Mambo Foundation, Inc.
+Copyright:	Copyright (C) 2000 - 2004 Miro International Pty Ltd.
+License:	GNU General Public License (GPL)
+
+patError
+--------
+Author:		gERD Schaufelberger, Sebastian Mordziol, Stephan Schmidt
+Copyright:	Copyright (C) gERD Schaufelberger, Sebastian Mordziol, Stephan Schmidt
+License:	GNU Lesser General Public License (LGPL)
+
+patTemplate
+-----------
+Author:		Stephan Schmidt
+Copyright:	Copyright (C) Stephan Schmidt
+License:	GNU Lesser General Public License (LGPL)
+
+Pear
+----
+Author:		Sterling Hughes, Stig Bakken, Tomas V.V.Cox, Greg Beaver
+Copyright:	Copyright (C) 1997-2006 The PHP Group
+License:	PHP License 3.0
+
+PHPGACL
+-------
+Author:		Mike Benoit
+Copyright:	Copyright (C) 2002, 2003 Mike Benoit
+License:	GNU Lesser General Public License (LGPL)
+
+PHPInputfilter
+--------------
+Author:		Daniel Morris
+Copyright:	Copyright (C) Daniel Morris
+License:    GNU General Public License (GPL)
+
+PHPMailer
+---------
+Author:		Brent R. Matzelle
+Copyright:	Copyright (C) 2001 - 2003 Brent R. Matzelle
+License:    GNU General Public License (GPL)
+
+VCard
+-----
+Author:		Kai Blankenhorn
+Copyright:	Copyright (C) Kai Blankenhorn
+License:	GNU General Public License (GPL)
+
+wz-tooltip
+----------
+Author:		Walter Zorn
+Copyright:	Copyright (c) 2002-2004 Walter Zorn. All rights reserved.
+License:	GNU Lesser General Public License (LGPL)
+
+FOOOD Icons (Administrator Toolbar)
+-----------------------------------
+Copyright:	2004 iCandy Junior Icons
+License:	http://www.iconaholic.com/help/joomla.html
+Notes:		Please note these icons are NOT OPEN SOURCE but used with permission
