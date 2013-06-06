@@ -150,6 +150,7 @@ abstract class JHtmlBootstrap
 		{
 			return;
 		}
+
 		// Load jQuery
 		JHtml::_('jquery.framework');
 
@@ -161,7 +162,6 @@ abstract class JHtmlBootstrap
 		}
 
 		JHtml::_('script', 'jui/bootstrap.min.js', false, true, false, false, $debug);
-
 		self::$loaded[__METHOD__] = true;
 
 		return;
