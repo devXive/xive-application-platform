@@ -121,7 +121,7 @@ class PlgContentEmailcloak extends JPlugin
 
 		/*
 		 * Search and fix derivatives of link code <a href="http://mce_host/ourdirectory/email@amail.com"
-		 * >email@email.com</a>. This happens when inserting an email in TinyMCE or is derivates, cancelling
+		 * >email@email.com</a>. This happens when inserting an email in TinyMCE or its derivates, cancelling
 		 * its suggestion to add the mailto: prefix...
 		 */
 		$pattern = $this->_getPattern($searchEmail, $searchEmail);
@@ -143,7 +143,7 @@ class PlgContentEmailcloak extends JPlugin
 
 		/*
 		 * Search and fix derivatives of link code <a href="http://mce_host/ourdirectory/email@amail.com"
-		 * >anytext</a>. This happens when inserting an email in TinyMCE, cancelling its suggestion to add
+		 * >anytext</a>. This happens when inserting an email in TinyMCE or its derivates, cancelling its suggestion to add
 		 * the mailto: prefix...
 		 */
 		$pattern = $this->_getPattern($searchEmail, $searchText);
