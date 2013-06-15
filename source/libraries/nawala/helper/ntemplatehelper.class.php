@@ -45,7 +45,7 @@ class NTemplateHelper {
 	public function __construct() {
 		$docInit = JFactory::getDocument();
 		$this->doc = $docInit;
-		$this->headData = $docInit->getHeadData();
+//		$this->headData = $docInit->getHeadData();
 		$this->sessionData = JFactory::getSession();
 	}
 
