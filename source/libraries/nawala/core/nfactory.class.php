@@ -173,56 +173,109 @@ class NFactory
 	}
 
 	/*
-	 * Global Method to get an array of options. Used for select lists, radio and checkbox sets
-	 * return array if success, else return false
-	 * $table without prefix, option key, client id (return always 0 because 0 is used as global)
+	 * Global Method to get a title by an id (Currently only usergroups and viewlevels)
+	 * return the title if success else return $id
 	 */
-	public function getOptionArray($table, $sl_key, $client_id = 0)
+	public function getTitleById($type, $id, $table = false, $row = false)
 	{
-		if(!$table && !$sl_key && (int) $client_id) {
-			return false;
-		}
-
-		// Init database object.
-		$db = JFactory::getDBO();
+		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 
-		$dbTable = '#__' . $table;
-		$global_id = 0;
-		$key = $sl_key . '.%';
-
-		$query
-			->select(array('client_id', 'sl_value', 'sl_string'))
-			->from($db->quoteName($dbTable))
-			->where('sl_key LIKE ' . $db->quote($key) . '')
-			->where('client_id = ' . $db->quote($global_id) . ' OR client_id = ' . $db->quote($client_id) . '')
-			->order('ordering ASC');
+		if ($type == 'usergroup') {
+			$query
+				->select('title')
+				->from('#__usergroups')
+				->where('id = ' . $db->quote($id) . '');
+		} else if ($type == 'viewlevel') {
+			$query
+				->select('title')
+				->from('#__viewlevels')
+				->where('id = ' . $db->quote($id) . '');
+		} else if ($type == 'category') {
+			$query
+				->select('title')
+				->from('#__categories')
+				->where('id = ' . $db->quote($id) . '');
+		} else if ($type == 'custom' && $table && $row) {
+			$query
+				->select($row)
+				->from('#__' . $table . '')
+				->where('id = ' . $db->quote($id) . '');
+		} else {
+			return $id;
+		}
 
 		$db->setQuery($query);
 
-		// Try to get or return false
-		try
-		{
-			$results = $db->loadObjectList();
-
-			$superglobal = new stdClass;
-			$client = array();
-			$global = array();
-
-			foreach ($results as $result) {
-				if($result->client_id != 0) {
-					$client[$result->sl_value] = $result->sl_string;
-				} else {
-					$global[$result->sl_value] = $result->sl_string;
-				}
-			}
-
-			$superglobal->client = $client;
-			$superglobal->global = $global;
-
-			return $superglobal;
-		} catch (Exception $e) {
-			return false;
+		if ($result = $db->loadResult()) {
+			return $result;
+		} else {
+			return $id;
 		}
+	}
+
+	/*
+	 * Global Method to get authorised actions for the current user based on either the components global settings or the component / sections (as set in access.xml in admin) and an itemId.
+	 *	- See @itemId desc below
+	 *	So we can check against this object if the user can do the action or not
+	 *	Simply use "if(NFactory::getPermissions('com_mycomponent')->core.create) { do something }
+	 *
+	 * @component		string		The name of the component we which to check the permissions for.
+	 * @section		string		The name of the secion (component, category, special section from custom component, like tabapps in xiveirm).
+	 * @sectionsRowId	int		The id of the item with its own acl and therefore its own assets entry in the #__assets table.
+	 *					For XiveIRM i.e. it is the id of the tabapp config entry.
+	 * @itemId		string		The table.id of the item itself. Used for check if edit.own is possible. If not it overrides the core.edit.own with "null" to get a clear object to work with!!!
+	 *
+	 * @return 		jobject	Returned JObject with all ACL informations (no viewing access level).
+	 *
+	 */
+	public function getPermissions($component, $section = false, $sectionsRowId = 0, $item = 0)
+	{
+		$user = JFactory::getUser();
+		$permissionsObject = new JObject;
+
+		if (!$section && empty($sectionsRowId)) {
+			$assetName = $component;
+		} else {
+			$assetName = $component . '.' . $section . '.' . (int) $sectionsRowId;
+		}
+
+		if(!$section) {
+			$actions = JAccess::getActions($component);
+		} else {
+			$actions = JAccess::getActions($component, $section);
+		}
+
+		foreach ($actions as $action) {
+			// Check if we have enough informations, to check the edit.own action. Override the action if condition is not set!
+			if( $action->name == 'core.edit.own' && !empty($item) ) {
+				$itemArray = explode('.', $item);
+				$table = '#__' . $itemArray[0];
+
+				$db = JFactory::getDbo();
+				$query = $db->getQuery(true);
+
+				$query
+					->select('created_by')
+					->from($db->quoteName($table))
+					->where('id = ' . $db->quote($itemArray[1]) . '');
+
+				$db->setQuery($query);
+
+				$result = $db->loadResult();
+
+				if($result != $user->id) {
+					$canEditOwn = null;
+				} else {
+					$canEditOwn = $user->authorise($action->name, $assetName);
+				}
+
+				$permissionsObject->set($action->name, $canEditOwn);
+			} else {
+				$permissionsObject->set($action->name, $user->authorise($action->name, $assetName));
+			}
+		} // End foreach $actions
+
+		return $permissionsObject;
 	}
 }
