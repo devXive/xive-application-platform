@@ -13,21 +13,12 @@
 // no direct access
 defined('_NFWRA') or die;
 
-// Init NLoader.Class
-require_once (realpath(dirname(__FILE__)) . '/core/nloader.class.php');
-
 /**
- * @param  string $path the nawala path to the class to import
+ * Nawala Framework Factory class
  *
- * @return void
+ * @package  Nawala.Framework
+ * @since    13.6
  */
-function nawala_import($path, $config)
+abstract class NFactory
 {
-	return NLoader::import($path, $config);
-}
-
-// Import the framework version class if necessary.
-if (!class_exists('NFramework'))
-{
-	nawala_import('core.nawalaframework', 'once');
 }

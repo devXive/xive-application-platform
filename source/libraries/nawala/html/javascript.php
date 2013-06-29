@@ -10,7 +10,7 @@
 
 defined('_JEXEC') or die;
 
-abstract class NHtmlJSHelper
+abstract class NHtmlJavascript
 {
 	/**
 	 * @var    array  Array containing information for loaded files
@@ -28,7 +28,7 @@ abstract class NHtmlJSHelper
 	 *
 	 * @since   5.0
 	 */
-	public function autoRemove($selector = 'alert', $time = 3000)
+	public function setAutoRemove($selector = 'alert', $time = 3000)
 	{
 		$sig = md5(serialize(array($selector, $time)));
 
@@ -37,6 +37,9 @@ abstract class NHtmlJSHelper
 		{
 			return;
 		}
+
+		// Include Bootstrap framework
+		self::framework();
 
 		// Attach the function to the document
 		JFactory::getDocument()->addScriptDeclaration(
@@ -73,6 +76,9 @@ abstract class NHtmlJSHelper
 		{
 			return;
 		}
+
+		// Include Bootstrap framework
+		self::framework();
 
 		// Attach the function to the document
 		JFactory::getDocument()->addScriptDeclaration(

@@ -16,7 +16,13 @@ defined('_NFWRA') or die;
 // Set the Nawala Framework root path as a constant if necessary.
 if (!defined('NPATH_FRAMEWORK'))
 {
-	define('NPATH_FRAMEWORK', __DIR__ . '/nawala');
+	define('NPATH_FRAMEWORK', JPATH_BASE . '/libraries/nawala');
+}
+
+// Set the Nawala Framework root path as a constant if necessary.
+if (!defined('NPATH_MEDIA'))
+{
+	define('NPATH_MEDIA', JPATH_BASE . '/media/nawala');
 }
 
 // Define legacy directory separator as a constant if not exist
@@ -24,6 +30,25 @@ if(!defined('DS')) {
 	define('DS', DIRECTORY_SEPARATOR);
 }
 
-// Init
-require_once (NPATH_FRAMEWORK . '/init.php');
+// Init NLoader to work in nimport function
+require_once (NPATH_FRAMEWORK . '/core/loader.php');
+
+/**
+ * @param  string $path the nawala path to the class to import
+ *
+ * @return void
+ */
+function nimport($path, $config)
+{
+	return NLoader::import($path, $config);
+}
+
+// Import the framework version class if necessary.
+if (!class_exists('NFramework'))
+{
+	nimport('core.version', 'once');
+}
+
+// Init the factory
+require_once (NPATH_FRAMEWORK . '/factory.php');
 

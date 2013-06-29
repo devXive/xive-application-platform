@@ -19,37 +19,37 @@ defined('_NFWRA') or die;
 final class NFramework
 {
 	// Product name.
-	const PRODUCT = 'Nawala Framework';
+	const NPRODUCT = 'Nawala Framework';
 
 	// Release version.
-	const RELEASE = '13.5';
+	const NRELEASE = '13.6';
 
 	// Maintenance version.
-	const MAINTENANCE = '0';
+	const NMAINTENANCE = '0';
 
 	// Development STATUS.
-	const STATUS = 'Alpha';
+	const NSTATUS = 'Alpha';
 
 	// Build number.
-	const BUILD = 0;
+	const NBUILD = 0;
 
 	// Code name.
-	const CODE_NAME = 'Bagong Simula';
+	const NCODE_NAME = 'Bagong Simula';
 
 	// Release date.
-	const RELEASE_DATE = '07-May-2013';
+	const NRELEASE_DATE = '01-Jul-2013';
 
 	// Release time.
-	const RELEASE_TIME = '00:00';
+	const NRELEASE_TIME = '00:00';
 
 	// Release timezone.
-	const RELEASE_TIME_ZONE = 'GMT';
+	const NRELEASE_TIME_ZONE = 'GMT';
 
 	// Copyright Notice.
-	const COPYRIGHT = 'Copyright (C) 1997 - 2013 devXive - research and development. All rights reserved.';
+	const NCOPYRIGHT = 'Copyright (C) 1997 - 2013 devXive - research and development. All rights reserved.';
 
 	// Link text.
-	const LINK_TEXT = '<a href="http://devxive.com/nawala">The Nawala Framework</a> is Free Software released under the GNU General Public License.';
+	const NLINK_TEXT = '<a href="http://devxive.com/nawala">The Nawala Framework</a> is Free Software released under the GNU General Public License.';
 
 	/**
 	 * Compares two a "PHP standardized" version number against the current Nawala Framework version.
@@ -72,7 +72,7 @@ final class NFramework
 	 */
 	public static function getShortVersion()
 	{
-		return self::RELEASE . '.' . self::MAINTENANCE;
+		return self::NRELEASE . '.' . self::NMAINTENANCE;
 	}
 
 	/**
@@ -82,7 +82,7 @@ final class NFramework
 	 */
 	public static function getLongVersion()
 	{
-		return self::PRODUCT . ' ' . self::RELEASE . '.' . self::MAINTENANCE . ' ' . self::STATUS . ' [ ' . self::CODE_NAME . ' ] '
-			. self::RELEASE_DATE . ' ' . self::RELEASE_TIME . ' ' . self::RELEASE_TIME_ZONE;
+		return self::NPRODUCT . ' ' . self::NRELEASE . '.' . self::NMAINTENANCE . ' ' . self::NSTATUS . ' [ ' . self::NCODE_NAME . ' ] '
+			. self::NRELEASE_DATE . ' ' . self::NRELEASE_TIME . ' ' . self::NRELEASE_TIME_ZONE;
 	}
 }
