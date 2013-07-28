@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension version="3.1" type="file" method="upgrade">
 	<name>files_joomla</name>
-	<author>Joomla! Project</author>
-	<authorEmail>admin@joomla.org</authorEmail>
-	<authorUrl>www.joomla.org</authorUrl>
+	<author>XAP! Project</author>
+	<authorEmail>support@devxive.com</authorEmail>
+	<authorUrl>www.devxive.com</authorUrl>
 	<copyright>(C) 1997 - 2013 devXive - research and development. All rights reserved</copyright>
 	<license>GNU General Public License version 2 or later; see     LICENSE.txt</license>
 	<version>3.1.4</version>
