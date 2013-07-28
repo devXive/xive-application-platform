@@ -9,22 +9,23 @@
 
 defined('_JEXEC') or die;
 
+JHtml::addIncludePath(JPATH_SITE . '/components/com_finder/helpers/html');
+
 JHtml::_('behavior.framework');
 JHtml::_('bootstrap.tooltip');
-JHtml::addIncludePath(JPATH_SITE . '/components/com_finder/helpers/html');
 
 // Load the smart search component language file.
 $lang = JFactory::getLanguage();
 $lang->load('com_finder', JPATH_SITE);
 
 $suffix = $params->get('moduleclass_sfx');
-$output = '<input type="text" name="q" id="nav-search-input" class="search-query input-medium" size="' . $params->get('field_size', 20) . '" value="' . htmlspecialchars(JFactory::getApplication()->input->get('q', '', 'string')) . '" placeholder="' . JText::_('MOD_FINDER_SEARCH_VALUE', true) . '"/>';
+$output = '<input type="text" name="q" id="mod-finder-searchword" class="search-query input-medium" size="' . $params->get('field_size', 20) . '" value="' . htmlspecialchars(JFactory::getApplication()->input->get('q', '', 'string')) . '" />';
 $button = '';
 $label = '';
 
 if ($params->get('show_label', 1))
 {
-	$label = '<label for="nav-search-input" class="finder' . $suffix . '">' . $params->get('alt_label', JText::_('JSEARCH_FILTER_SUBMIT')) . '</label>';
+	$label = '<label for="mod-finder-searchword" class="finder' . $suffix . '">' . $params->get('alt_label', JText::_('JSEARCH_FILTER_SUBMIT')) . '</label>';
 
 	switch ($params->get('label_pos', 'left')):
 		case 'top' :
@@ -84,16 +85,16 @@ JHtml::stylesheet('com_finder/finder.css', false, true, false);
 		var value;
 
 		// Set the input value if not already set.
-		if (!document.id('nav-search-input').getProperty('value'))
+		if (!document.id('mod-finder-searchword').getProperty('value'))
 		{
-			document.id('nav-search-input').setProperty('value', '<?php echo JText::_('MOD_FINDER_SEARCH_VALUE', true); ?>');
+			document.id('mod-finder-searchword').setProperty('value', '<?php echo JText::_('MOD_FINDER_SEARCH_VALUE', true); ?>');
 		}
 
 		// Get the current value.
-		value = document.id('nav-search-input').getProperty('value');
+		value = document.id('mod-finder-searchword').getProperty('value');
 
 		// If the current value equals the default value, clear it.
-		document.id('nav-search-input').addEvent('focus', function()
+		document.id('mod-finder-searchword').addEvent('focus', function()
 		{
 			if (this.getProperty('value') == '<?php echo JText::_('MOD_FINDER_SEARCH_VALUE', true); ?>')
 			{
@@ -102,7 +103,7 @@ JHtml::stylesheet('com_finder/finder.css', false, true, false);
 		});
 
 		// If the current value is empty, set the previous value.
-		document.id('nav-search-input').addEvent('blur', function()
+		document.id('mod-finder-searchword').addEvent('blur', function()
 		{
 			if (!this.getProperty('value'))
 			{
@@ -134,7 +135,7 @@ JHtml::stylesheet('com_finder/finder.css', false, true, false);
 		<?php if ($params->get('show_autosuggest', 1)) : ?>
 			<?php JHtml::_('script', 'com_finder/autocompleter.js', false, true); ?>
 			var url = '<?php echo JRoute::_('index.php?option=com_finder&task=suggestions.display&format=json&tmpl=component', false); ?>';
-			var ModCompleter = new Autocompleter.Request.JSON(document.id('nav-search-input'), url, {'postVar': 'q'});
+			var ModCompleter = new Autocompleter.Request.JSON(document.id('mod-finder-searchword'), url, {'postVar': 'q'});
 		<?php endif; ?>
 	});
 //]]>
@@ -142,23 +143,21 @@ JHtml::stylesheet('com_finder/finder.css', false, true, false);
 
 <form id="mod-finder-searchform" action="<?php echo JRoute::_($route); ?>" method="get" class="form-search">
 	<div class="finder<?php echo $suffix; ?>">
-		<span class="input-icon">
-			<?php
-			// Show the form fields.
-			echo $output;
-			?>
-			<i id="nav-search-icon" class="icon-search"></i>
-		</span>
+		<?php
+		// Show the form fields.
+		echo $output;
+		?>
 
 		<?php if ($params->get('show_advanced', 1)) : ?>
 			<?php if ($params->get('show_advanced', 1) == 2) : ?>
-				<a href="<?php echo JRoute::_($route); ?>" class="btn btn-mini icon-only hidden-phone btn-primary" title="<?php echo JText::_('COM_FINDER_ADVANCED_SEARCH'); ?>"><i class="icon-terminal"></i></a>
+				<br />
+				<a href="<?php echo JRoute::_($route); ?>"><?php echo JText::_('COM_FINDER_ADVANCED_SEARCH'); ?></a>
 			<?php elseif ($params->get('show_advanced', 1) == 1) : ?>
 				<div id="mod-finder-advanced">
 					<?php echo JHtml::_('filter.select', $query, $params); ?>
 				</div>
 			<?php endif; ?>
 		<?php endif; ?>
-		<?php echo modFinderHelper::getGetFields($route); ?>
+		<?php echo modFinderHelper::getGetFields($route, (int) $params->get('set_itemid')); ?>
 	</div>
 </form>
