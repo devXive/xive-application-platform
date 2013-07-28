@@ -1,14 +1,14 @@
 <?php
 /**
- * @package    Joomla.Administrator
+ * @package    XAP.Administrator
  *
- * @copyright  Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 1997 - 2013 devXive - research and development. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 if (version_compare(PHP_VERSION, '5.3.1', '<'))
 {
-	die('Your host needs to use PHP 5.3.1 or higher to run this version of Joomla!');
+	die('Your host needs to use PHP 5.3.1 or higher to run this version of MOOTOMBO! iWMS');
 }
 
 /**
@@ -42,6 +42,20 @@ $app = JFactory::getApplication('administrator');
 $app->initialise(
 	array('language' => $app->getUserState('application.lang'))
 );
+
+// Test for magic quotes
+if (get_magic_quotes_gpc())
+{
+	$lang = JFactory::getLanguage();
+	if ($lang->hasKey('JERROR_MAGIC_QUOTES'))
+	{
+		JFactory::getApplication()->enqueueMessage(JText::_('JERROR_MAGIC_QUOTES'), 'Error');
+	}
+	else
+	{
+		JFactory::getApplication()->enqueueMessage('Your host needs to disable magic_quotes_gpc to run this version of MOOTOMBO! iWMS', 'Error');
+	}
+}
 
 // Mark afterIntialise in the profiler.
 JDEBUG ? $_PROFILER->mark('afterInitialise') : null;
