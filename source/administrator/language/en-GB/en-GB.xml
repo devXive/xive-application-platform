@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metafile version="3.1" client="administrator">
 	<name>English (United Kingdom)</name>
-	<version>3.1.0</version>
+	<version>3.1.2</version>
 	<creationDate>2013-03-07</creationDate>
-	<author>XAP Project</author>
+	<author>XAP! Project</author>
 	<authorEmail>support@devxive.com</authorEmail>
 	<authorUrl>www.devxive.com</authorUrl>
-	<copyright>Copyright (C) 1997- 2013 devXive - research and development. All rights reserved.</copyright>
+	<copyright>Copyright (C) 1997 - 2013 devXive - research and development. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<description>en-GB administrator language</description>
 	<files>
@@ -156,8 +156,6 @@
 		<filename>en-GB.plg_user_contactcreator.sys.ini</filename>
 		<filename>en-GB.plg_user_joomla.ini</filename>
 		<filename>en-GB.plg_user_joomla.sys.ini</filename>
-		<filename>en-GB.plg_user_xprofile.ini</filename>
-		<filename>en-GB.plg_user_xprofile.sys.ini</filename>
 		<filename>en-GB.tpl_isis.ini</filename>
 		<filename>en-GB.tpl_isis.sys.ini</filename>
 	</files>
