@@ -27,6 +27,7 @@ class ConfigViewComponent extends JViewLegacy
 	 * @since  3.1
 	 */
 	protected $helpScreenArray = array(
+		'com_banners' => 'JHELP_COMPONENTS_BANNER_MANAGER_OPTIONS',
 		'com_cache' => 'JHELP_COMPONENTS_CACHE_MANAGER_SETTINGS',
 		'com_checkin' => 'JHELP_COMPONENTS_CHECK-IN_CONFIGURATION',
 		'com_contact' => 'JHELP_COMPONENTS_CONTACT_MANAGER_OPTIONS',
@@ -39,12 +40,14 @@ class ConfigViewComponent extends JViewLegacy
 		'com_menus' => 'JHELP_COMPONENTS_MENUS_CONFIGURATION',
 		'com_messages' => 'JHELP_COMPONENTS_MESSAGES_CONFIGURATION',
 		'com_modules' => 'JHELP_COMPONENTS_MODULE_MANAGER_OPTIONS',
+		'com_newsfeeds' => 'JHELP_COMPONENTS_NEWS_FEED_MANAGER_OPTIONS',
 		'com_plugins' => 'JHELP_COMPONENTS_PLUG-IN_MANAGER_OPTIONS',
 		'com_redirect' => 'JHELP_COMPONENTS_REDIRECT_MANAGER_OPTIONS',
 		'com_search' => 'JHELP_COMPONENTS_SEARCH_MANAGER_OPTIONS',
 		'com_tags' => 'JHELP_COMPONENTS_TAGS_MANAGER_OPTIONS',
 		'com_templates' => 'JHELP_COMPONENTS_TEMPLATE_MANAGER_OPTIONS',
 		'com_users' => 'JHELP_COMPONENTS_USERS_CONFIGURATION',
+		'com_weblinks' => 'JHELP_COMPONENTS_WEB_LINKS_MANAGER_OPTIONS',
 	);
 
 	/**
@@ -52,7 +55,7 @@ class ConfigViewComponent extends JViewLegacy
 	 *
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
 	 *
-	 * @return  mixed  A string if successful, otherwise a Error object.
+	 * @return  mixed   A string if successful, otherwise a Error object.
 	 *
 	 * @since   1.5
 	 */
