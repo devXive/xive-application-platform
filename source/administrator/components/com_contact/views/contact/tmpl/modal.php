@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 
 // Include the component HTML helpers.
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
-
+JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('formbehavior.chosen', 'select');
 
@@ -26,15 +26,29 @@ $assoc = isset($app->item_associations) ? $app->item_associations : 0;
 		if (task == 'contact.cancel' || document.formvalidator.isValid(document.id('contact-form')))
 		{
 			<?php echo $this->form->getField('misc')->save(); ?>
+
+			if (window.opener && (task == 'contact.save' || task == 'contact.cancel'))
+			{
+				window.opener.document.closeEditWindow = self;
+				window.opener.setTimeout('window.document.closeEditWindow.close()', 1000);
+			}
+
 			Joomla.submitform(task, document.getElementById('contact-form'));
 		}
 	}
 </script>
+<div class="container-popup">
 
-<form action="<?php echo JRoute::_('index.php?option=com_contact&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="contact-form" class="form-validate form-horizontal">
+<div class="pull-right">
+	<button class="btn btn-primary" type="button" onclick="Joomla.submitbutton('contact.apply');"><?php echo JText::_('JTOOLBAR_APPLY') ?></button>
+	<button class="btn btn-primary" type="button" onclick="Joomla.submitbutton('contact.save');"><?php echo JText::_('JTOOLBAR_SAVE') ?></button>
+	<button class="btn" type="button" onclick="Joomla.submitbutton('contact.cancel');"><?php echo JText::_('JCANCEL') ?></button>
+</div>
 
-	<?php echo JLayoutHelper::render('joomla.edit.item_title', $this); ?>
+<div class="clearfix"> </div>
+<hr class="hr-condensed" />
 
+<form action="<?php echo JRoute::_('index.php?option=com_contact&layout=modal&tmpl=component&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="contact-form" class="form-validate form-horizontal">
 	<div class="row-fluid">
 		<!-- Begin contact -->
 		<div class="span10 form-horizontal">
@@ -197,14 +211,12 @@ $assoc = isset($app->item_associations) ? $app->item_associations : 0;
 					<?php echo $this->loadTemplate('metadata'); ?>
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-			<?php if ($assoc) : ?>
-				<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'associations', JText::_('JGLOBAL_FIELDSET_ASSOCIATIONS', true)); ?>
-					<?php echo $this->loadTemplate('associations'); ?>
-				<?php echo JHtml::_('bootstrap.endTab'); ?>
-			<?php endif; ?>
-
 			<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 		</fieldset>
+
+		<div class="hidden">
+			<?php echo $this->loadTemplate('associations'); ?>
+		</div>
 		<input type="hidden" name="task" value="" />
 		<?php echo JHtml::_('form.token'); ?>
 	</div>
@@ -213,3 +225,4 @@ $assoc = isset($app->item_associations) ? $app->item_associations : 0;
 		<?php echo JLayoutHelper::render('joomla.edit.details', $this); ?>
 	<!-- End Sidebar -->
 </form>
+</div>
