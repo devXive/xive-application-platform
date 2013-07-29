@@ -73,7 +73,7 @@ class JDocument
 	 *
 	 * @var    string
 	 */
-	public $_generator = 'XAP - Xive Application Framework';
+	public $_generator = 'Joomla! - Open Source Content Management';
 
 	/**
 	 * Document modified date
@@ -373,7 +373,6 @@ class JDocument
 	 */
 	public function getMetaData($name, $httpEquiv = false)
 	{
-		$result = '';
 		$name = strtolower($name);
 		if ($name == 'generator')
 		{
