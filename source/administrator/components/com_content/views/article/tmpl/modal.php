@@ -12,6 +12,8 @@ defined('_JEXEC') or die;
 // Include the component HTML helpers.
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 
+// Load the tooltip behavior.
+JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('behavior.keepalive');
 JHtml::_('formbehavior.chosen', 'select');
@@ -60,15 +62,29 @@ if (!empty($this->item->attribs['show_urls_images_backend']))
 		if (task == 'article.cancel' || document.formvalidator.isValid(document.id('item-form')))
 		{
 			<?php echo $this->form->getField('articletext')->save(); ?>
-			Joomla.submitform(task, document.getElementById('item-form'));
+
+			if (window.opener && (task == 'article.save' || task == 'article.cancel'))
+			{
+				window.opener.document.closeEditWindow = self;
+				window.opener.setTimeout('window.document.closeEditWindow.close()', 1000);
+			}
+
+		Joomla.submitform(task, document.getElementById('item-form'));
 		}
 	}
 </script>
+<div class="container-popup">
 
-<form action="<?php echo JRoute::_('index.php?option=com_content&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="item-form" class="form-validate">
+<div class="pull-right">
+	<button class="btn btn-primary" type="button" onclick="Joomla.submitbutton('article.apply');"><?php echo JText::_('JTOOLBAR_APPLY') ?></button>
+	<button class="btn btn-primary" type="button" onclick="Joomla.submitbutton('article.save');"><?php echo JText::_('JTOOLBAR_SAVE') ?></button>
+	<button class="btn" type="button" onclick="Joomla.submitbutton('article.cancel');"><?php echo JText::_('JCANCEL') ?></button>
+</div>
 
-	<?php echo JLayoutHelper::render('joomla.edit.item_title', $this); ?>
+<div class="clearfix"> </div>
+<hr class="hr-condensed" />
 
+<form action="<?php echo JRoute::_('index.php?option=com_content&layout=modal&tmpl=component&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="item-form" class="form-validate">
 	<div class="row-fluid">
 		<!-- Begin Content -->
 		<div class="span10 form-horizontal">
@@ -269,12 +285,6 @@ if (!empty($this->item->attribs['show_urls_images_backend']))
 							<?php echo $this->loadTemplate('metadata'); ?>
 					<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-					<?php if ($assoc) : ?>
-						<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'associations', JText::_('JGLOBAL_FIELDSET_ASSOCIATIONS', true)); ?>
-							<?php echo $this->loadTemplate('associations'); ?>
-						<?php echo JHtml::_('bootstrap.endTab'); ?>
-					<?php endif; ?>
-
 					<?php if ($this->canDo->get('core.admin')) : ?>
 						<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'permissions', JText::_('COM_CONTENT_FIELDSET_RULES', true)); ?>
 							<fieldset>
@@ -284,6 +294,10 @@ if (!empty($this->item->attribs['show_urls_images_backend']))
 					<?php endif; ?>
 
 			<?php echo JHtml::_('bootstrap.endTabSet'); ?>
+
+			<div class="hidden">
+				<?php echo $this->loadTemplate('associations'); ?>
+			</div>
 
 			<input type="hidden" name="task" value="" />
 			<input type="hidden" name="return" value="<?php echo $input->getCmd('return');?>" />
@@ -295,3 +309,4 @@ if (!empty($this->item->attribs['show_urls_images_backend']))
 		<!-- End Sidebar -->
 	</div>
 </form>
+</div>
