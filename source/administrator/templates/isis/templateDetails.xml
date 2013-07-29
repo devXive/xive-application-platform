@@ -3,10 +3,9 @@
 <extension version="3.1" type="template" client="administrator">
 	<name>isis</name>
 	<version>1.0</version>
-	<creationDate>3/30/2012</creationDate>
+	<creationDate>2013-07-29</creationDate>
 	<author>devXive</author>
 	<authorEmail>support@devxive.com</authorEmail>
-	<authorUrl>http://devxive.com</authorUrl>
 	<copyright>Copyright (C) 1997 - 2013 devXive - research and development. All rights reserved.</copyright>
 	<description>TPL_ISIS_XML_DESCRIPTION</description>
 	<files>
@@ -23,7 +22,9 @@
 		<folder>images</folder>
 		<folder>img</folder>
 		<folder>js</folder>
+		<folder>language</folder>
 		<folder>less</folder>
+	<folder>less</folder>
 	</files>
 	<positions>
 		<position>menu</position>
@@ -34,6 +35,7 @@
 		<position>icon</position>
 		<position>cp_shell</position>
 		<position>cpanel</position>
+		<position>bottom</position>
 		<position>footer</position>
 		<position>login</position>
 		<position>debug</position>
@@ -46,15 +48,20 @@
 		<fields name="params">
 			<fieldset name="advanced">
 
-				<field name="templateColor" class="" type="color" default="#2e1342"
+				<field name="templateColor" class="" type="color" default="#2E1342"
 				validate="color"
 				label="TPL_ISIS_COLOR_LABEL"
 				description="TPL_ISIS_COLOR_DESC" />
 				
-				<field name="headerColor" class="" type="color" default="#61298a"
+				<field name="headerColor" class="" type="color" default="#61298A"
 				validate="color"
 				label="TPL_ISIS_COLOR_HEADER_LABEL"
 				description="TPL_ISIS_COLOR_HEADER_DESC" />
+
+				<field name="sidebarColor" class="" type="color" default="#0088CC"
+				validate="color"
+				label="TPL_ISIS_COLOR_SIDEBAR_LABEL"
+				description="TPL_ISIS_COLOR_SIDEBAR_DESC" />
 
 				<field name="logoFile" class="" type="media" default=""
 				label="TPL_ISIS_LOGO_LABEL"

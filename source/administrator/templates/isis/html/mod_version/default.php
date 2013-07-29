@@ -1,3 +1,4 @@
+<?php
 /**
  * @package     XAP.Administrator
  * @subpackage  Templates.isis
@@ -8,10 +9,9 @@
  * @since       3.0
  */
 
-$('.dropdown-toggle').dropdown()
-$('.collapse').collapse('show')
-$('#myModal').modal('hide')
-$('.typeahead').typeahead()
-$('.tabs').button()
-$('.tip').tooltip()
-$(".alert-message").alert()
+defined('_JEXEC') or die;
+?>
+<?php if (!empty($version)) : ?>
+	<?php echo $version; ?>
+	<?php echo "&nbsp;&mdash;&nbsp;"; ?>
+<?php endif; ?>
