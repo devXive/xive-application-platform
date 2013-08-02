@@ -1,4 +1,3 @@
 <extensionset name="XAP Core" description="XAP Core">
-	<extension name="XAP" element="joomla" type="file" version="3.1.4" targetplatformversion="3.0" detailsurl="https://raw.github.com/devXive/xive-application-platform/master/updlists/core/details.xml" />
-	<extension name="XAP" element="joomla" type="file" version="3.1.4" targetplatformversion="3.1" detailsurl="https://raw.github.com/devXive/xive-application-platform/master/updlists/core/details.xml" />
+	<extension name="XAP" element="joomla" type="file" version="3.1.5" targetplatformversion="3.1" detailsurl="https://raw.github.com/devXive/xive-application-platform/master/updlists/core/details.xml" />
 </extensionset>
