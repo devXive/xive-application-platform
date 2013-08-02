@@ -1,6 +1,6 @@
 <?php
 /**
- * @package     Joomla.Libraries
+ * @package     XAP.Libraries
  * @subpackage  Version
  *
  * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
@@ -10,51 +10,51 @@
 defined('_JEXEC') or die;
 
 /**
- * Version information class for the Joomla CMS.
+ * Version information class for the MOOTOMBO! iWMS.
  *
- * @package     Joomla.Libraries
+ * @package     XAP.Libraries
  * @subpackage  Version
  * @since       1.0
  */
 final class JVersion
 {
 	/** @var  string  Product name. */
-	public $PRODUCT = 'Joomla!';
+	public $PRODUCT = 'MOOTOMBO! iWMS';
 
 	/** @var  string  Release version. */
 	public $RELEASE = '3.1';
 
 	/** @var  string  Maintenance version. */
-	public $DEV_LEVEL = '4';
+	public $DEV_LEVEL = '6';
 
 	/** @var  string  Development STATUS. */
-	public $DEV_STATUS = 'Stable';
+	public $DEV_STATUS = 'Beta';
 
 	/** @var  string  Build number. */
 	public $BUILD = '';
 
 	/** @var  string  Code name. */
-	public $CODENAME = 'Ember';
+	public $CODENAME = 'Pana Pana';
 
 	/** @var  string  Release date. */
-	public $RELDATE = '25-July-2013';
+	public $RELDATE = '02-August-2013';
 
 	/** @var  string  Release time. */
-	public $RELTIME = '14:00';
+	public $RELTIME = '21:00';
 
 	/** @var  string  Release timezone. */
 	public $RELTZ = 'GMT';
 
 	/** @var  string  Copyright Notice. */
-	public $COPYRIGHT = 'Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.';
+	public $COPYRIGHT = 'Copyright (C) 1997 - 2013 devXive - research and development. All rights reserved.';
 
 	/** @var  string  Link text. */
-	public $URL = '<a href="http://www.joomla.org">Joomla!</a> is Free Software released under the GNU General Public License.';
+	public $URL = '<a href="http://mootombo.net">MOOTOMBO! iWMS</a> is Free Software released under the GNU General Public License.';
 
 	/**
-	 * Compares two a "PHP standardized" version number against the current Joomla version.
+	 * Compares two a "PHP standardized" version number against the current MOOTOMBO! version.
 	 *
-	 * @param   string  $minimum  The minimum version of the Joomla which is compatible.
+	 * @param   string  $minimum  The minimum version of the MOOTOMBO! which is compatible.
 	 *
 	 * @return  bool    True if the version is compatible.
 	 *
@@ -79,7 +79,7 @@ final class JVersion
 	}
 
 	/**
-	 * Gets a "PHP standardized" version string for the current Joomla.
+	 * Gets a "PHP standardized" version string for the current MOOTOMBO!.
 	 *
 	 * @return  string  Version string.
 	 *
@@ -91,7 +91,7 @@ final class JVersion
 	}
 
 	/**
-	 * Gets a version string for the current Joomla with all release information.
+	 * Gets a version string for the current MOOTOMBO! with all release information.
 	 *
 	 * @return  string  Complete version string.
 	 *
