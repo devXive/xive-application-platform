@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<extensionset name="XAP Translations" description="XAP Translations Updates">
-  <extension name="German" element="pkg_de-DE" type="package" version="3.1.1.1" detailsurl="https://raw.github.com/devXive/xive-application-platform/master/updlists/language/de-DE.xml"/>
-</extensionset>
